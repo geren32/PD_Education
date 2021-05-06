@@ -17,11 +17,11 @@ module.exports = async (req, res, next) => {
             if (!token) {
                 res.redirect('/auth/login');
             }
-            let user = await models.user.findOne({where: { access_token: token }, include: [
+            let user = await models.users.findOne({where: { access_token: token }, include: [
                     {model: models.client/*, include: [{model: models.dealer}]*/},
-                    {model: models.dealer},
-                    {model: models.manager_sr},
-                    {model: models.manager_blum}
+                    // {model: models.dealer},
+                    // {model: models.manager_sr},
+                    // {model: models.manager_blum}
                 ]});
             if (!user) {
                 res.redirect('/auth/login');

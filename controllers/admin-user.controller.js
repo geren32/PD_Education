@@ -32,9 +32,7 @@ module.exports = {
 
     adminCreateUser: async (req, res) => {
 
-        let { first_name, last_name, email, phone, type, password, confirm_password, index, house_number, apartment_number,
-            region_activity_id, mailing_address, company_name, company_url, position_activity_id, activity_id, dealer_id, manager_sr_id,
-            crm_number, fixed_regions, fixed_dealers, city, phone_numbers } = req.body;
+        let { first_name, last_name, email, phone, type, password, confirm_password} = req.body;
 
         if (!first_name || !last_name || !email || !phone || !type || !password ||  !confirm_password) {
           return  res.status(errors.BAD_REQUEST_REQUIRED_USER_FIELDS_EMPTI.code).json({
@@ -64,17 +62,7 @@ module.exports = {
             });
             
         }
-        if(phone_numbers && phone_numbers.length) {
-            for (let phone of phone_numbers) {
-                if (!config.REGEX_PHONE.test(phone.phone) || phone.phone.length != 19) {
-                   return res.status(errors.BAD_REQUEST_USER_PHONE_NOT_VALID.code).json({
-                        message: errors.BAD_REQUEST_USER_PHONE_NOT_VALID.message,
-                        errCode: errors.BAD_REQUEST_USER_PHONE_NOT_VALID.code,
-                    });
-                    
-                }
-            }
-        }
+     
         if (!config.REGEX_EMAIL.test(email)) {
           return  res.status(errors.BAD_REQUEST_USER_EMAIL_NOT_VALID.code).json({
                 message: errors.BAD_REQUEST_USER_EMAIL_NOT_VALID.message,
@@ -98,31 +86,22 @@ module.exports = {
             });
             
         }
-        if(crm_number) {
-            let isCrmNumberExist = await userService.getClient({ crm_number }, ['crm_number']);
-            if (isCrmNumberExist) {
-              return   res.status(errors.BAD_REQUEST_CLIENT_CRM_NUMBER_EXIST.code).json({
-                    message: errors.BAD_REQUEST_CLIENT_CRM_NUMBER_EXIST.message,
-                    errCode: errors.BAD_REQUEST_CLIENT_CRM_NUMBER_EXIST.code,
-                });
-               
-            }
-        }
+     
         const transaction = await sequelize.transaction();
         try {
             let newUser = {
                 first_name, last_name, email, phone, type,
                 password: await bcryptUtil.hashPassword(password),
-                status: config.GLOBAL_STATUSES.WAITING,
-                index, house_number,
-                apartment_number, mailing_address, region_activity_id, city,
+               
+              
+              
 
             };
             let user = await userService.createUser(newUser, { transaction });
 
             if (type === config.CLIENT_ROLE) {
                 let client = {
-                    company_name, company_url, position_activity_id, activity_id, dealer_id, crm_number,
+                   
 
                 };
                 client = await user.createClient(client, { transaction });
@@ -139,7 +118,7 @@ module.exports = {
                 confirm_token: localToken.confirmToken,
                 confirm_token_type: 'register',
                 confirm_token_expires: localToken.confirmTokenExpires,
-                updatedAt:Math.floor(new Date().getTime() / 1000)
+               
             }, { transaction })
             let mailObj = {
                 to: email,
@@ -154,8 +133,8 @@ module.exports = {
 
             await transaction.commit();
 
-            return res.status(200).json(await userService.getUserDetails(user.id,['id', 'first_name', 'last_name', "email", "phone", 'status', 'type', 'index', 'mailing_address', 'house_number', 'apartment_number',
-                    'createdAt', "updatedAt", 'region_activity_id', 'city']))
+            return res.status(200).json(await userService.getUserDetails(user.id,['id', 'first_name', 'last_name', "email", "phone", 'user_type',   ,
+                   ]))
 
         } catch (error) {
             await transaction.rollback();

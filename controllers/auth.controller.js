@@ -41,8 +41,8 @@ module.exports = {
 
     registerNewClient: async (req, res) => {
 
-        let { first_name, last_name, new_email, password, confirm_password, phone_number, index, house_number, apartment_number,
-            region_activity_id, mailing_address, company_name, company_url, positon_activity_id, activity_id, dealer_id, city } = req.body;
+        let { first_name, last_name, email, password, confirm_password, phone, index, 
+  city } = req.body;
 
         if (!last_name) {
             return res.status(200).json({ lastNameNotExist: true });
@@ -59,30 +59,22 @@ module.exports = {
         if (password != confirm_password) {
             return res.status(200).json({ passwordNotConfirm: true });
         }
-        if (!config.REGEX_PHONE.test(phone_number)) {
+        if (!config.REGEX_PHONE.test(phone)) {
             return res.status(200).json({ phoneNumberNotExist: true });
         }
-        if (!config.REGEX_EMAIL.test(new_email)) {
+        if (!config.REGEX_EMAIL.test(email)) {
             return res.status(200).json({ notEmail: true });
         }
-        if (!region_activity_id) {
-            return res.status(200).json({ regionActivityIdNotExist: true });
-        }
+      
         if (!city) {
             return res.status(200).json({ cityNotExist: true });
         }
-        if (!activity_id) {
-            return res.status(200).json({ activityIdNotExist: true });
-        }
-        if (!positon_activity_id) {
-            return res.status(200).json({ positonActivityIdNotExist: true });
-        }
-        if (!dealer_id) {
-            return res.status(200).json({ dealerIdNotExist: true });
-        }
+     
+       
+      
         const transaction = await sequelize.transaction();
         try {
-            const userExist = await userService.getUser({ email: new_email }, ['id']);
+            const userExist = await userService.getUser({ email: email }, ['id']);
             if (userExist) {
                 return res.status(200).json({ emailExist: true });
             }
@@ -92,19 +84,15 @@ module.exports = {
             }
 
             let userObj = {
-                first_name, last_name, email: new_email,
+                first_name, last_name, email: email,
                 password: await bcryptUtil.hashPassword(password),
-                status: config.GLOBAL_STATUSES.WAITING, index, house_number, phone: phone_number, apartment_number, mailing_address, region_activity_id, city,
-                createdAt: Math.floor(new Date().getTime() / 1000)
+              phone: phone
+               
 
             };
-            let client = {
-                company_name, company_url, positon_activity_id, activity_id, dealer_id,
-                createdAt:Math.floor(new Date().getTime() / 1000)
-            };
-
+          
             user = await userService.createUser(userObj, { transaction });
-            client = await user.createClient(client, { transaction });
+            // client = await user.createClient(client, { transaction });
 
             let localToken = makeLocalToken();
             await user.update({

@@ -10,44 +10,44 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         first_name: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         last_name: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         email: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         password: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
             allowNull: false
         },
         phone: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         access_token: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         refresh_token: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         confirm_token: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
-        confirm_token_expiry: {
+        confirm_token_expires: {
             type: DataTypes.INTEGER(11),
         },
         confirm_token_type: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         last_login: {
             type: DataTypes.INTEGER(11),
         },
         user_type: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         avatar: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
     }, {
 
