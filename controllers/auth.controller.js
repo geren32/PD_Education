@@ -16,8 +16,8 @@ module.exports = {
 
     registerPage: async (req, res) => {
         try {
-
-            // let activity = await userService.findAllAcivity();
+          
+            let activity = await userService.findAllAcivity();
             let positionActivity = await userService.findAllPositionAcivity();
 
             res.render('client/register', {
@@ -26,23 +26,23 @@ module.exports = {
                 //passwordInfo: req.flash("passwordInfo"),
                 // uniqueRegions: uniqueRegions,
                 positionActivity: positionActivity,
-
+                activity: activity
             });
 
         } catch (err) {
-            return res.status(400).json({
+           return res.status(400).json({
                 message: err.message,
                 errCode: 400
             });
-
+            
         }
 
     },
 
     registerNewClient: async (req, res) => {
 
-        let { first_name, last_name, email, password, confirm_password, phone, index,
-            city } = req.body;
+        let { first_name, last_name, new_email, password, confirm_password, phone_number, index, house_number, apartment_number,
+            region_activity_id, mailing_address, company_name, company_url, positon_activity_id, activity_id, dealer_id, city } = req.body;
 
         if (!last_name) {
             return res.status(200).json({ lastNameNotExist: true });
@@ -59,22 +59,30 @@ module.exports = {
         if (password != confirm_password) {
             return res.status(200).json({ passwordNotConfirm: true });
         }
-        if (!config.REGEX_PHONE.test(phone)) {
+        if (!config.REGEX_PHONE.test(phone_number)) {
             return res.status(200).json({ phoneNumberNotExist: true });
         }
-        if (!config.REGEX_EMAIL.test(email)) {
+        if (!config.REGEX_EMAIL.test(new_email)) {
             return res.status(200).json({ notEmail: true });
         }
-
+        if (!region_activity_id) {
+            return res.status(200).json({ regionActivityIdNotExist: true });
+        }
         if (!city) {
             return res.status(200).json({ cityNotExist: true });
         }
-
-
-
+        if (!activity_id) {
+            return res.status(200).json({ activityIdNotExist: true });
+        }
+        if (!positon_activity_id) {
+            return res.status(200).json({ positonActivityIdNotExist: true });
+        }
+        if (!dealer_id) {
+            return res.status(200).json({ dealerIdNotExist: true });
+        }
         const transaction = await sequelize.transaction();
         try {
-            const userExist = await userService.getUser({ email: email }, ['id']);
+            const userExist = await userService.getUser({ email: new_email }, ['id']);
             if (userExist) {
                 return res.status(200).json({ emailExist: true });
             }
@@ -84,15 +92,19 @@ module.exports = {
             }
 
             let userObj = {
-                first_name, last_name, email: email,
+                first_name, last_name, email: new_email,
                 password: await bcryptUtil.hashPassword(password),
-                phone: phone
+                status: config.GLOBAL_STATUSES.WAITING, index, house_number, phone: phone_number, apartment_number, mailing_address, region_activity_id, city,
+                createdAt: Math.floor(new Date().getTime() / 1000)
 
-
+            };
+            let client = {
+                company_name, company_url, positon_activity_id, activity_id, dealer_id,
+                createdAt:Math.floor(new Date().getTime() / 1000)
             };
 
             user = await userService.createUser(userObj, { transaction });
-            // client = await user.createClient(client, { transaction });
+            client = await user.createClient(client, { transaction });
 
             let localToken = makeLocalToken();
             await user.update({
@@ -116,10 +128,10 @@ module.exports = {
 
             await transaction.commit();
 
-            return  res.status(200).json({ successRegistration: true });
-
+          return  res.status(200).json({ successRegistration: true });
+            
         } catch (err) {
-
+          
             await transaction.rollback();
             return  res.status(400).json({
                 message: err.message,
@@ -139,8 +151,8 @@ module.exports = {
                 const expiresAt = (new Date(user.confirm_token_expires)).getTime();
                 if (expiresAt < Date.now()) {
                     let error = 'Email not verified. The token has expired';
-                    return  res.redirect('/auth/login/'+error);
-
+                  return  res.redirect('/auth/login/'+error);
+                    
                 } else {
                     await user.update({
                         confirm_token: null,
@@ -152,29 +164,29 @@ module.exports = {
                     if(user.status == config.GLOBAL_STATUSES.WAITING){
                         let error = 'Email confirmed. Awaiting confirmation of registration';
                         return res.redirect('/auth/login/'+error);
-
+                       
                     }
                     if(user.status == config.GLOBAL_STATUSES.ACTIVE){
                         let error = 'Congratulations, email confirmed. Please login ';
                         return res.redirect('/auth/login/'+error);
-
+                       
                     }
 
                     let error = "Contact the administrator";
-                    return res.redirect('/auth/login/'+error);
-
+                   return res.redirect('/auth/login/'+error);
+                    
                 }
             } else {
                 let error = 'Email not confirmed. Not the correct token';
-                return  res.redirect('/auth/login/'+error);
-
+              return  res.redirect('/auth/login/'+error);
+                
             }
         } catch (err) {
-            return   res.status(400).json({
+         return   res.status(400).json({
                 message: err.message,
                 errCode: 400
             });
-
+            
         }
     },
 
@@ -183,12 +195,12 @@ module.exports = {
             metaData: req.body.metaData,
             layout: 'client/layout-client.hbs',
             login: true,
-            users: req.users,
+            user: req.user,
             error: req.params.error
         });
     },
 
-
+  
 
     userLogin: async (req, res) => {
         try {
@@ -202,18 +214,18 @@ module.exports = {
                     login: true,
                     error: 'Incorrect password or email'
                 });
-
+                
             }
-
-            // if (!user.email_verified) {
-            //     res.render('client/index', {
-            //         metaData: req.body.metaData,
-            //         layout: 'client/layout-client',
-            //         login: true,
-            //         error: 'Email not verified. You need to confirm your email address'
-            //     });
-            //
-            // }
+          
+            if (!user.email_verified) {
+                res.render('client/index', {
+                    metaData: req.body.metaData,
+                    layout: 'client/layout-client',
+                    login: true,
+                    error: 'Email not verified. You need to confirm your email address'
+                });
+                
+            }
             if (user.status != config.GLOBAL_STATUSES.ACTIVE) {
                 if (user.status == config.GLOBAL_STATUSES.BLOCKED) {
                     res.render('client/index', {
@@ -222,7 +234,7 @@ module.exports = {
                         login: true,
                         error: "Your account is locked. Please contact the administrator"
                     });
-
+                    
                 }else if (user.status == config.GLOBAL_STATUSES.WAITING){
                     res.render('client/index', {
                         metaData: req.body.metaData,
@@ -230,7 +242,7 @@ module.exports = {
                         login: true,
                         error: 'Awaiting confirmation of registration by the administrator'
                     });
-
+                    
                 }else if (user.status == config.GLOBAL_STATUSES.DELETED){
                     res.render('client/index', {
                         metaData: req.body.metaData,
@@ -238,21 +250,19 @@ module.exports = {
                         login: true,
                         error: "Your account has been deleted. Please contact the administrator"
                     });
-
+                    
                 }
             }
-            const isComparePassword = await bcryptUtil.comparePassword(password, user.password);{
-                res.render('client/cabinet/education')
+            const isComparePassword = await bcryptUtil.comparePassword(password, user.password);
+            if (!isComparePassword){
+                res.render('client/index', {
+                    metaData: req.body.metaData,
+                    layout: 'client/layout-client',
+                    login: true,
+                    error: 'Incorrect password or email'
+                });
+               
             }
-            // if (!isComparePassword){
-            //     res.render('client/index', {
-            //         metaData: req.body.metaData,
-            //         layout: 'client/layout-client',
-            //         login: true,
-            //         error: 'Incorrect password or email'
-            //     });
-            //
-            // }
 
             const token = tokenUtil({ first_name: user.first_name, last_name: user.last_name, userid: user.id });
             await user.update({ access_token: token.access_token, refresh_token: token.refresh_token, updatedAt:Math.floor(new Date().getTime() / 1000) });
@@ -260,28 +270,28 @@ module.exports = {
 
             if (user.type === config.CLIENT_ROLE) {
                 let url = req.headers.referer.split(req.headers.host).pop();
-                return  res.redirect(url ? url !== '/auth/login' ? url : '/' : '/');
-
-            }
-
-                //     else if (user.type === config.SR_MANAGER_ROLE) {
-                //    return res.redirect('/sr-manager/sr-manager-orders');
-                //     }
-                //     else if (user.type === config.BLUM_MANAGER_ROLE) {
+               return  res.redirect(url ? url !== '/auth/login' ? url : '/' : '/');
+               
+            } 
+          
+            //     else if (user.type === config.SR_MANAGER_ROLE) {
+            //    return res.redirect('/sr-manager/sr-manager-orders');
+            //     } 
+            //     else if (user.type === config.BLUM_MANAGER_ROLE) {
             //    return  res.redirect('/blum-manager/blum-manager-orders'); }
-
+               
             else if (user.type === config.SUPER_ADMIN_ROLE) {
-                return  res.redirect('/api/auth/admin/login');
-
+               return  res.redirect('/api/auth/admin/login');
+               
             }
 
             return;
         } catch (err) {
-            return  res.status(400).json({
+           return  res.status(400).json({
                 message: err.message,
                 errCode: 400
             });
-
+           
         }
     },
 
@@ -300,7 +310,7 @@ module.exports = {
                         user: req.user,
                         error: 'The token has expired'
                     });
-
+                   
                 } else {
 
                     res.render('client/index', {
@@ -311,7 +321,7 @@ module.exports = {
                         user: req.user,
                         //error: ''
                     });
-
+                    
                 }
             } else {
                 res.render('client/index', {
@@ -321,14 +331,14 @@ module.exports = {
                     user: req.user,
                     error: 'The token is incorrect'
                 });
-
+               
             }
         } catch (err) {
-            return   res.status(400).json({
+         return   res.status(400).json({
                 message: err.message,
                 errCode: 400
             });
-
+            
         }
     },
 
@@ -343,7 +353,7 @@ module.exports = {
                 user: req.user,
                 error: "No password specified"
             });
-
+            
         }
         if (password != сonfirmPassword) {
             res.render('client/index', {
@@ -354,7 +364,7 @@ module.exports = {
                 user: req.user,
                 error: "The password does not match"
             });
-
+            
         }
         if (!config.REGEX_PASSWORD.test(password)) {
             res.render('client/index', {
@@ -365,7 +375,7 @@ module.exports = {
                 user: req.user,
                 error: "The password does not meet the requirements"
             });
-
+           
         }
         try {
             const user = await userService.getUser({ confirm_token: token });
@@ -380,7 +390,7 @@ module.exports = {
                         user: req.user,
                         error: 'The token has expired'
                     });
-
+                   
                 } else {
 
                     const newHashPassword = await bcryptUtil.hashPassword(password);
@@ -390,16 +400,16 @@ module.exports = {
                         confirm_token_type: null,
                         confirm_token_expires: null,
                         updatedAt:Math.floor(new Date().getTime() / 1000)
-                    });
+                     });
 
-                    res.render('client/index', {
-                        metaData: req.body.metaData,
-                        layout: 'client/layout-client',
-                        login: true,
-                        user: req.user,
-                        error: 'Password changed'
-                    });
-
+                     res.render('client/index', {
+                         metaData: req.body.metaData,
+                         layout: 'client/layout-client',
+                         login: true,
+                         user: req.user,
+                         error: 'Password changed'
+                     });
+                    
                 }
             } else {
                 res.render('client/index', {
@@ -409,14 +419,14 @@ module.exports = {
                     user: req.user,
                     error: 'The token is incorrect'
                 });
-
+                
             }
         } catch (err) {
-            return  res.status(400).json({
+          return  res.status(400).json({
                 message: err.message,
                 errCode: 400
             });
-
+            
         }
     },
 
@@ -431,7 +441,7 @@ module.exports = {
                 user: req.user,
                 info: 'Email not specified'
             });
-
+            
         }
         if (!config.REGEX_EMAIL.test(email)) {
             res.render('client/index', {
@@ -441,7 +451,7 @@ module.exports = {
                 user: req.user,
                 info: 'Not the right email'
             });
-
+            
         }
         try {
             const user = await userService.getUser({ email });
@@ -453,7 +463,7 @@ module.exports = {
                     user: req.user,
                     info: 'Email address not found'
                 });
-
+                
             }
             let localToken = makeLocalToken();
             await user.update({
@@ -478,15 +488,15 @@ module.exports = {
                 user: req.user,
                 info: ' Password reset email has been sent'
             });
-
+            
 
         }
         catch (err) {
-            return   res.status(400).json({
+         return   res.status(400).json({
                 message: err.message,
                 errCode: 400
             });
-
+            
         }
 
     },
@@ -497,23 +507,23 @@ module.exports = {
         let info = null;
 
         if (!password || !confirmNewPassword) {
-            return  res.json( {result: "No password or re-password specified" });
-
+          return  res.json( {result: "No password or re-password specified" });
+            
         }
         if (!config.REGEX_PASSWORD.test(password)) {
-            return res.json( {result: "The password does not meet the requirements" });
-
+           return res.json( {result: "The password does not meet the requirements" });
+            
         }
         if (newPassword != confirmNewPassword) {
-            return res.json( {result: "Password does not match password" });
-
+           return res.json( {result: "Password does not match password" });
+            
         }
         try {
             const user = await userService.getUser(userId, ['id', 'email', 'password', 'type']);
             const isComparePassword = await bcryptUtil.comparePassword(password, user.password);
             if (!isComparePassword) {
-                return  res.json( {result: "Invalid current password" });
-
+              return  res.json( {result: "Invalid current password" });
+                
             }
 
             const newHashPassword = await bcryptUtil.hashPassword(newPassword);
@@ -522,11 +532,11 @@ module.exports = {
             res.json({ result: "Password changed!" });
         }
         catch (err) {
-            return res.status(400).json({
+           return res.status(400).json({
                 message: err.message,
                 errCode: 400
             });
-
+            
         }
     },
 
@@ -537,11 +547,11 @@ module.exports = {
             return res.json(citysOfRegion);
 
         } catch (err) {
-            return res.status(400).json({
+           return res.status(400).json({
                 message: err.message,
                 errCode: 400
             });
-
+            
         }
 
     },
@@ -557,7 +567,7 @@ module.exports = {
     //             message: err.message,
     //             errCode: 400
     //         });
-
+            
     //     }
 
     // },
@@ -578,21 +588,21 @@ module.exports = {
         try {
             const user = await userService.getUser({ access_token: token });
             if (!user) {
-                return   res.status(403).json({
+              return   res.status(403).json({
                     message: 'User not exists',
                     errCode: 403
                 });
-
+               
             }
             await user.update({ access_token: null, refresh_token: null ,updatedAt:Math.floor(new Date().getTime() / 1000)});
             return res.redirect('login');
-
+           
         } catch (err) {
-            return  res.status(400).json({
+          return  res.status(400).json({
                 message: err.message,
                 errCode: 400
             });
-
+            
         }
     },
 
@@ -609,11 +619,11 @@ module.exports = {
             return res.status(200).json({ emailExist: false });
 
         } catch (error) {
-            return  res.status(400).json({
+          return  res.status(400).json({
                 message: error.message,
                 errCode: 400
             });
-
+            
         }
 
     },
@@ -633,11 +643,11 @@ module.exports = {
             return res.status(200).json({ phoneExist: false });
 
         } catch (error) {
-            return  res.status(400).json({
+           return  res.status(400).json({
                 message: error.message,
                 errCode: 400
             });
-
+           
         }
 
     },

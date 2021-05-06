@@ -3,28 +3,28 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
 
     sequelize.define('cart', {
-        id: {
-            autoIncrement: true,
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true
+            id: {
+                autoIncrement: true,
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                primaryKey: true
+            },
+            date: {
+                type: DataTypes.DATE
+            },
+            total_price: {
+                type: DataTypes.FLOAT
+            },
+            user_id: {
+                type: DataTypes.INTEGER
+            },
+            status: {
+                type: DataTypes.TINYINT
+            }
         },
-        date: {
-            type: DataTypes.INTEGER(11),
-        },
-        user_id: {
-            type: DataTypes.INTEGER(11),
-        },
-        product_id: {
-            type: DataTypes.INTEGER,
-        },
-        count: {
-            type: DataTypes.INTEGER,
-        },
-    }, {
-
-        tableName: 'cart',
-        timestamps: false,
-
-    });
+        {
+            tableName: 'cart',
+            timestamps: false
+        });
 };
+

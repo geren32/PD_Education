@@ -10,7 +10,7 @@ module.exports = async (req, res, next) => {
         code: currency, decode: config.CURRENCY_TYPES[currency]
     }
     if (token) {
-        const client = await models.users.findOne({where: {access_token: token, type: config.CLIENT_ROLE}, include: [
+        const client = await models.user.findOne({where: {access_token: token, type: config.CLIENT_ROLE}, include: [
                 {model: models.client, include: [{model: models.dealer}]}
             ]});
 // JSON.parse(JSON.stringify(client));

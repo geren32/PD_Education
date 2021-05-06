@@ -13,11 +13,11 @@ const userAttributes = [
 
 
 module.exports = {
-    createUser: async (users, trans) => {
+    createUser: async (user, trans) => {
         let transaction = null;
         try {
             transaction = trans ? trans : await sequelize.transaction();
-            const result = await models.users.create(users, transaction);
+            const result = await models.user.create(user, transaction);
             if (!trans) await transaction.commit();
             return result;
         } catch (err) {
@@ -32,7 +32,7 @@ module.exports = {
         if (typeof params !== 'object') {
             filter = { id: params }
         }
-        const result = await models.users.findOne({
+        const result = await models.user.findOne({
             where: filter,
             attributes: attributes
         });
@@ -41,7 +41,7 @@ module.exports = {
  getAllUsersByRegions : async(filter)=>{
 
     try {
-         let result = await models.users.findAll({where: filter,
+         let result = await models.user.findAll({where: filter,
             include: [
             { model: models.dealer, attributes: ['id', 'company_name', 'manager_sr_id'], include:[ {model: models.manager_sr} ]}]})
 
@@ -57,7 +57,7 @@ module.exports = {
         if (typeof params !== 'object') {
             filter = { id: params }
         }
-        const result = await models.users.findAll({
+        const result = await models.user.findAll({
             where: filter,
             attributes: attributes
         });
@@ -69,7 +69,7 @@ module.exports = {
         if (typeof params !== 'object') {
             filter = { id: params }
         }
-        const result = await models.users.findOne({
+        const result = await models.user.findOne({
             where: filter,
             attributes: attributes,
             include: [
@@ -121,7 +121,7 @@ module.exports = {
     },
 
     getAllUsers: async (attributes) => {
-        const result = await models.users.findAndCountAll({
+        const result = await models.user.findAndCountAll({
             attributes: attributes
         });
 
@@ -131,10 +131,10 @@ module.exports = {
         } : { users: [], count: 0 };
     },
 
-    getUserById: async (users_id) => {
+    getUserById: async (user_id) => {
         try {
 
-            let result = await models.users.findByPk(users_id, {
+            let result = await models.user.findByPk(user_id, {
                 attributes: ['id', 'last_name', 'first_name', 'email', 'phone', 'type', 'created_at', 'bonuses'],
 
             });
@@ -149,7 +149,7 @@ module.exports = {
     filterUser: async (filter) => {
         try {
 
-            let result = await models.users.findOne({ where: filter });
+            let result = await models.user.findOne({ where: filter });
 
             return result;
         } catch (err) {
@@ -164,7 +164,7 @@ module.exports = {
             const offset = perPage * (page - 1);
             const limit = perPage;
 
-            let result = await models.users.findAndCountAll({
+            let result = await models.user.findAndCountAll({
                 where: filter.where,
                 offset: offset,
                 limit: limit,
@@ -187,7 +187,7 @@ module.exports = {
     adminCountsStatus: async (statusCode) => {
         try {
 
-            let result = await models.users.findAndCountAll({
+            let result = await models.user.findAndCountAll({
                 where: { status: statusCode },
             });
             if(result==0){
@@ -212,7 +212,7 @@ module.exports = {
     adminCountsAllStatus: async () => {
         try {
 
-            let result = await models.users.findAndCountAll({
+            let result = await models.user.findAndCountAll({
                 where: {
                     status: {
                         [Op.ne]: 0
@@ -231,7 +231,7 @@ module.exports = {
    
 
     findUsersByFilter: async (filter) => {
-        let result = await models.users.findAll({
+        let result = await models.user.findAll({
             where: filter,
             attributes: ['id', 'last_name', 'first_name', 'email', 'phone', 'type'],
 
@@ -241,8 +241,8 @@ module.exports = {
     updateUserByFilter: async (data, filter) => {
         try {
 
-            await models.users.update(data, { where: filter });
-            let result = await models.users.findOne({ where: filter });
+            await models.user.update(data, { where: filter });
+            let result = await models.user.findOne({ where: filter });
 
             return result;
         } catch (err) {
@@ -255,8 +255,8 @@ module.exports = {
         let transaction= null;
         try {
             transaction = trans ? trans : await sequelize.transaction();
-            await models.users.destroy(data, { where: id ,transaction});
-            let result = await models.users.findOne({ where: id },transaction);
+            await models.user.destroy(data, { where: id ,transaction});
+            let result = await models.user.findOne({ where: id },transaction);
             if (!trans) await transaction.commit();
             return result;
         } catch (err) {
@@ -271,11 +271,11 @@ module.exports = {
         try {
 
             transaction = trans ? trans : await sequelize.transaction();
-            await models.users.update(data, {
+            await models.user.update(data, {
                 where: filter,
                 transaction
             });
-            // let result = await models.users.findOne({
+            // let result = await models.user.findOne({
             //     where: {
             //         id: id
             //     },
@@ -348,7 +348,7 @@ module.exports = {
            where:{
                id:result.id
             },
-    include:[{model:models.users, attributes:userAttributes}]
+    include:[{model:models.user, attributes:userAttributes}]
 })
 
         if (!trans) await transaction.commit();
@@ -366,17 +366,17 @@ module.exports = {
 
 
  },
-    // findAllAcivity: async () => {
-    //     let result = await models.activity.findAll({
-    //         attributes: ['id', 'title'],
-    //     })
+    findAllAcivity: async () => {
+        let result = await models.activity.findAll({
+            attributes: ['id', 'title'],
+        })
 
-    //  return  result.map(function(item) {
-    //         return item.toJSON();
-    //     })
+     return  result.map(function(item) {
+            return item.toJSON();
+        })
 
 
-    // },
+    },
 
     findAllPositionAcivity: async () => {
         let result = await models.position_activity.findAll({
@@ -409,7 +409,7 @@ module.exports = {
     try{
 let result = await models.client.findOne({where: where,
 include:[
-    {model:models.users, attributes:userAttributes}
+    {model:models.user, attributes:userAttributes}
 ]})
 
         return result
