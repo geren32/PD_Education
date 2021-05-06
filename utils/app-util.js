@@ -41,7 +41,7 @@ function  makeOneTimeCode () {
     const buf =  crypto.randomBytes(32);
     const confirmToken = buf.toString('hex');
     let confirmTokenExpires = new Date();
-    confirmTokenExpires.setTime(confirmTokenExpires.getTime() + (24 * 60 * 60 * 1000)); //24 hours
+    confirmTokenExpires.setTime(confirmTokenExpires.getTime() + (24 * 60 * 60 / 1000)); //24 hours
     confirmTokenExpires = confirmTokenExpires.toISOString();
 
     return {

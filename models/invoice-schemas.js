@@ -23,11 +23,11 @@ module.exports = (sequelize) => {
 
             },
             status: {
-                type: DataTypes.VARCHAR(255),
+                type: DataTypes.STRING(255),
 
             },
             number: {
-                type: DataTypes.VARCHAR(255),
+                type: DataTypes.STRING(255),
                 allowNull:false,
 
             },

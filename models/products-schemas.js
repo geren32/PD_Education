@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         title: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         price: {
             type: DataTypes.INTEGER(11),

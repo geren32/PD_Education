@@ -10,15 +10,15 @@ module.exports = (sequelize) => {
                 primaryKey: true
             },
             title: {
-                type: DataTypes.VARCHAR(255),
+                type: DataTypes.STRING(255),
 
             },
             sku: {
-                type: DataTypes.VARCHAR(255),
+                type: DataTypes.STRING(255),
 
             },
             image: {
-                type: DataTypes.VARCHAR(255),
+                type: DataTypes.STRING(255),
 
             },
             assigned_date: {
@@ -40,7 +40,7 @@ module.exports = (sequelize) => {
 
             },
             type: {
-                type: DataTypes.VARCHAR(255),
+                type: DataTypes.STRING(255),
 
             },
 

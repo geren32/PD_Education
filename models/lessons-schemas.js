@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
 
             },
             title: {
-                type: DataTypes.VARCHAR(255),
+                type: DataTypes.STRING(255),
 
             },
             point_required: {
@@ -34,19 +34,19 @@ module.exports = (sequelize) => {
 
             },
             invitation: {
-                type: DataTypes.VARCHAR(255),
+                type: DataTypes.STRING(255),
 
             },
             certificate: {
-                type: DataTypes.VARCHAR(255),
+                type: DataTypes.STRING(255),
 
             },
             presentation: {
-                type: DataTypes.VARCHAR(255),
+                type: DataTypes.STRING(255),
 
             },
             video: {
-                type: DataTypes.VARCHAR(255),
+                type: DataTypes.STRING(255),
 
             },
 

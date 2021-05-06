@@ -41,8 +41,8 @@ module.exports = {
 
     registerNewClient: async (req, res) => {
 
-        let { first_name, last_name, email, password, confirm_password, phone, index, 
-  city } = req.body;
+        let { first_name, last_name, email, password, confirm_password, phone
+   } = req.body;
 
         if (!last_name) {
             return res.status(200).json({ lastNameNotExist: true });
@@ -66,9 +66,6 @@ module.exports = {
             return res.status(200).json({ notEmail: true });
         }
       
-        if (!city) {
-            return res.status(200).json({ cityNotExist: true });
-        }
      
        
       
@@ -78,7 +75,7 @@ module.exports = {
             if (userExist) {
                 return res.status(200).json({ emailExist: true });
             }
-            const phoneExist = await userService.getUser({ phone: phone_number }, ['id']);
+            const phoneExist = await userService.getUser({ phone: phone }, ['id']);
             if (phoneExist) {
                 return res.status(200).json({ phoneExist: true });
             }
@@ -86,11 +83,11 @@ module.exports = {
             let userObj = {
                 first_name, last_name, email: email,
                 password: await bcryptUtil.hashPassword(password),
-              phone: phone
-               
+                phone: phone,
+                user_type:"client"
 
             };
-          
+          console.log(userObj);
             user = await userService.createUser(userObj, { transaction });
             // client = await user.createClient(client, { transaction });
 
@@ -98,14 +95,14 @@ module.exports = {
             await user.update({
                 confirm_token: localToken.confirmToken,
                 confirm_token_type: 'register',
-                confirm_token_expires: localToken.confirmTokenExpires,
-                updatedAt:Math.floor(new Date().getTime() / 1000)
+                confirm_token_expiry: localToken.confirmTokenExpires,
+              
             }, { transaction })
             let mailObj = {
-                to: new_email,
+                to: email,
                 subject: 'Підтвердження електронної адреси',
                 data: {
-                    userName: new_email,
+                    userName: email,
                     token: localToken.confirmToken
                 }
             };

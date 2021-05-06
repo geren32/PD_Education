@@ -16,10 +16,10 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER(11),
         },
         hours: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         client_number: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         address_id: {
             type: DataTypes.INTEGER(11),
@@ -43,13 +43,13 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER(11),
         },
         education_status: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         contact_phone: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         contact_email: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         created_date: {
             type: DataTypes.INTEGER(11),

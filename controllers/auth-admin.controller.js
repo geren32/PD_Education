@@ -11,20 +11,22 @@ module.exports = {
 
     createAdmin: async (req, res) => {
         try {
-            let { first_name, last_name, email, password, type } = req.body;
+            let { first_name, last_name, email, password, user_type } = req.body;
             const isEmailExist = await userService.getUser({ email });
-            if (isEmailExist) {
+             console.log(user_type);
+              if (isEmailExist) {
               return   res.status(403).json({
                     message: 'Failed to create admin. Email already exists',
                     errCode: 403
                 });
                
             }
+          
             const hashedPassword = await bcryptUtil.hashPassword(password);
             const admin = await userService.createUser({
                 email,
                 password: hashedPassword,
-                type,
+                user_type,
                 first_name,
                 last_name
             });

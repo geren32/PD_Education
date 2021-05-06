@@ -19,14 +19,14 @@ module.exports = (sequelize) => {
 
             },
             status: {
-                type: DataTypes.VARCHAR(255),
+                type: DataTypes.STRING(255),
 
             },
             text:{
               type: DataTypes.TEXT
             },
             number: {
-                type: DataTypes.VARCHAR(255),
+                type: DataTypes.STRING(255),
                 allowNull:false,
 
             },

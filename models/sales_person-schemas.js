@@ -13,10 +13,10 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER(11),
         },
         address: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         brand_id: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
     }, {
 

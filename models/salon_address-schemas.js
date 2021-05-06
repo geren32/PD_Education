@@ -14,35 +14,35 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         title: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         address: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         city: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         zip: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         first_name: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         last_name: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         phone: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         phone_contact: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
 
         },
         email: {
-            type: DataTypes.VARCHAR(255),
+            type: DataTypes.STRING(255),
         },
         email_contact: {
-            type: DataTypes.VARCHAR(255)
+            type: DataTypes.STRING(255)
         }
     }, {
 
