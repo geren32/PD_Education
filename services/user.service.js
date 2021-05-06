@@ -366,17 +366,17 @@ module.exports = {
 
 
  },
-    findAllAcivity: async () => {
-        let result = await models.activity.findAll({
-            attributes: ['id', 'title'],
-        })
+    // findAllAcivity: async () => {
+    //     let result = await models.activity.findAll({
+    //         attributes: ['id', 'title'],
+    //     })
 
-     return  result.map(function(item) {
-            return item.toJSON();
-        })
+    //  return  result.map(function(item) {
+    //         return item.toJSON();
+    //     })
 
 
-    },
+    // },
 
     findAllPositionAcivity: async () => {
         let result = await models.position_activity.findAll({

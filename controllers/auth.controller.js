@@ -17,7 +17,7 @@ module.exports = {
     registerPage: async (req, res) => {
         try {
           
-            let activity = await userService.findAllAcivity();
+            // let activity = await userService.findAllAcivity();
             let positionActivity = await userService.findAllPositionAcivity();
 
             res.render('client/register', {
@@ -26,7 +26,7 @@ module.exports = {
                 //passwordInfo: req.flash("passwordInfo"),
                 // uniqueRegions: uniqueRegions,
                 positionActivity: positionActivity,
-                activity: activity
+           
             });
 
         } catch (err) {

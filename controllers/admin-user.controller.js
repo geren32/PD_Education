@@ -12,8 +12,8 @@ const bcryptUtil = require('../utils/bcrypt-util');
 const { makeLocalToken } = require('../utils/app-util');
 const emailUtil = require('../utils/mail-util');
 const { models } = require('../sequelize-orm');
-const bookingService = require('../services/booking.service');
-const paymentService = require('../services/payment.service');
+// const bookingService = require('../services/booking.service');
+
 
 module.exports = {
 
@@ -477,68 +477,68 @@ let updatedAt=Math.floor(new Date().getTime() / 1000);
         }
     },
 
-    deleteUsers: async (req, res) => {
-        let { ids } = req.body;
-        const updatedAt= Math.floor(new Date().getTime() / 1000);
-        const deletedAt= Math.floor(new Date().getTime() / 1000);
-        const transaction = await sequelize.transaction();
-        try {
-            let result = [];
-            if (ids && ids.length) {
-                for (let id of ids) {
-                    let user = await userService.getUserDetails(id, ['id', 'first_name', 'last_name', "email", "phone", 'status', 'type', 'index', 'mailing_address', 'house_number', 'apartment_number', 'createdAt', "updatedAt", 'region_activity_id', 'email_verified', 'city'])
-                    if (!user) {
-                      return  res.status(errors.BAD_REQUEST_ID_NOT_FOUND.code).json({
-                            message: errors.BAD_REQUEST_ID_NOT_FOUND.message,
-                            errCode: errors.BAD_REQUEST_ID_NOT_FOUND.code,
-                        });
+    // deleteUsers: async (req, res) => {
+    //     let { ids } = req.body;
+    //     const updatedAt= Math.floor(new Date().getTime() / 1000);
+    //     const deletedAt= Math.floor(new Date().getTime() / 1000);
+    //     const transaction = await sequelize.transaction();
+    //     try {
+    //         let result = [];
+    //         if (ids && ids.length) {
+    //             for (let id of ids) {
+    //                 let user = await userService.getUserDetails(id, ['id', 'first_name', 'last_name', "email", "phone", 'status', 'type', 'index', 'mailing_address', 'house_number', 'apartment_number', 'createdAt', "updatedAt", 'region_activity_id', 'email_verified', 'city'])
+    //                 if (!user) {
+    //                   return  res.status(errors.BAD_REQUEST_ID_NOT_FOUND.code).json({
+    //                         message: errors.BAD_REQUEST_ID_NOT_FOUND.message,
+    //                         errCode: errors.BAD_REQUEST_ID_NOT_FOUND.code,
+    //                     });
                         
-                    }
-                    if (user.type == config.CLIENT_ROLE && user.status == config.GLOBAL_STATUSES.DELETED) {
-                        await models.client.destroy({deletedAt:deletedAt},{where: {user_id: id}, transaction});
-                    }
+    //                 }
+    //                 if (user.type == config.CLIENT_ROLE && user.status == config.GLOBAL_STATUSES.DELETED) {
+    //                     await models.client.destroy({deletedAt:deletedAt},{where: {user_id: id}, transaction});
+    //                 }
                 
                 
                   
-                    if (user.type == config.SUPER_ADMIN_ROLE && user.status == config.GLOBAL_STATUSES.DELETED) {
-                       await bookingService.updateBookingHistoryById({user_id: null},{user_id: id},transaction);
-                        // await models.booking_history.update({user_id: null},{where: {user_id: id}, transaction});
-                    }
-                    if (user.status != config.GLOBAL_STATUSES.DELETED) {
-                        user = await user.update({ status: config.GLOBAL_STATUSES.DELETED ,deletedAt:deletedAt,updatedAt:updatedAt});
+    //                 if (user.type == config.SUPER_ADMIN_ROLE && user.status == config.GLOBAL_STATUSES.DELETED) {
+    //                    await bookingService.updateBookingHistoryById({user_id: null},{user_id: id},transaction);
+    //                     // await models.booking_history.update({user_id: null},{where: {user_id: id}, transaction});
+    //                 }
+    //                 if (user.status != config.GLOBAL_STATUSES.DELETED) {
+    //                     user = await user.update({ status: config.GLOBAL_STATUSES.DELETED ,deletedAt:deletedAt,updatedAt:updatedAt});
 
-                       // user = JSON.parse(JSON.stringify(user));
-                        result.push({user, basket: true});
-                    } else {
-                        await paymentService.editPayment({user_id: null},{user_id: id},transaction);
-                        // Замінив методом вище
-                        // await models.payment.update({user_id: null},{where: {user_id: id}, transaction});
-                        await bookingService.editCart({user_id:null},{user_id:id},transaction);
-                        // Замінив методом вище
-                        // await models.cart.update({user_id: null},{where: {user_id: id}, transaction});
-                        await bookingService.editBooking({user_id: null},{user_id: id},transaction);
-                        //  Замінив метом вище 
-                        // await models.booking.update({user_id: null},{where: {user_id: id}, transaction});
-                        userService.deleteUserById({id:id},transaction);
-                        // await models.user.destroy({where: {id: id}, transaction});
-                        result.push({ id: id, deleted: true })
-                    }
+    //                    // user = JSON.parse(JSON.stringify(user));
+    //                     result.push({user, basket: true});
+    //                 } else {
+    //                     await paymentService.editPayment({user_id: null},{user_id: id},transaction);
+    //                     // Замінив методом вище
+    //                     // await models.payment.update({user_id: null},{where: {user_id: id}, transaction});
+    //                     await bookingService.editCart({user_id:null},{user_id:id},transaction);
+    //                     // Замінив методом вище
+    //                     // await models.cart.update({user_id: null},{where: {user_id: id}, transaction});
+    //                     await bookingService.editBooking({user_id: null},{user_id: id},transaction);
+    //                     //  Замінив метом вище 
+    //                     // await models.booking.update({user_id: null},{where: {user_id: id}, transaction});
+    //                     userService.deleteUserById({id:id},transaction);
+    //                     // await models.user.destroy({where: {id: id}, transaction});
+    //                     result.push({ id: id, deleted: true })
+    //                 }
 
-                }
+    //             }
 
-            }
-            await transaction.commit();
-            return res.status(200).json(result);
+    //         }
+    //         await transaction.commit();
+    //         return res.status(200).json(result);
 
-        } catch (error) {
-            await transaction.rollback();
-          return  res.status(400).json({
-                message: error.message,
-                errCode: '400'
-            });
+    //     } catch (error) {
+    //         await transaction.rollback();
+    //       return  res.status(400).json({
+    //             message: error.message,
+    //             errCode: '400'
+    //         });
             
-        }
-    },
+    //     }
+    // },
 
     // getAllRegions: async (req, res) => {
     //     try {
