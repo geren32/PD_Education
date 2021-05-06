@@ -1,0 +1,392 @@
+<div class="popup-wrapper">
+    <div class="bg-layer"></div>
+
+    <!-- log in popup  -->
+    <div class="popup-content" data-rel="1">
+        <div class="layer-close"></div>
+        <div class="popup-container size-1">
+            <div class="popup-align text-center text">
+                <div class="popup-title h4">Вхід</div>
+                <form class="form popup-form" action="/auth/login" method="post">
+                    <input type="email" class="input" placeholder="Емейл" name="email" required>
+                    <input type="password" class="input" placeholder="Пароль" name="password" required>
+
+                    <button class="btn btn-primary btn-invert btn-block" type="submit">Увійти в кабінет</button>
+                </form>
+                <div class="d-flex flex-column flex-md-row justify-content-between text-md">
+                    <a class="link color-gray open-popup" data-rel="2">Забули пароль?</a>
+                    <div class="spacer-10 d-md-none"></div>
+                    <a href="/auth/register" class="link color-primary">Зареєструватись як виробник</a>
+                </div>
+            </div>
+            <button class="btn-close close-popup">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- restore password popup  -->
+    <div class="popup-content" data-rel="2">
+        <div class="layer-close"></div>
+        <div class="popup-container size-1">
+            <div class="popup-align text-center text">
+                <div class="popup-title h4">Відновлення паролю</div>
+                <form class="form popup-form" action="/auth/forgotPassword" method="post">
+                    <input type="email" name="email" class="input" placeholder="Ваш емейл" required>
+                    <button class="btn btn-primary btn-invert btn-block" type="submit">Відновити пароль</button>
+                </form>
+                <div>Назад до <a class="color-primary open-popup" data-rel="1">Входу</a></div>
+            </div>
+            <button class="btn-close close-popup">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- message popup  -->
+    <div class="popup-content" data-rel="3">
+        <div class="layer-close"></div>
+        <div class="popup-container size-2">
+            <div class="popup-align text">
+                <div class="popup-title h4">Вибачте, вам було відмовлено у зміні даних!</div>
+                <p id="rejectionMessage"> </p>
+            </div>
+            <button class="btn-close close-popup">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- edit data popup  -->
+    <div class="popup-content" data-rel="4">
+        <div class="layer-close"></div>
+        <div class="popup-container size-2">
+            <div class="popup-align text">
+                <div class="text-center mb-20">
+                    <div class="popup-title h4">Редагування особистих даних</div>
+                    <p>Зміна даних попередньо проходить перевірку та підтверджується адміністрацією сервісу</p>
+                </div>
+
+                <form action="/cabinet/change-data-request" method="post">
+                    <input type="text" name="last_name" value="{{last_name}}" placeholder="Прізвище" class="input">
+                    <input type="text" name="first_name" value="{{first_name}}" placeholder="Ім'я" class="input mt-15">
+                    <div class="row type-1 mt-15">
+                        <div class="col-md-6"><input type="tel" name="phone" value="{{phone}}" placeholder="Номер телефону" class="input inputmask"
+                                                     inputmode="numeric" data-inputmask="'mask': '+38 (0x9) 999 99 99'"
+                                                     data-inputmask-placeholder="x" required autocomplete="new-password">
+                        </div>
+                        <div class="col-md-6 mt-15 mt-md-0"><input type="email" name="email" value="{{email}}"  placeholder="Емейл"
+                                                                   class="input"></div>
+                    </div>
+                    <textarea placeholder="Причина зміни даних..." name="comment" class="input mt-15"></textarea>
+                    <div class="spacer-30"></div>
+                    <div class="d-flex flex-column flex-sm-row justify-content-center">
+                        <button type="submit" class="submitByAjax has-spinner close-popup btn btn-primary btn-invert mr-sm-30">Надіслати запит на зміну</button>
+                        <button class="btn-link mt-15 mt-sm-0 close-popup">Скасувати</button>
+                    </div>
+                </form>
+
+            </div>
+            <button class="btn-close close-popup">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- dealer popup  -->
+    <div class="popup-content" data-rel="5">
+        <div class="layer-close"></div>
+        <div class="popup-container size-2">
+            <div class="popup-align text">
+                <div class="text-center mb-20">
+                    <div class="popup-title h4">Зміна дилера</div>
+                </div>
+
+                <form action="/cabinet/change-data-request" method="post">
+                    <div class="select-box mt-15">
+                        <select name="dealer" class="SelectBox default">
+                            {{#each dealersByRegion}}
+                                <option {{#ifCond ../client.dealer_id '==' this.dealer.id}} selected {{/ifCond}}   value="{{this.dealer.id}}">{{this.dealer.company_name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <textarea placeholder="Причина зміни даних..." name="comment" class="input mt-15"></textarea>
+                    <div class="spacer-30"></div>
+                    <div class="d-flex flex-column justify-content-center">
+                        <button type="submit" class="submitByAjax has-spinner close-popup btn btn-primary btn-invert">Надіслати запит на зміну</button>
+                        <button class="btn-link mt-20 close-popup">Скасувати</button>
+                    </div>
+                </form>
+            </div>
+            <button class="btn-close close-popup">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- manager contacts popup  -->
+    <div class="popup-content" data-rel="6">
+        <div class="layer-close"></div>
+        <div class="popup-container size-2">
+            <div class="popup-align text-center text">
+                <div class="popup-title h4">Контакти менеджера Blum</div>
+                <div class="simple-page p-0 text-left">
+                    <table width="100%" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td>Ім’я:</td>
+                            <td>Ігор</td>
+                        </tr>
+                        <tr>
+                            <td>Прізвище:</td>
+                            <td>Конопецький</td>
+                        </tr>
+                        <tr>
+                            <td>Номер телефону:</td>
+                            <td>+380663350030</td>
+                        </tr>
+                        <tr>
+                            <td>Електронна пошта:</td>
+                            <td>skoropadskiy.v@gmail.com</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <button class="btn-close close-popup">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- region popup  -->
+    <div class="popup-content" data-rel="7">
+        <div class="layer-close"></div>
+        <div class="popup-container size-2">
+            <div class="popup-align text">
+                <div class="text-center mb-20">
+                    <div class="popup-title h4">Зміна області</div>
+                </div>
+                <form action="/cabinet/change-data-request" method="post">
+                    <div class="select-box mt-15">
+                        <select name="region_activity_id" class="SelectBox search">
+                            {{#each regions}}
+                                <option {{#ifCond ../region_activity_id '==' this.id}} selected {{/ifCond}} class="regionDropDownAjax" value="{{this.id}}">{{this.region}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="select-box mt-15">
+                        <select name="dealer" id="dealerDropDownAjax" class="SelectBox search">
+                            {{#each dealersByRegion}}
+                                <option {{#ifCond ../client.dealer_id '==' this.dealer.id}} selected {{/ifCond}} value="{{this.dealer.id}}">{{this.dealer.company_name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <textarea placeholder="Причина зміни даних..." name="comment" class="input mt-15"></textarea>
+                    <div class="spacer-30"></div>
+                    <div class="d-flex flex-column justify-content-center">
+                        <button type="submit" class="submitByAjax has-spinner close-popup btn btn-primary btn-invert">Надіслати запит на зміну</button>
+                        <button class="btn-link mt-20 close-popup">Скасувати</button>
+                    </div>
+                </form>
+            </div>
+            <button class="btn-close close-popup">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+</div>
+
+{{#if login}}
+    <div class="popup-wrapper active">
+        <div class="bg-layer"></div>
+
+        <!-- log in popup  -->
+        <div class="popup-content active" data-rel="1">
+            <div class="layer-close"></div>
+            <div class="popup-container size-1">
+                <div class="popup-align text-center text">
+                    <div class="popup-title h4">Вхід</div>
+                    <div class="popup-title h5" style="color: #ED2F24">{{error}}</div>
+                    <form class="form popup-form" action="/auth/login" method="post">
+                        <input type="email" class="input" placeholder="Емейл" name="email" required>
+                        <input type="password" class="input" placeholder="Пароль" name="password" required>
+
+                        <button class="btn btn-primary btn-invert btn-block" type="submit">Увійти в кабінет</button>
+                    </form>
+                    <div class="d-flex flex-column flex-md-row justify-content-between text-md">
+                        <a class="link color-gray open-popup" data-rel="2">Забули пароль?</a>
+                        <div class="spacer-10 d-md-none"></div>
+                        <a href="/auth/register" class="link color-primary">Зареєструватись як виробник</a>
+                    </div>
+                </div>
+                <button class="btn-close close-popup">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- restore password popup  -->
+        <div class="popup-content" data-rel="2">
+            <div class="layer-close"></div>
+            <div class="popup-container size-1">
+                <div class="popup-align text-center text">
+                    <div class="popup-title h4">Відновлення паролю</div>
+                    <form class="form popup-form" action="/auth/forgotPassword" method="post">
+                        <input type="email" name="email" class="input" placeholder="Ваш емейл" required>
+                        <button class="btn btn-primary btn-invert btn-block" type="submit">Відновити пароль</button>
+                    </form>
+                    <div>Назад до <a class="color-primary open-popup" data-rel="1">Входу</a></div>
+                </div>
+                <button class="btn-close close-popup">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+    </div>..
+{{/if}}
+
+{{#if forgotPassword}}
+    <div class="popup-wrapper active">
+        <div class="bg-layer"></div>
+
+        <!-- log in popup  -->
+        <div class="popup-content" data-rel="1">
+            <div class="layer-close"></div>
+            <div class="popup-container size-1">
+                <div class="popup-align text-center text">
+                    <div class="popup-title h4">Вхід</div>
+                    <div class="popup-title h5" style="color: tomato;">{{error}}</div>
+                    <form class="form popup-form" action="/auth/login" method="post">
+                        <input type="email" class="input" placeholder="Емейл" name="email" required>
+                        <input type="password" class="input" placeholder="Пароль" name="password" required>
+
+                        <button class="btn btn-primary btn-invert btn-block" type="submit">Увійти в кабінет</button>
+                    </form>
+                    <div class="d-flex flex-column flex-md-row justify-content-between text-md">
+                        <a class="link color-gray open-popup" data-rel="2">Забули пароль?</a>
+                        <div class="spacer-10 d-md-none"></div>
+                        <a href="/auth/register" class="link color-primary">Зареєструватись як виробник</a>
+                    </div>
+                </div>
+                <button class="btn-close close-popup">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- restore password popup  -->
+        <div class="popup-content active" data-rel="2">
+            <div class="layer-close"></div>
+            <div class="popup-container size-1">
+                <div class="popup-align text-center text">
+                    <div class="popup-title h4">Відновлення паролю</div>
+                    <div class="popup-title h5">{{info}}</div>
+                    <form class="form popup-form" action="/auth/forgotPassword" method="post">
+                        <input type="email" name="email" class="input" placeholder="Ваш емейл" required>
+                        <button class="btn btn-primary btn-invert btn-block" type="submit">Відновити пароль</button>
+                    </form>
+                    <div>Назад до <a class="color-primary open-popup" data-rel="1">Входу</a></div>
+                </div>
+                <button class="btn-close close-popup">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+    </div>..
+{{/if}}
+
+
+
+{{#if resetPassword}}
+    <div class="popup-wrapper active">
+        <div class="bg-layer"></div>
+
+        <!-- log in popup  -->
+        <div class="popup-content" data-rel="1">
+            <div class="layer-close"></div>
+            <div class="popup-container size-1">
+                <div class="popup-align text-center text">
+                    <div class="popup-title h4">Вхід</div>
+                    <div class="popup-title h5" style="color: tomato;">{{error}}</div>
+                    <form class="form popup-form" action="/auth/login" method="post">
+                        <input type="email" class="input" placeholder="Емейл" name="email" required>
+                        <input type="password" class="input" placeholder="Пароль" name="password" required>
+
+                        <button class="btn btn-primary btn-invert btn-block" type="submit">Увійти в кабінет</button>
+                    </form>
+                    <div class="d-flex flex-column flex-md-row justify-content-between text-md">
+                        <a class="link color-gray open-popup" data-rel="2">Забули пароль?</a>
+                        <div class="spacer-10 d-md-none"></div>
+                        <a href="/auth/register" class="link color-primary">Зареєструватись як виробник</a>
+                    </div>
+                </div>
+                <button class="btn-close close-popup">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- restore password popup  -->
+        <div class="popup-content active" data-rel="2">
+            <div class="layer-close"></div>
+            <div class="popup-container size-1">
+                <div class="popup-align text-center text">
+                    <div class="popup-title h4">Відновлення паролю</div>
+                    <div class="popup-title h5" style="color: tomato;">{{error}}</div>
+                    <form class="form popup-form" action="/auth/resetPassword" method="post">
+                        <input type="password" name="password" class="input" placeholder="Новий пароль" required>
+                        <input type="password" name="сonfirmPassword" class="input" placeholder="Повторіть новий пароль" required>
+                        <input  type="text" name="token" class="input" value="{{token}}" style="display: none;">
+                        <button class="btn btn-primary btn-invert btn-block" type="submit">Змінити пароль</button>
+                    </form>
+
+                </div>
+                <button class="btn-close close-popup">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+    </div>..
+{{/if}}

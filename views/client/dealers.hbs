@@ -1,0 +1,48 @@
+
+
+    <main>
+
+        <div class="section pb-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 offset-xl-2">
+                        <h1 class="h2 section-title">{{page.title}}</h1>
+                        <div class="dealer-form">
+                            <input id="deliveryStreet" class="input delivery-map-input" type="text" placeholder="Введіть область" name="street" required="" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="spacer-30"></div>
+
+            <div class="map-block map-wrapper"
+                 id="map"
+                 data-lat="{{page.body.lat}}"
+                 data-lng="{{page.body.lng}}"
+                 data-zoom="{{page.body.zoom}}"
+                 data-map-marker=""></div>
+
+<!--            <div class="map-block map-wrapper"-->
+<!--                 id="map"-->
+<!--                 data-lat="49.773431289868256"-->
+<!--                 data-lng="24.01001359443667"-->
+<!--                 data-zoom="14"-->
+<!--                 data-map-marker=""></div>-->
+            {{#each dealers}}
+                <a class="marker" data-lat="{{this.lat}}" data-lng="{{this.lng}}" data-string="<div class='info-box-bg' style='background-image: url(.{{this.background_image}});'></div><div class='info-cont'><div class='weight-medium color-dark' style='font-size: 20px;margin-bottom: 5px;'>{{this.marker_title}}</div><p style='font-size: 18px; line-height: 1.67;'>{{this.marker_text}}</p><ul class='info-contacts'><li><a href='mailto:{{this.email}}'><i></i>{{this.email}}</a></li><li><a href='tel:{{this.phone}}'><i></i>{{this.phone}}</a></li>
+            </ul>{{#if ../first_name includeZero=true}}{{#if link_page includeZero=true}}<a href='{{this.link_page}}' class='btn-link'>Дізнатись більше</a>{{/if}}{{/if}}" data-image="{{this.map_image}}" data-image-active="{{this.map_image_active}}"></a>
+            {{/each}}
+
+<!--            <a class="marker" data-lat="49.773431289868256" data-lng="24.01001359443667" data-string="<div class='info-box-bg' style='background-image: url(./img/info_box.jpg);'></div><div class='info-cont'><div class='weight-medium color-dark' style='font-size: 20px;margin-bottom: 5px;'>Блюм - Львів</div><p style='font-size: 18px; line-height: 1.67;'>вул. Дорожна, 50, с. Пасіки-зубрицькі, Пустомитівський р-н, </p><ul class='info-contacts'><li><a href='mailto:info.ua@blum.com'><i></i>info.ua@blum.com</a></li><li><a href='tel:380969876543'><i></i>+38 (096) 987 65 43</a></li>-->
+<!--            </ul><a href='about-dealer' class='btn-link'>Дізнатись більше</a>" data-image="/img/point1.png" data-image-active="/img/point1-active.png"></a>-->
+<!--            <a class="marker" data-lat="49.783431289868256" data-lng="24.02001359443667" data-string="<div class='info-box-bg' style='background-image: url(./img/info_box.jpg);'></div><div class='info-cont'><div class='weight-medium color-dark' style='font-size: 20px;margin-bottom: 5px;'>Блюм - Львів</div><p style='font-size: 18px; line-height: 1.67;'>вул. Дорожна, 50, с. Пасіки-зубрицькі, Пустомитівський р-н, </p><ul class='info-contacts'><li><a href='mailto:info.ua@blum.com'><i></i>info.ua@blum.com</a></li><li><a href='tel:380969876543'><i></i>+38 (096) 987 65 43</a></li>-->
+<!--            </ul><a href='about-dealer' class='btn-link'>Дізнатись більше</a>" data-image="/img/point1.png" data-image-active="/img/point1-active.png"></a>-->
+<!--            <a class="marker" data-lat="49.810351915037025" data-lng="24.002367468835317" data-string="<div class='info-box-bg' style='background-image: url(./img/info_box.jpg);'></div><div class='info-cont'><div class='weight-medium color-dark' style='font-size: 20px;margin-bottom: 5px;'>Блюм - Львів</div><p style='font-size: 18px; line-height: 1.67;'>вул. Дорожна, 50, с. Пасіки-зубрицькі, Пустомитівський р-н, </p><ul class='info-contacts'><li><a href='mailto:info.ua@blum.com'><i></i>info.ua@blum.com</a></li><li><a href='tel:380969876543'><i></i>+38 (096) 987 65 43</a></li>-->
+<!--            </ul><a href='about-dealer' class='btn-link'>Дізнатись більше</a>" data-image="/img/point1.png" data-image-active="/img/point1-active.png"></a>-->
+        </div>
+
+    </main>
+
+
+
+

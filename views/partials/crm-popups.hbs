@@ -1,0 +1,105 @@
+<div class="popup-wrapper">
+    <div class="bg-layer"></div>
+
+    <!-- manager contacts popup  -->
+    <div class="popup-content" data-rel="1">
+        <div class="layer-close"></div>
+        <div class="popup-container size-2">
+            <div class="popup-align text-center text">
+                <div class="popup-title h4">Контакти менеджера Blum</div>
+                <div class="simple-page p-0 text-left">
+                    <table width="100%" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td>Ім’я:</td>
+                            <td id="managerFirstName">{{first_name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Прізвище:</td>
+                            <td id="managerLastName">{{last_name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Номер телефону:</td>
+                            <td id="managerPhone">{{phone}}</td>
+                        </tr>
+                        <tr>
+                            <td>Електронна пошта:</td>
+                            <td id="managerEmail">{{email}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <button class="btn-close close-popup"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z" />
+                </svg></button>
+        </div>
+    </div>
+
+    <!-- cancel change data popup  -->
+    <div class="popup-content" data-rel="2">
+        <div class="layer-close"></div>
+        <div class="popup-container size-2">
+            <div class="popup-align text-center text">
+                <div class="popup-title h4">Відмова у зміні даних</div>
+                <form id="reasonBlockingForChangeData">
+                    <textarea class="input" placeholder="Причина відмови..."></textarea>
+                    <button class="ajaxChangeDataRequest btn btn-primary btn-block btn-invert mt-15 open-popup" data-status="2" data-rel="3">Відхилити запит та надіслати</button>
+                    <div class="text-center mt-20">
+                        <button class="btn-link">повернутись назад</button>
+                    </div>
+                </form>
+            </div>
+            <button class="btn-close close-popup"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z" />
+                </svg></button>
+        </div>
+    </div>
+
+    <!-- thank you popup  -->
+    <div class="popup-content" data-rel="3">
+        <div class="layer-close"></div>
+        <div class="popup-container size-2">
+            <div class="popup-align text-center text">
+                <div class="popup-title h4">Дякуємо! </div>
+                <div class="text-center">Запит на зміну даних відправлено. Коментар надіслано клієнту</div>
+            </div>
+            <button class="btn-close close-popup"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z" />
+                </svg></button>
+        </div>
+    </div>
+
+    <div class="popup-content" id="reasonBlocking" data-rel="4">
+        <div class="layer-close"></div>
+        <div class="popup-container size-2">
+            <div class="popup-align text-center text">
+                <div class="popup-title h4">Причина блокування</div>
+                <form>
+                    <textarea class="input" placeholder="Причина блокування..."></textarea>
+                    <button class="btn btn-primary btn-block btn-invert mt-15 open-popup" data-rel="3">заблокувати</button>
+                </form>
+            </div>
+            <button class="btn-close close-popup cancel-block"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z" />
+                </svg></button>
+        </div>
+    </div>
+
+    <div class="popup-content" data-rel="5">
+        <div class="layer-close"></div>
+        <div class="popup-container size-2">
+            <div class="popup-align text-center text">
+                <form>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <button id="deleteSRmanagerPopup" class="btn btn-primary type-1 mr-30 open-popup"
+                        data-rel="3">видалити</button>
+                        <button class="btn btn-primary btn-invert close-popup">скасувати</button>
+                    </div>
+                </form>
+            </div>
+            <button class="btn-close close-popup"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z" />
+                </svg></button>
+        </div>
+    </div>
+
+</div>

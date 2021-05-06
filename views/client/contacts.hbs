@@ -1,0 +1,91 @@
+
+
+    <main>
+
+        <div class="section pt-0">
+
+            <div class="map-block map-wrapper" id="map" data-lat="{{page.body.map.lat}}" data-lng="{{page.body.map.lng}}" data-zoom="{{page.body.map.zoom}}" data-map-marker="/img/point1.png"></div>
+
+            <!--            <div class="map-block map-wrapper" id="map" data-lat="49.773431289868256" data-lng="24.01001359443667" data-zoom="14" data-map-marker="/img/point1.png"></div>-->
+
+            {{#each page.body.markers}}
+                <a class="marker" data-rel="map-projects" data-lat="{{this.lat}}" data-lng="{{this.lng}}" data-image="{{this.map_image}}" data-image-active="{{this.map_image_active}}" data-string="<div class='info-box-bg' style='background-image: url(.{{this.map_background_image}});'></div><div class='info-cont'><div class='weight-medium color-dark' style='font-size: 20px;margin-bottom: 5px;'>{{this.marker_title}}</div><p style='font-size: 18px; line-height: 1.67;'>{{this.marker_text}}</p><ul class='info-contacts'><li><a href='mailto:{{this.email}}'><i></i>{{this.email}}</a></li><li><a href='tel:{{this.phone}}'><i></i>{{this.phone}}</a></li></ul>"></a>
+            {{/each}}
+
+            <!--            <a class="marker" data-rel="map-projects" data-lat="49.773431289868256" data-lng="24.01001359443667" data-image="/img/point.png" data-image-active="/img/point-active.png" data-string="<div class='info-box-bg' style='background-image: url(./img/info_box.jpg);'></div><div class='info-cont'><div class='weight-medium color-dark' style='font-size: 20px;margin-bottom: 5px;'>Блюм - Львів</div><p style='font-size: 18px; line-height: 1.67;'>вул. Дорожна, 50, с. Пасіки-зубрицькі, Пустомитівський р-н, </p><ul class='info-contacts'><li><a href='mailto:info.ua@blum.com'><i></i>info.ua@blum.com</a></li><li><a href='tel:380969876543'><i></i>+38 (096) 987 65 43</a></li></ul>"></a>-->
+
+            <div class="spacer-sm"></div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-10 offset-xl-1">
+<!--                        <h1 class="h2 section-title text-left">Контакти Blum</h1>-->
+                        <h1 class="h2 section-title text-left">{{page.title}}</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 offset-xl-1 mb-40 mb-xl-0">
+                        <div class="contacts d-flex flex-column justify-content-center">
+                            {{#each page.body.content}}
+                                <div class="contact d-flex flex-column flex-sm-row">
+                                    <div class="contact-icon d-flex align-items-center justify-content-center"><img src="{{this.image}}" alt=""></div>
+                                    <div class="contact-desc d-flex flex-column justify-content-center">
+                                        <div class="contact-title">{{this.title}}</div>
+                                        {{#if this.email includeZero=true}}<a href="mailto:{{this.email}}">{{this.email}}</a>{{/if}}
+                                        {{#if this.address includeZero=true}}<p>{{this.address}}</p>{{/if}}
+                                        {{#if this.phone includeZero=true}}<a href="tel:{{this.phone}}">{{this.phone}}</a>{{/if}}
+                                    </div>
+                                </div>
+                            {{/each}}
+
+
+
+<!--                            <div class="contact d-flex flex-column flex-sm-row">-->
+<!--                                <div class="contact-icon d-flex align-items-center justify-content-center"><img src="/img/icons/mail.svg" alt=""></div>-->
+<!--                                <div class="contact-desc d-flex flex-column justify-content-center">-->
+<!--                                    <div class="contact-title">Електронна пошта</div>-->
+<!--                                    <a href="mailto:info.ua@blum.com">info.ua@blum.com</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="contact d-flex flex-column flex-sm-row">-->
+<!--                                <div class="contact-icon d-flex align-items-center justify-content-center"><img src="/img/icons/navigation-2.svg" alt=""></div>-->
+<!--                                <div class="contact-desc d-flex flex-column justify-content-center">-->
+<!--                                    <div class="contact-title">Адреса</div>-->
+<!--                                    <p>вул. Дорожна, 50, с. Пасіки-зубрицькі, Пустомитівський р-н, Львівська обл., Україна</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="contact d-flex flex-column flex-sm-row">-->
+<!--                                <div class="contact-icon d-flex align-items-center justify-content-center"><img src="/img/icons/navigation-2.svg" alt=""></div>-->
+<!--                                <div class="contact-desc d-flex flex-column justify-content-center">-->
+<!--                                    <div class="contact-title">Шоурум</div>-->
+<!--                                    <p>вул. Гніздовського, 2, Львів, Львівська обл., Україна</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                    {{#each forms}}
+                        {{#ifCond this.id '==' '1'}}
+                            <div class="col-xl-6">
+                                <div class="box type-1">
+                                    <div class="h4 box-title">{{this.title}}</div>
+                                    <form id="page-form">
+                                        <div class="row type-1 mb-15">
+                                            <div class="col-md-6 mb-15 mb-md-0 input-wrapp-name"><input type="text" placeholder="Ваше ім’я" class="input" name="name"></div>
+                                            <div class="col-md-6 input-wrapp-phone"><input type="tel" placeholder="+38 (098) 000 00 00" class="input inputmask" name="phone" inputmode="numeric" data-inputmask="'mask': '+38 (0x9) 999 99 99'" data-inputmask-placeholder="x" autocomplete="new-password"></div>
+                                        </div>
+                                        <div class="mb-15 input-wrapp-email"><input type="email" name="email" placeholder="Email" class="input"></div>
+                                        <div class="input-wrapp-message"><textarea placeholder="Ваше запитання ..." class="input" name="message"></textarea></div>
+                                        <div class="text-right mt-23">
+                                            <button id="page-form-btn" class="btn btn-primary type-1" form_id="1">Надіслати</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        {{/ifCond}}
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+
+    </main>
+

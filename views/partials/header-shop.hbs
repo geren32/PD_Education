@@ -1,0 +1,217 @@
+<header class="type-2">
+    <div class="header-top d-none d-xl-flex align-items-center justify-content-between">
+        <div class="h-company-name"><img src="/img/preloader.jpg" data-i-src="/img/icons/briefcase.svg" alt=""><span class="text-truncate line-2">{{dealerData.company_name}}</span></div>
+        <div class="h-address"><img src="/img/preloader.jpg" data-i-src="/img/icons/navigation.svg" alt=""><a href="https://www.google.com.ua/maps/?q={{dealerData.lat}},{{dealerData.lng}}" class="text-truncate line-2" target="_blank">{{dealerData.user.city}}, {{dealerData.user.mailing_address}}, {{dealerData.user.house_number}}</a></div>
+        <div class="h-phones">
+            {{#if dealerData.main_phone_number}}
+                {{genereteMediaIcons dealerData.main_phone_number.icon}}<a href="tel:{{dealerData.main_phone_number.phone}}">{{dealerData.main_phone_number.phone}}</a>
+
+                {{#if dealerData.phone_numbers}}
+                    <ul class="h-phones-drop">
+                        {{#each dealerData.phone_numbers}}
+                            <li>{{genereteMediaIcons this.icon}}<a href="tel:{{this.phone}}">{{this.phone}}</a></li>
+                        {{/each}}
+                    </ul>
+                {{/if}}
+                <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.46973 5.53039L0.469727 1.53039L1.53039 0.469727L5.00006 3.9394L8.46973 0.469727L9.53039 1.53039L5.53039 5.53039L5.00006 6.06072L4.46973 5.53039Z" />
+                </svg>
+            {{/if}}
+        </div>
+        <div class="h-email"><img src="/img/preloader.jpg" data-i-src="/img/icons/email.svg" alt=""><a href="mailto:{{dealerData.user.email}}">{{dealerData.user.email}}</a></div>
+        {{#ifCond currency.code '==' '1'}}
+            <div class="h-currency"><span>Євро</span>
+                <ul class="h-currency-drop">
+                    <li><a href="#" data-type="0">Грн</a></li>
+                </ul>
+                <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.46973 5.53039L0.469727 1.53039L1.53039 0.469727L5.00006 3.9394L8.46973 0.469727L9.53039 1.53039L5.53039 5.53039L5.00006 6.06072L4.46973 5.53039Z" />
+                </svg>
+            </div>
+            {{else}}
+            <div class="h-currency"><span>Грн</span>
+                <ul class="h-currency-drop">
+                    <li><a href="/" data-type="1">Євро</a></li>
+                </ul>
+                <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.46973 5.53039L0.469727 1.53039L1.53039 0.469727L5.00006 3.9394L8.46973 0.469727L9.53039 1.53039L5.53039 5.53039L5.00006 6.06072L4.46973 5.53039Z" />
+                </svg>
+            </div>
+        {{/ifCond}}
+    </div>
+
+    <div class="d-flex align-items-center header-bott">
+        <!-- logo -->
+        <div class="logo"><a href="/" class="d-flex align-items-center justify-content-center"><img src="/img/preloader.jpg" data-i-src="/img/logo.svg" alt="" class="img"></a></div>
+        <!-- end logo -->
+
+        <div class="d-flex align-items-center justify-content-around flex-fill">
+            <!-- categories -->
+            <div class="h-btn-wrapp">
+                <button class="h-btn"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-btn-icon">
+                    <rect x="0.75" y="0.75" width="7.5" height="7.5" stroke-width="1.5" />
+                    <rect x="11.75" y="0.75" width="7.5" height="7.5" stroke-width="1.5" />
+                    <rect x="0.75" y="11.75" width="7.5" height="7.5" stroke-width="1.5" />
+                    <rect x="11.75" y="11.75" width="7.5" height="7.5" stroke-width="1.5" />
+                </svg>Комплекти<svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-btn-icon">
+                    <path d="M1 1L5 5L9 1" stroke-width="1.5" />
+                </svg><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-btn-close d-md-none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z" fill="#292929" />
+                </svg></button>
+                <nav class="h-drop">
+                    <ul class="d-flex flex-wrap">
+
+                        <li class="h-drop-item"><a href="/catalog-kit" class="img-box"><img src="/img/preloader.jpg" data-i-src="/img/cat-2.jpg" alt=""><span class="img-box-info"><span class="img-box-title">Висувні системи</span></span></a></li>
+
+                    </ul>
+                </nav>
+            </div>
+            <div class="h-btn-wrapp">
+                <button class="h-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-btn-icon">
+                    <rect x="3.75" y="3.75" width="16.5" height="16.5" stroke-width="1.5" />
+                    <path d="M9.5 9L9.5 15H8L8 9L9.5 9Z" />
+                </svg>Вироби<svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-btn-icon">
+                    <path d="M1 1L5 5L9 1" stroke-width="1.5" />
+                </svg><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-btn-close d-md-none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z" fill="#292929" />
+                </svg></button>
+                <nav class="h-drop">
+                    <ul class="d-flex flex-wrap">
+
+                        <li class="h-drop-item"><a href="/catalog" class="img-box"><img src="/img/preloader.jpg" data-i-src="/img/cat-7.jpg" alt="" class="h-drop-img"><span class="img-box-info"><span class="img-box-title">Технології руху</span></span></a></li>
+                        <li class="h-drop-item"><a href="/catalog" class="img-box"><img src="/img/preloader.jpg" data-i-src="/img/cat-8.jpg" alt="" class="h-drop-img"><span class="img-box-info"><span class="img-box-title">Інші вироби</span></span></a></li>
+                        <li class="h-drop-item"><a href="/catalog" class="img-box"><img src="/img/preloader.jpg" data-i-src="/img/cat-9.jpg" alt="" class="h-drop-img"><span class="img-box-info"><span class="img-box-title">Допоміжні пристрої для монтажу</span></span></a></li>
+                        <li class="h-drop-item"><a href="/catalog" class="img-box"><img src="/img/preloader.jpg" data-i-src="/img/cat-2.jpg" alt="" class="h-drop-img"><span class="img-box-info"><span class="img-box-title">Системи напрямних</span></span></a></li>
+                        <li class="h-drop-item"><a href="/catalog" class="img-box"><img src="/img/preloader.jpg" data-i-src="/img/cat-10.jpg" alt="" class="h-drop-img"><span class="img-box-info"><span class="img-box-title">Системи завіс</span></span></a></li>
+                        <li class="h-drop-item"><a href="/catalog" class="img-box"><img src="/img/preloader.jpg" data-i-src="/img/cat-1.jpg" alt="" class="h-drop-img"><span class="img-box-info"><span class="img-box-title">Підіймальні механізми</span></span></a></li>
+                        <li class="h-drop-item"><a href="/catalog" class="img-box"><img src="/img/preloader.jpg" data-i-src="/img/cat-2.jpg" alt="" class="h-drop-img"><span class="img-box-info"><span class="img-box-title">Висувні системи</span></span></a></li>
+                        <li class="h-drop-item"><a href="/catalog" class="img-box"><img src="/img/preloader.jpg" data-i-src="/img/cat-3.jpg" alt="" class="h-drop-img"><span class="img-box-info"><span class="img-box-title">Конструкції шафок</span></span></a></li>
+                        <li class="h-drop-item"><a href="/catalog" class="img-box"><img src="/img/preloader.jpg" data-i-src="/img/cat-4.jpg" alt="" class="h-drop-img"><span class="img-box-info"><span class="img-box-title">Системи напрямних</span></span></a></li>
+                        <li class="h-drop-item"><a href="/catalog" class="img-box"><img src="/img/preloader.jpg" data-i-src="/img/cat-5.jpg" alt="" class="h-drop-img"><span class="img-box-info"><span class="img-box-title">Системи завіс</span></span></a></li>
+                        <li class="h-drop-item"><a href="/catalog" class="img-box"><img src="/img/preloader.jpg" data-i-src="/img/cat-6.jpg" alt="" class="h-drop-img"><span class="img-box-info"><span class="img-box-title">Системи внутрішніх розділювачів</span></span></a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- end categories -->
+
+            <!-- navigation -->
+            <nav class="nav-primary d-none d-xl-block">
+                <ul>
+                    <li><a href="/about">Про Blum</a></li>
+                    <li><a href="/dealers">Дилери</a></li>
+                    <li><a href="/orders">Замовлення</a></li>
+                    <li><a href="/delivery">Оплата</a></li>
+                </ul>
+            </nav>
+            <div class="h-menu-wrapp d-none d-xl-flex">
+                <button class="h-menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-menu-icon">
+                    <path d="M3 12H21" stroke-width="1.5" />
+                    <path d="M3 6H21" stroke-width="1.5" />
+                    <path d="M3 18H21" stroke-width="1.5" />
+                </svg></button>
+                <ul class="h-menu-drop">
+                    <li><a href="/contacts">Контакти Blum</a></li>
+                    <li><a href="/blog">Блог</a></li>
+                    <li><a href="/faq">Питання та відповіді</a></li>
+                </ul>
+            </div>
+            <!-- end navigation -->
+
+            <!-- search -->
+            <button class="h-search d-none d-xl-block"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-search-icon">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M1.75 8.5C1.75 4.77208 4.77208 1.75 8.5 1.75C12.2279 1.75 15.25 4.77208 15.25 8.5C15.25 12.2279 12.2279 15.25 8.5 15.25C4.77208 15.25 1.75 12.2279 1.75 8.5ZM8.5 0.25C3.94365 0.25 0.25 3.94365 0.25 8.5C0.25 13.0563 3.94365 16.75 8.5 16.75C10.5081 16.75 12.3487 16.0325 13.7793 14.84L18.4697 19.5303L19.5303 18.4697L14.84 13.7793C16.0325 12.3487 16.75 10.5081 16.75 8.5C16.75 3.94365 13.0563 0.25 8.5 0.25Z" />
+            </svg></button>
+            <!-- end search -->
+
+            <!-- favourites -->
+            <a href="favourites" class="h-favourites active"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.8401 4.60987C20.3294 4.09888 19.7229 3.69352 19.0555 3.41696C18.388 3.14039 17.6726 2.99805 16.9501 2.99805C16.2276 2.99805 15.5122 3.14039 14.8448 3.41696C14.1773 3.69352 13.5709 4.09888 13.0601 4.60987L12.0001 5.66987L10.9401 4.60987C9.90843 3.57818 8.50915 2.99858 7.05012 2.99858C5.59109 2.99858 4.19181 3.57818 3.16012 4.60987C2.12843 5.64156 1.54883 7.04084 1.54883 8.49987C1.54883 9.95891 2.12843 11.3582 3.16012 12.3899L4.22012 13.4499L12.0001 21.2299L19.7801 13.4499L20.8401 12.3899C21.3511 11.8791 21.7565 11.2727 22.033 10.6052C22.3096 9.93777 22.4519 9.22236 22.4519 8.49987C22.4519 7.77738 22.3096 7.06198 22.033 6.39452C21.7565 5.72706 21.3511 5.12063 20.8401 4.60987V4.60987Z" stroke-width="1.5" />
+            </svg>{{#ifCond favorite "==" 0 }}<span class="h-tooltip">Нажаль, в улюблених ще немає товарів</span>{{/ifCond}}<span class="h-favourites-num">{{#if favorite}}{{favorite}}{{else}}0{{/if}}</span></a>
+            <!-- end favourites -->
+
+            <!-- cart -->
+            <button class="h-cart d-flex align-items-center active open-cart"><svg width="23" height="23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 1.75h3.39c.234 1.108.597 2.705.995 4.42a1031.083 1031.083 0 002.061 8.685l.157.648.041.172.011.045.003.011v.003l.73-.176-.73.177.14.573h.59v-.75.75H20.273l.146-.562-.727-.188.727.188v-.002l.001-.004.004-.015.016-.061.06-.233a452.38 452.38 0 00.905-3.583c.519-2.087 1.101-4.499 1.332-5.708l.17-.89H5.712A180.997 180.997 0 014.735.853L4.615.25H0v1.5zm7.983 13.058h-.005l-.074-.305A1429.431 1429.431 0 016.06 6.75h15.018a195.99 195.99 0 01-1.129 4.736 508.422 508.422 0 01-.838 3.322H7.983zM8 21.5a.5.5 0 100-1 .5.5 0 000 1zm2-.5a2 2 0 11-4 0 2 2 0 014 0zm10 .5a.5.5 0 100-1 .5.5 0 000 1zm2-.5a2 2 0 11-4 0 2 2 0 014 0z" /></svg>{{#unless cart.totalAmount includeZero=true}}<span class="h-tooltip">Нажаль, у вашому кошику ще немає товарів</span>{{/unless}}<span class="h-cart-num">{{#if cart.totalAmount}}{{cart.totalAmount}}{{else}}0{{/if}}</span><span class="d-none d-xl-block"><span class="total-price">{{#if cart.totalPrice}}{{cart.totalPrice}}{{else}}0{{/if}}</span> грн</span></button>
+            <!-- end cart -->
+
+            <!-- user -->
+            <div class="h-user-name d-flex align-items-center"><svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="d-xl-none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.75 5C5.75 3.20507 7.20507 1.75 9 1.75C10.7949 1.75 12.25 3.20507 12.25 5C12.25 6.79493 10.7949 8.25 9 8.25C7.20507 8.25 5.75 6.79493 5.75 5ZM9 0.25C6.37665 0.25 4.25 2.37665 4.25 5C4.25 7.62335 6.37665 9.75 9 9.75C11.6234 9.75 13.75 7.62335 13.75 5C13.75 2.37665 11.6234 0.25 9 0.25ZM5 12.25C3.74022 12.25 2.53204 12.7504 1.64124 13.6412C0.750445 14.532 0.25 15.7402 0.25 17V19V19.75H1H17H17.75V19V17C17.75 15.7402 17.2496 14.532 16.3588 13.6412C15.468 12.7504 14.2598 12.25 13 12.25H5ZM2.7019 14.7019C3.3114 14.0924 4.13805 13.75 5 13.75H13C13.862 13.75 14.6886 14.0924 15.2981 14.7019C15.9076 15.3114 16.25 16.138 16.25 17V18.25H1.75V17C1.75 16.138 2.09241 15.3114 2.7019 14.7019Z" />
+            </svg>{{last_name}} {{first_name}}<svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="d-none d-xl-block">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.46973 5.53039L0.469727 1.53039L1.53039 0.469727L5.00006 3.9394L8.46973 0.469727L9.53039 1.53039L5.53039 5.53039L5.00006 6.06072L4.46973 5.53039Z" />
+            </svg>
+                <ul class="h-user-drop">
+                    <li><a href="/client/cabinet"><i><svg width="20" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M6.417 2.25c0-.184.149-.333.333-.333h6.5c.184 0 .333.149.333.333v2.167c0 .184-.149.333-.333.333h-6.5a.333.333 0 01-.333-.333V2.25zm-1.5.333V2.25c0-1.012.82-1.833 1.833-1.833h6.5c1.013 0 1.833.82 1.833 1.833v.333H16.5A2.916 2.916 0 0119.417 5.5v15.167a2.916 2.916 0 01-2.917 2.916h-13a2.917 2.917 0 01-2.917-2.916V5.5A2.917 2.917 0 013.5 2.583h1.417zm0 1.5H3.5A1.417 1.417 0 002.083 5.5v15.167A1.417 1.417 0 003.5 22.083h13a1.417 1.417 0 001.417-1.416V5.5A1.417 1.417 0 0016.5 4.083h-1.417v.334c0 1.012-.82 1.833-1.833 1.833h-6.5a1.833 1.833 0 01-1.833-1.833v-.334zm1.139 11.972A2.75 2.75 0 018 15.25h4A2.75 2.75 0 0114.75 18v1a.75.75 0 11-1.5 0v-1A1.25 1.25 0 0012 16.75H8A1.25 1.25 0 006.75 18v1a.75.75 0 01-1.5 0v-1c0-.73.29-1.429.806-1.945zM8.75 11.5a1.25 1.25 0 112.5 0 1.25 1.25 0 01-2.5 0zM10 8.75a2.75 2.75 0 100 5.5 2.75 2.75 0 000-5.5z" /></svg></i>Особисті дані</a></li>
+                    <li><a href="/client/cabinet/history-orders"><i><svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 4v6h6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M3.51 15a9 9 0 102.13-9.36L1 10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></i>Історія замовлень</a></li>
+                    <li><a href="/client/cabinet/password"><i><svg width="20" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.995 2.995A4.25 4.25 0 0114.25 6v3.25h-8.5V6a4.25 4.25 0 011.245-3.005zM4.25 9.25V6a5.75 5.75 0 1111.5 0v3.25H17A2.75 2.75 0 0119.75 12v7A2.75 2.75 0 0117 21.75H3A2.75 2.75 0 01.25 19v-7A2.75 2.75 0 013 9.25h1.25zm0 1.5H3c-.69 0-1.25.56-1.25 1.25v7c0 .69.56 1.25 1.25 1.25h14c.69 0 1.25-.56 1.25-1.25v-7c0-.69-.56-1.25-1.25-1.25H4.25z" /></svg></i>Зміна паролю</a></li>
+                    <li><a href="/auth/logout"><i><svg width="21" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M.25.25h7.5v1.5h-6v16.5h6v1.5H.25V.25zM14 3.94l.53.53 5 5 .53.53-.53.53-5 5-.53.53L12.94 15l.53-.53 3.72-3.72H6.25v-1.5h10.94l-3.72-3.72-.53-.53L14 3.94z" /></svg></i>Вихід</a></li>
+                </ul>
+            </div>
+            <!-- end user -->
+
+            <!-- menu toggle -->
+            <button class="h-menu d-xl-none show-menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-menu-icon">
+                <path d="M3 12H21" stroke-width="1.5" />
+                <path d="M3 6H21" stroke-width="1.5" />
+                <path d="M3 18H21" stroke-width="1.5" />
+            </svg></button>
+            <!-- end menu toggle -->
+        </div>
+
+        <!-- search form -->
+        <form action="/search" method="post" class="h-sform">
+            <input type="text" placeholder="Введіть запит для пошуку" name="search" autocomplete="off" class="input h-sform-input">
+            <button type="button" class="h-sform-close btn-close"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z" />
+            </svg></button>
+            <div class="h-sform-overlay"></div>
+        </form>
+        <!-- end search form -->
+    </div>
+
+    <!-- mobile menu -->
+    <div class="mobile-menu d-xl-none">
+        <form action="/search" method="post" class="h-sform">
+            <input type="search" placeholder="Введіть запит для пошуку" name="search" class="input h-sform-input" autocomplete="off">
+            <button type="submit"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-search-icon">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M1.75 8.5C1.75 4.77208 4.77208 1.75 8.5 1.75C12.2279 1.75 15.25 4.77208 15.25 8.5C15.25 12.2279 12.2279 15.25 8.5 15.25C4.77208 15.25 1.75 12.2279 1.75 8.5ZM8.5 0.25C3.94365 0.25 0.25 3.94365 0.25 8.5C0.25 13.0563 3.94365 16.75 8.5 16.75C10.5081 16.75 12.3487 16.0325 13.7793 14.84L18.4697 19.5303L19.5303 18.4697L14.84 13.7793C16.0325 12.3487 16.75 10.5081 16.75 8.5C16.75 3.94365 13.0563 0.25 8.5 0.25Z" />
+            </svg></button>
+        </form>
+        <div class="header-top">
+            <div class="h-company-name"><img src="/img/preloader.jpg" data-i-src="/img/icons/briefcase.svg" alt="">{{dealerData.company_name}}</div>
+            <div class="h-address"><img src="/img/preloader.jpg" data-i-src="/img/icons/navigation.svg" alt=""><a href="https://www.google.com.ua/maps/?q={{dealerData.lat}},{{dealerData.lng}}" target="_blank">{{dealerData.user.city}}, {{dealerData.user.mailing_address}}, {{dealerData.user.house_number}}</a></div>
+            <div class="h-phones">
+                <img src="/img/icons/viber.svg" alt=""><img src="/img/preloader.jpg" data-i-src="/img/icons/telegram.svg" alt="">
+                <p><a href="tel:{{dealerData.user.phone}}">{{dealerData.user.phone}}</a><br></p>
+            </div>
+            <div class="h-email"><img src="/img/preloader.jpg" data-i-src="/img/icons/email.svg" alt=""><a href="mailto:{{dealerData.user.email}}">{{dealerData.user.email}}</a></div>
+        </div>
+        <nav class="nav-primary">
+            <ul>
+                <li><a href="/about">Про Blum</a></li>
+                <li><a href="/dealers">Дилери</a></li>
+                <li><a href="/orders">Замовлення</a></li>
+                <li><a href="/payment">Оплата</a></li>
+                <li><a href="/contacts">Контакти Blum</a></li>
+                <li><a href="/blog">Блог</a></li>
+                <li><a href="/faq">Питання та відповіді</a></li>
+            </ul>
+        </nav>
+        <ul class="h-currency d-flex">
+            <li>Грн</li>
+            <li><a href="#">Євро</a></li>
+        </ul>
+        <button class="btn-close menu-close"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z" />
+        </svg></button>
+    </div>
+    <div class="mobile-overlay d-xl-none menu-close"></div>
+    <!-- end mobile menu -->
+
+</header>
+<div class="header-margin"></div>

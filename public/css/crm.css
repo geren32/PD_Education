@@ -1,0 +1,1083 @@
+/*----------------------------------------------------------------------------------------------*/
+/* SIDEBAR */
+/*----------------------------------------------------------------------------------------------*/
+.crm-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 320px;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    height: 100%;
+    background-color: #292929;
+}
+.crm-sidebar + .mobile-overlay {
+    z-index: 100000;
+}
+.crm-logo {
+    height: 57px;
+    background-color: #ff671f;
+}
+.crm-nav ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: calc(100vh - 57px);
+}
+.crm-nav li.last {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.crm-nav a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 18px 30px;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.4;
+}
+.crm-nav a img {
+    margin-right: 11px;
+}
+.crm-nav a.current {
+    font-weight: 400;
+    background: rgba(255, 255, 255, 0.1);
+}
+@media (min-width: 1200px) {
+    .crm-nav a:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+}
+@media (max-width: 1366px) {
+    .crm-sidebar {
+        width: 260px;
+    }
+    .crm-nav a {
+        font-size: 14px;
+        padding-right: 18px;
+        padding-left: 18px;
+    }
+}
+@media (max-width: 1199px) {
+    .crm-sidebar {
+        transform: translateX(-100%);
+        z-index: 100001;
+        transition: .3s;
+    }
+    .crm-sidebar.show {
+        transform: none;
+    }
+    .crm-sidebar-btn {
+        position: fixed;
+        left: 0;
+        top: 75px;
+        width: 40px;
+        height: 40px;
+        z-index: 100001;
+        background-color: #ff671f;
+        transition: .3s;
+    }
+    .crm-sidebar-btn svg {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        vertical-align: top;
+        stroke: #fff;
+    }
+    .crm-sidebar-btn svg:nth-child(2) {
+        display: none;
+    }
+    .crm-sidebar-btn.active svg:nth-child(1) {
+        display: none;
+    }
+    .crm-sidebar-btn.active svg:nth-child(2) {
+        display: block;
+    }
+}
+
+/*----------------------------------------------------------------------------------------------*/
+/* MAIN */
+/*----------------------------------------------------------------------------------------------*/
+.crm-main {
+    padding-left: 320px;
+}
+.crm-empty {
+    height: calc(100vh - 155px);
+}
+.crm-top {
+    font-size: 14px;
+    font-weight: 400;
+    background-color: #f7f7f7;
+    position: fixed;
+    left: 320px;
+    right: 0;
+    z-index: 99999;
+}
+.crm-top-spacer {
+    height: 92px;
+}
+.crm-top .container {
+    height: 57px;
+}
+.crm-top a,
+.btn-back {
+    color: #292929;
+}
+.crm-top a svg,
+.btn-back svg {
+    margin-right: 6px;
+    fill: currentColor;
+}
+.crm-top-date img {
+    margin-right: 11px;
+    position: relative;
+    top: -2px;
+}
+.crm-user {
+    padding: 16px 0 15px;
+}
+.crm-user button svg {
+    margin-right: 10px;
+    fill: currentColor;
+    position: relative;
+    top: -2px;
+}
+.crm-user button svg:nth-child(2) {
+    margin-left: 6px;
+    margin-right: 0;
+}
+.crm-user ul {
+    position: absolute;
+    right: 0;
+    top: 57px;
+    z-index: 10;
+    width: 211px;
+    padding: 15px 10px;
+    background-color: #fff;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+    -webkit-filter: drop-shadow(0px 0px 50px rgba(0, 0, 0, 0.08));
+            filter: drop-shadow(0px 0px 50px rgba(0, 0, 0, 0.08));
+}
+.loaded .crm-user ul {
+    display: block;
+}
+.crm-user ul::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -9px;
+    margin-left: -9px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 9px 9px 9px;
+    border-color: transparent transparent #fff transparent;
+}
+.crm-user ul a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 7px 15px;
+    font-size: 16px;
+    font-weight: 300;
+}
+.crm-user ul a.current {
+    background-color: #f7f7f7;
+    color: #ff671f;
+}
+.crm-user li {
+    margin-top: 10px;
+}
+.crm-user li:first-child {
+    margin-top: 0;
+}
+.crm-user ul li:last-child {
+    border-top: 1px solid #e0e0e0;
+    margin-top: 15px;
+    padding-top: 15px;
+}
+.crm-user:hover ul,
+.crm-user.active ul {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+.crm-title-wrapp {
+    margin-bottom: 35px;
+    position: relative;
+}
+.crm-title-wrapp:not(.type-1) .btn-link {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.crm-title-wrapp .btn-link svg {
+    margin-right: 11px;
+}
+.crm-title-wrapp.type-1 .crm-title-col {
+    flex: 1 1 33.33%;
+    max-width: 33.33%;
+    display: flex;
+}
+.crm-search input[type="search"] {
+    border-right: none;
+}
+.crm-search .btn {
+    padding: 0;
+    width: 142px;
+    height: 48px;
+}
+.crm-search .btn svg {
+    margin-right: 10px;
+    fill: currentColor;
+}
+.crm-entry {
+    padding: 0 15px;
+}
+@media (min-width: 1200px) {
+    .crm-user button,
+    .crm-user ul {
+        -webkit-transition: 0.3s;
+        transition: 0.3s;
+    }
+    .crm-top a:hover,
+    .crm-user button:hover,
+    .btn-back:hover {
+        color: #ff671f;
+    }
+    .crm-user ul a:hover {
+        background-color: #f7f7f7;
+    }
+}
+@media (max-width: 1366px) {
+    .crm-main {
+        padding-left: 260px;
+    }
+    .crm-top {
+        left: 260px;
+    }
+    .crm-title-wrapp.type-1 .crm-title-col {
+        flex-basis: 50%;
+        max-width: 50%;
+    }
+    .crm-title-wrapp.type-1 .crm-title-col:nth-child(2) {
+        width: 100%;
+        max-width: 100%;
+        justify-content: center;
+        margin: 30px 0 0 0;
+        order: 3;
+    }
+}
+@media (max-width: 1199px) {
+    .crm-entry {
+        padding: 0;
+    }
+    .crm-main {
+        padding-left: 0;
+    }
+    .crm-top {
+        left: 0;
+    }
+    .crm-top .btn-back {
+        font-size: 0;
+    }
+    .crm-user {
+        position: relative;
+    }
+    .crm-user ul::before {
+        top: -12px;
+        left: auto;
+        right: 0;
+        border-width: 0 0 12px 12px;
+        border-color: transparent transparent #fff transparent;
+    }
+    .crm-user button {
+        font-size: 0;
+    }
+    .crm-user button svg {
+        margin-right: 0;
+    }
+    .crm-user button svg:nth-child(2) {
+        display: none;
+    }
+    .crm-search .btn {
+        font-size: 0;
+        width: 48px;
+        -ms-flex-negative: 0;
+            flex-shrink: 0;
+    }
+    .crm-search .btn svg {
+        margin-right: 0;
+    }
+    .crm-title-wrapp .btn-back {
+        margin-bottom: 0;
+    }
+    .crm-title-wrapp.type-1 .crm-title-col {
+        flex: 1 1 50%;
+        max-width: 50%;
+    }
+    .crm-title-wrapp.type-1 .crm-title-col:nth-child(2) {
+        flex: 1 1 100%;
+        max-width: 100%;
+        order: 3;
+        margin: 20px 0 0 0;
+        justify-content: center;
+    }
+}
+@media (max-width: 991px) {
+    .crm-title-wrapp {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .crm-title-wrapp.type-1 {
+        text-align: left;
+    }
+    .crm-title-wrapp.type-1 .crm-title-col {
+        flex: auto;
+        max-width: 100%;
+    }
+    .crm-title-wrapp.type-1 .crm-title-col:nth-child(2) {
+        margin: 20px 0 0 0;
+        order: 2;
+    }
+    .crm-title-wrapp:not(.type-1) .btn-link {
+        position: static;
+        margin-top: 10px;
+    }
+}
+
+/*----------------------------------------------------------------------------------------------*/
+/* DATERANGEPICKER */
+/*----------------------------------------------------------------------------------------------*/
+input[name="daterange"] {
+    font-size: 14px;
+    font-weight: 300;
+    height: 44px;
+}
+.daterangepicker {
+    border: none;
+    margin-top: 0;
+    margin-left: -10px;
+    border-radius: 0;
+    -webkit-filter: drop-shadow(0px 8px 50px rgba(0, 0, 0, 0.06));
+            filter: drop-shadow(0px 8px 50px rgba(0, 0, 0, 0.06));
+}
+.daterangepicker:before,
+.daterangepicker:after,
+.daterangepicker.show-calendar .drp-buttons {
+    display: none;
+}
+.daterange {
+    position: relative;
+    z-index: 9999;
+}
+.daterange:before {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: -10px;
+    left: -10px;
+    top: -10px;
+    z-index: -1;
+}
+.daterange.active:before {
+    background-color: #fff;
+    -webkit-filter: drop-shadow(0px 8px 50px rgba(0, 0, 0, 0.06));
+            filter: drop-shadow(0px 8px 50px rgba(0, 0, 0, 0.06));
+}
+.daterange-arr {
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    top: 1px;
+    width: 39px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+input[name="daterange"]:focus + .daterange-arr {
+    -webkit-transform: rotateX(180deg);
+            transform: rotateX(180deg);
+}
+.daterangepicker .calendar-table th, .daterangepicker .calendar-table td {
+    font-size: 15px;
+    width: 38px;
+    min-width: 38px;
+    line-height: 37px;
+}
+.daterangepicker td {
+    border-radius: 0 !important;
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+.daterangepicker td.active, .daterangepicker td.active:hover {
+    background-color: #ff671f;
+}
+.daterangepicker td.active.end-date.in-range {
+    background-color: transparent;
+    -webkit-box-shadow: inset 0 0 0 1px #ff671f;
+            box-shadow: inset 0 0 0 1px #ff671f;
+    color: #ff671f;
+}
+.daterangepicker td.active.end-date.in-range:hover {
+    color: #fff;
+}
+.daterangepicker td.in-range:not(.active) {
+    background-color: #f7f7f7;
+}
+.daterangepicker .drp-calendar.left,
+.daterangepicker .drp-calendar.right {
+    padding: 10px;
+}
+.daterangepicker .drp-calendar.left {
+    padding-right: 15px;
+}
+.daterangepicker .drp-calendar.right {
+    padding-left: 15px;
+}
+.daterangepicker .drp-calendar.left .calendar-table {
+    padding-right: 0;
+}
+.daterangepicker .drp-calendar {
+    max-width: none;
+}
+.daterangepicker .calendar-table .next, .daterangepicker .calendar-table .prev {
+    position: relative;
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+.daterangepicker .calendar-table .next span, .daterangepicker .calendar-table .prev span {
+    border: none;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -12px 0 0 -12px;
+    background: url("../img/icons/prev.svg") no-repeat 0 0;
+    -webkit-transform: none;
+        -ms-transform: none;
+            transform: none;
+}
+.daterangepicker .calendar-table .next span {
+    -webkit-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+            transform: rotate(180deg);
+}
+.daterangepicker .calendar-table th, .daterangepicker .calendar-table td {
+    border-radius: 0;
+}
+.daterangepicker td.available:hover, .daterangepicker th.available:hover {
+    background-color: #f7f7f7;
+}
+.daterangepicker td.available.active:hover, .daterangepicker th.available.active:hover {
+    background-color: #ff671f;
+}
+.drp-calendar.left {
+    position: relative;
+}
+.drp-calendar.left::before {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 12px;
+    right: 0;
+    top: 65px;
+    width: 1px;
+    background-color: #e0e0e0;
+}
+@media (max-width: 767px) {
+    .daterangepicker {
+        width: 530px;
+    }
+    .daterangepicker.show-calendar .drp-calendar {
+        width: 50%;
+        float: left;
+        padding: 0 10px;
+    }
+    .daterangepicker .calendar-table th, .daterangepicker .calendar-table td {
+        width: 28px;
+        min-width: 28px;
+        line-height: 28px;
+        font-size: 12px;
+    }
+}
+@media (max-width: 575px) {
+    .daterangepicker {
+        width: calc(100% - 10px);
+        left: 15px !important;
+    }
+    .daterangepicker .calendar-table th, .daterangepicker .calendar-table td {
+        width: 22px;
+        min-width: 22px;
+        line-height: 22px;
+        font-size: 11px;
+    }
+}
+
+/*----------------------------------------------------------------------------------------------*/
+/* CRM TABLE */
+/*----------------------------------------------------------------------------------------------*/
+.crm-table {
+    margin-bottom: 16px;
+    width: 100%;
+}
+.crm-table.overflow-visible {
+    overflow: visible;
+}
+.crm-table td,
+.crm-table th {
+    vertical-align: middle;
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 0 7.5px;
+    text-align: left;
+}
+.crm-table td:first-child {
+    padding-left: 15px;
+}
+.crm-table td:last-child {
+    padding-right: 15px;
+}
+.crm-table td b {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 400;
+    color: #292929;
+}
+.crm-table thead th {
+    height: 44px;
+    font-weight: 500;
+    background-color: #4d4d4d;
+    color: #fff;
+    white-space: nowrap;
+}
+.crm-table tbody tr {
+    position: relative;
+    cursor: pointer;
+}
+.crm-table tbody tr:nth-child(even) td {
+    background-color: #f7f7f7;
+}
+.crm-table tbody td {
+    position: relative;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+.crm-table thead th:first-child,
+.crm-table tbody td:first-child {
+    border-left: 1px solid transparent;
+    padding-left: 38px;
+}
+.crm-table tbody td:first-child .d-inline-block {
+    position: relative;
+}
+.crm-table tbody td:nth-child(1) {
+    width: 195px;
+}
+.crm-table tbody td:nth-child(2) {
+    width: 355px;
+}
+.crm-table tbody td:nth-child(3) {
+    width: 250px;
+}
+.crm-table tbody td:nth-child(4) {
+    width: 380px;
+}
+.crm-table.type-1 tbody td:nth-child(5) {
+    width: 380px;
+}
+.crm-table tbody td:last-child {
+    border-right: 1px solid transparent;
+    width: 200px;
+}
+.crm-table thead th:last-child,
+.crm-table tbody td:last-child {
+    padding-right: 28px;
+}
+.crm-table tr:last-child td {
+    border-bottom: 1px solid #e0e0e0;
+}
+.crm-table .select-box {
+    width: 300px;
+}
+.crm-vert-divider {
+    width: 1px;
+    height: 20px;
+    margin: 0 10px;
+    background-color: #e0e0e0;
+}
+.crm-table .status {
+    display: block;
+    position: absolute;
+    left: -24px;
+    top: 50%;
+    margin-top: -4px;
+    border-radius: 100%;
+    width: 8px;
+    height: 8px;
+    background-color: #ff671f;
+}
+.crm-table .tooltip {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    z-index: 100;
+    cursor: pointer;
+    margin-left: auto;
+}
+.crm-table button {
+    position: relative;
+    z-index: 100;
+}
+.crm-table .tooltip svg {
+    stroke: #4d4d4d;
+}
+.crm-table .tooltip span {
+    position: absolute;
+    right: -22px;
+    bottom: 100%;
+    margin-bottom: 18px;
+    z-index: 100;
+    width: 423px;
+    padding: 15px;
+    line-height: 1.7;
+    background-color: #fff;
+    -webkit-filter: drop-shadow(0px 8px 50px rgba(0, 0, 0, 0.06));
+            filter: drop-shadow(0px 8px 50px rgba(0, 0, 0, 0.06));
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+}
+.crm-table .tooltip.active span {
+    opacity: 1;
+    visibility: visible;
+}
+.crm-table .tooltip span::before {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 22px;
+    bottom: -9px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 9px 9px 9px;
+    border-color: transparent transparent #fff transparent;
+    transform: scale(-1);
+}
+.crm-table a {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+}
+.crm-table-controls {
+    padding: 0 40px 22px 32px;
+    font-size: 14px;
+}
+.crm-hidden-pagination{
+    opacity: 0;
+    visibility: hidden;
+}
+.crm-table-pag button:not(:last-child) {
+    margin-right: 10px;
+}
+.crm-table-pag svg {
+    vertical-align: top;
+    stroke: #292929;
+}
+.crm-table-pag button[disabled] {
+    pointer-events: none;
+}
+.crm-table-pag button[disabled] svg {
+    stroke: #b8b8b8;
+}
+.crm-table-page.disabled{
+    pointer-events:none;
+}
+.crm-table-page .input {
+    width: 40px;
+    height: 40px;
+    padding: 0 5px;
+    text-align: center;
+    margin: 0 11px;
+    font-size: 14px;
+    color: #000;
+}
+.crm-table-page span{
+    margin-left: 10px;
+}
+.crm-table .sum {
+    margin-right: 10px;
+}
+/* size 1 */
+.crm-table.size-1 {overflow: auto;}
+.crm-table.size-1 tbody td:nth-child(1) {
+    width: auto;
+    min-width: 90px;
+}
+.crm-table.size-1 tbody td:nth-child(2) {
+    width: 240px;
+}
+.crm-table.size-1 tbody td:nth-child(3) {
+    width: auto;
+}
+.crm-table.size-1 tbody td:nth-child(4) {
+    width: 160px;
+}
+.crm-table.size-1 tbody td:nth-child(5) {
+    width: 225px;
+}
+.crm-table.size-1 tbody td:nth-child(6) {
+    width: 170px;
+}
+.crm-table.size-1 tbody td:last-child {
+    width: 190px;
+}
+/* size 2 */
+.crm-table.size-2 tbody td:nth-child(1) {
+    width: 150px;
+}
+.crm-table.size-2 tbody td:nth-child(2) {
+    width: 240px;
+}
+.crm-table.size-2 tbody td:nth-child(3) {
+    width: 310px;
+}
+.crm-table.size-2 tbody td:nth-child(4) {
+    width: 200px;
+}
+.crm-table.size-2 tbody td:nth-child(5) {
+    width: 340px;
+}
+.crm-table.size-2 tbody td:nth-child(6) {
+    width: 200px;
+}
+/* size 3 */
+.crm-table.size-3 tbody td:nth-child(1) {
+    width: 150px;
+}
+.crm-table.size-3 tbody td:nth-child(2) {
+    width: 250px;
+}
+.crm-table.size-3 tbody td:nth-child(3) {
+    width: 350px;
+}
+.crm-table.size-3 tbody td:nth-child(4) {
+    width: 240px;
+}
+.crm-table.size-3 tbody td:nth-child(5) {
+    width: 280px;
+}
+.crm-table.size-3 tbody td:nth-child(6) {
+    width: 200px;
+}
+/* size 4 */
+.crm-table.size-4 {overflow: auto;}
+.crm-table.size-4 tbody td:nth-child(1) {
+    width: 150px;
+}
+.crm-table.size-4 tbody td:nth-child(2) {
+    width: 175px;
+}
+.crm-table.size-4 tbody td:nth-child(3) {
+    width: 270px;
+}
+.crm-table.size-4 tbody td:nth-child(4) {
+    width: 190px;
+}
+.crm-table.size-4 tbody td:nth-child(5) {
+    width: 175px;
+}
+.crm-table.size-4 tbody td:nth-child(6) {
+    width: 235px;
+}
+.crm-table.size-4 tbody td:nth-child(7) {
+    width: 190px;
+}
+/* size 5 */
+.crm-table.size-5 tbody td:nth-child(1),
+.crm-table.size-5 tbody td:nth-child(2),
+.crm-table.size-5 tbody td:nth-child(3) {
+    width: 150px;
+}
+.crm-table.size-5 tbody td:nth-child(4),
+.crm-table.size-5 tbody td:nth-child(5) {
+    width: 300px;
+}
+.crm-table.size-5 tbody td:nth-child(6) {
+    width: 200px;
+}
+.crm-table.size-5 .select-box {
+    max-width: 100%;
+}
+/* size 6 */
+.crm-table.size-6 tbody td:nth-child(1) {width: 200px;}
+.crm-table.size-6 tbody td:nth-child(2),
+.crm-table.size-6 tbody td:nth-child(3) {width: 400px;}
+.crm-table.size-6 tbody td:nth-child(4) {width: 250px;}
+.crm-table.size-6 tbody td:nth-child(5) {width: 150px;}
+@media (min-width: 1200px) {
+    .crm-table .tooltip span,
+    .crm-table .tooltip svg,
+    .crm-table tbody b,
+    .crm-table tbody td,
+    .crm-table-pag svg {
+        -webkit-transition: .3s;
+        transition: .3s;
+    }
+    .crm-table .tooltip:hover span {
+        pointer-events: all;
+        opacity: 1;
+        visibility: visible;
+    }
+    .crm-table .tooltip:hover svg,
+    .crm-table-pag button:hover svg {
+        stroke: #ff671f;
+    }
+    .crm-table tbody tr:hover td {
+        position: relative;
+        z-index: 9999;
+    }
+    .crm-table tbody tr:hover td:nth-child(1) b,
+    .crm-table tbody tr:hover td:nth-child(2),
+    .crm-table tbody tr:hover td:nth-child(2) b {
+        color: #ff671f;
+    }
+    .crm-table tbody tr:hover td {
+        border-bottom-color: #e0e0e0;
+        border-top-color: #e0e0e0;
+    }
+    .crm-table tbody tr:hover td:first-child {
+        border-left-color: #e0e0e0;
+    }
+    .crm-table tbody tr:hover td:last-child {
+        border-right-color: #e0e0e0;
+    }
+    .crm-table .tooltip:hover span {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+@media (max-width: 1366px) {
+    .crm-table .select-box {
+        width: 200px;
+    }
+}
+@media (max-width: 1199px) {
+    .crm-table .select-box {
+        width: 165px;
+    }
+}
+@media (max-width: 991px) {
+    .crm-table .sum span {
+        display: block;
+    }
+    .crm-table thead {
+        position: absolute;
+		left: -9999px;
+		overflow: hidden;
+		width: 0px;
+		height: 0px;
+    }
+    .crm-table thead th:last-child,
+    .crm-table tbody td:last-child {
+        padding-right: 17px;
+    }
+    .crm-table tr, .crm-table tbody, .crm-table table {
+		display: block;
+    }
+    .crm-table tbody tr {
+        border: 1px solid #e0e0e0;
+        border-bottom: none;
+    }
+    .crm-table tbody tr:nth-child(even) td {
+        background-color: transparent;
+    }
+    .crm-table tbody tr + tr {
+        margin-top: 20px;
+    }
+    .crm-table tbody td {
+        border: none;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        padding-bottom: 9px;
+        padding-top: 9px;
+        border-bottom: 1px solid #e0e0e0;
+        min-height: 57px;
+        width: auto !important;
+    }
+    .crm-table tbody td > [class*="d-"] {
+        flex: 1;
+    }
+    .crm-table tbody tr td::before {
+        content: attr(data-title);
+        display: inline-block;
+        vertical-align: top;
+        width: 110px;
+        -ms-flex-negative: 0;
+            flex-shrink: 0;
+        margin-right: 10px;
+        padding: 0 0 0 10px;
+    }
+    .crm-table tbody td:first-child {
+        padding-left: 10px;
+    }
+    .crm-table tbody td:first-child .d-inline-block {
+        position: relative;
+        padding-left: 0;
+    }
+    .crm-table td b {
+        display: inline-block;
+        margin-bottom: 0;
+    }
+    .crm-table .status {
+        left: -20px;
+    }
+    .crm-table .tooltip {
+        width: 35px;
+        height: 35px;
+        position: relative;
+    }
+    .crm-table .tooltip svg {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+    }
+    .crm-table .tooltip span {
+        width: 320px;
+    }
+    .crm-table .select-box {
+        width: auto;
+        flex: 1;
+    }
+}
+@media (max-width: 767px) {
+    .crm-table-pag {
+        margin-bottom: 15px;
+    }
+}
+
+/*----------------------------------------------------------------------------------------------*/
+/* CRM ORDER */
+/*----------------------------------------------------------------------------------------------*/
+.status-drop {
+    margin: -15px 0;
+}
+.status-drop>span {
+    font-size: 16px;
+    font-weight: 300;
+}
+.status-drop .select-box {
+    margin-left: 15px;
+}
+.status-drop .SumoSelect {
+    width: 227px;
+}
+.status-drop .btn-primary {
+    margin: 15px 0 15px 15px;
+}
+@media (max-width: 1199px) {
+    .status-drop {
+        margin: 0;
+    }
+}
+@media (max-width: 575px) {
+    .status-drop {
+        width: 100%;
+        margin-top: 10px;
+    }
+    .status-drop .select-box {
+        margin-left: 0;
+        width: 100%;
+    }
+    .status-drop .SumoSelect {
+        width: 100%;
+    }
+    .status-drop .btn-primary {
+        margin: 15px 0 0 0;
+        width: 100%;
+    }
+}
+
+.toggle-state{cursor: pointer;z-index: 100;color: #4d4d4d;}
+.toggle-state.active{font-weight: 500;pointer-events: none;}
+.toggle-state.active::before{display: none;}
+.toggle-state.active:nth-child(1){color: #2C8E47;}
+.toggle-state.active:nth-child(3){color: #ED2F24;}
+
+.table-size-1 table{min-width: 690px;}
+.table-size-1 td:nth-child(1) {width: 230px;}
+.table-size-1 td:nth-child(2) {width: 315px;}
+.table-size-1 td:nth-child(3) {width: 360px;}
+
+
+/*----------------------------------------------------------------------------------------------*/
+/* CRM input error */
+/*----------------------------------------------------------------------------------------------*/
+.inputError{
+    position: relative;
+    color: #C13127;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    white-space: nowrap;
+}
+
+
+/*----------------------------------------------------------------------------------------------*/
+/* CRM spinner */
+/*----------------------------------------------------------------------------------------------*/
+.spinner {
+    display: inline-block;
+    opacity: 0;
+    width: 0;
+    -webkit-transition: opacity 0.25s, width 0.25s;
+    -moz-transition: opacity 0.25s, width 0.25s;
+    -o-transition: opacity 0.25s, width 0.25s;
+    transition: opacity 0.25s, width 0.25s;
+}
+.has-spinner.active {
+    cursor:progress;
+}
+.has-spinner.active .spinner {
+    opacity: 1;
+    width: auto;
+}
+
+.has-spinner.btn.active .spinner {
+    min-width: 95px;
+}

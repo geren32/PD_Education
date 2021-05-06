@@ -1,0 +1,45 @@
+
+{{#each products.rows}}
+<!--<div class="col-sm-6 col-lg-4 card js-product">-->
+<!--    <div class="card-img"><a href="/shop/product/{{this.id}}"><img src="{{this.image}}" alt="">-->
+<!--    {{#each this.promo_label}}<span class="card-labels d-flex flex-wrap"><span class="card-label"-->
+<!--style="background-color: {{this.background}} ; ">{{this.label}}</span></span>{{/each}}</a>-->
+<!--</div>-->
+<!--<div class="card-info">-->
+<!--    <div class="card-code">{{this.sku}}</div>-->
+<!--<div class="card-title h5"><a href="/shop/product/{{this.id}}" class="text-truncate line-2"> {{this.name}}</a></div>-->
+<!--<div class="card-excerpt text-truncate line-2"> {{this.short_description}}</div>-->
+<!--<div class="card-bott d-flex align-items-center justify-content-between">-->
+<!--    <div class="card-price">від {{this.price}} {{../currency.decode}}.</div>-->
+<!--<div class="card-options d-flex">-->
+<!--    <button class="card-favourite add-to-favourite"><svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.501 5.501 0 10-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78v0z" stroke-width="1.5" />-->
+<!--    </svg></button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+    {{#each this.product_variations}}
+<div class="col-sm-6 col-lg-4 card js-product">
+        <div class="card-img"><a href="{{../this.slag}}"><img src="{{../this.image}}" alt="">
+        {{#each ../this.promo_label}}<span class="card-labels d-flex flex-wrap">
+    <span class="card-label" style="background-color: {{this.background}} ; ">{{this.label}}</span></span>{{/each}}</a>
+    </div>
+    <div class="card-info">
+        <div class="card-code">{{../this.sku}}</div>
+    <div class="card-title h5"><a href="{{../this.slag}}" class="text-truncate line-2"> {{../this.name}}</a></div>
+    <div class="card-excerpt text-truncate line-2"> {{../this.short_description}}</div>
+    <div class="card-bott d-flex align-items-center justify-content-between">
+        <div class="card-price">від {{this.price}} {{../../currency.decode}}.</div>
+    <div class="card-options d-flex">
+{{#if  ../../user_id}}
+        <button class="card-favourite add-to-favourite {{#if ../this.favourite }} active {{/if}} "   data-id-product="{{this.id}}" data-type="product"><svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.501 5.501 0 10-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78v0z" stroke-width="1.5" />
+        </svg></button>
+{{/if}}
+    </div>
+    </div>
+    </div>
+    </div>
+        {{/each}}
+            {{/each}}

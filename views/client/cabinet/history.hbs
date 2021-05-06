@@ -1,0 +1,63 @@
+
+    <main>
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-xl-3 offset-lg-1">
+                        <div class="categories-menu">
+                            <!-- <div class="category-title d-xl-none">Історія замовлень</div> -->
+                            <ul class="links categories-list d-none d-lg-block">
+                                <li class="categories-list-item"><a href="/client/cabinet">Особисті дані</a></li>
+                                <li class="categories-list-item active"><a href="/client/cabinet/history-orders" class="current">Історія замовлень</a></li>
+                                <li class="categories-list-item"><a href="/client/cabinet/password">Зміна паролю</a></li>
+                            </ul>
+                            <div class="select-box type-1 d-lg-none">
+                                <select class="SelectBox default" onchange="location = this.value;">
+                                    <option value="cabinet">Особисті дані</option>
+                                    <option selected value="cabinet-history">Історія замовлень</option>
+                                    <option value="cabinet-password">Зміна паролю</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="spacer-xs"></div>
+                    </div>
+                    <div class="col-lg-6 col-xl-6">
+                        <div class="order-table">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <td>№</td>
+                                    <td>Дата і час</td>
+                                    <td>Адреса</td>
+                                    <td>Сума</td>
+                                    <td>Статус</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{#if history}}
+                                    {{#each history}}
+                                        <tr>
+                                            <td data-mobile-title="№"><a href="/client/cabinet/history-detail/{{this.id}}">№{{this.id}}</a></td>
+                                            <td data-mobile-title="Дата і час"><a href="/client/cabinet/history-detail/{{this.id}}">{{formatDateTime this.date 2}}</a></td>
+                                            <td data-mobile-title="Адреса"><a href="/client/cabinet/history-detail/{{this.id}}">{{this.address.street}} {{this.address.apartment}}</a></td>
+                                            <td data-mobile-title="Сума" class="nowrap"><a href="/client/cabinet/history-detail/{{this.id}}">{{this.total_price}} грн</a></td>
+                                            <td data-mobile-title="Статус" class="status-1 nowrap"><a href="/client/cabinet/history-detail/{{this.id}}">{{this.status}}</a></td>
+                                        </tr>
+                                    {{/each}}
+                                {{/if}}
+                                </tbody>
+                            </table>
+                            {{#unless  history}}
+                                <div class="spacer-30"></div>
+                                <div class="text-center">
+                                    <div class="title style-1 color-dark">Нажаль, ви ще не зробили жодного замовлення :(</div>
+                                    <a href="catalog" class="btn btn-primary type-1">Перейти в каталог виробів</a>
+                                </div>
+                            {{/unless}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+

@@ -1,0 +1,36 @@
+
+ <input type="hidden" name="category" id="category-id" value="{{category}}">
+
+
+ <div class="pagination pagination-centered">
+     <ul>
+
+ {{#ifCond pagination.page ">" 3 }}
+         {{#paginate pagination type="first"}}
+
+             <li class=" item-pagination disabled {{#if disabled}} disabled {{/if}} "  data-id = "{{n}}" ><a href="#">{{n}}  </a></li>
+
+         {{/paginate}}
+
+         {{#paginate pagination type="previous"}}
+             {{#ifCond n ">" 1 }}
+             <li class="dott  item-pagination {{#if disabled}} disabled {{/if}} "  data-id = "{{n}}"><a href="#">...</a></li>
+             {{/ifCond}}
+         {{/paginate}}
+ {{/ifCond}}
+         {{#paginate pagination type="middle" limit="6"}}
+             <li class=" item-pagination {{#if active}} active {{/if}} " data-id = "{{n}}" ><a href="#">{{n}}</a></li>
+         {{/paginate}}
+         {{#ifCond  pagination.page "<"  pagination.pageLast }}
+         {{#paginate pagination type="next"}}
+
+             <li class=" dott item-pagination {{#if disabled}} disabled {{/if}} "  data-id = "{{n}}" ><a href="#">...</a></li>
+
+         {{/paginate}}
+         {{#paginate pagination type="last"}}
+             <li class=" item-pagination {{#if disabled}} disabled {{/if}} "   data-id = "{{n}}" ><a href="#">{{n}}</a></li>
+         {{/paginate}}
+             {{/ifCond}}
+
+     </ul>
+ </div>

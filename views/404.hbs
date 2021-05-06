@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    {{> top}}
+    <title>BLUM :: HOME</title>
+</head>
+
+<body>
+<!-- LOADER -->
+<div id="loader-wrapper"></div>
+
+<div id="content-block">
+
+    {{> header}}
+
+    <main>
+
+        <div class="container">
+            <div class="not-found-wrapp">
+                <div class="not-found-box d-flex flex-column flex-md-row">
+                    <div class="not-found-num align-self-center"><img src="/img/404.svg" alt="" class="img"></div>
+                    <div class="not-found-desc d-flex flex-column align-items-start justify-content-center">
+                        <h1 class="h4">Нажаль, таку сторінку не знайдено :(</h1>
+                        <p>Перевірте будь ласка правильність написання адреси</p>
+                        <a href="./" class="btn btn-primary btn-invert">Перейти на головну</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    {{> footer}}
+
+</div>
+
+{{> popups }}
+
+{{> bottom}}
+
+</body>
+
+</html>

@@ -1,0 +1,276 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="uk">-->
+
+<!--<head>-->
+<!--     {> top}-->
+
+<!--</head>-->
+
+<!--<body>-->
+<!--&lt;!&ndash; LOADER &ndash;&gt;-->
+<!--<div id="loader-wrapper"></div>-->
+
+<!--<div id="content-block">-->
+
+<!--   {> header}-->
+
+    <main>
+
+        <div class="section">
+            <div class="container">
+                    {{#each page.sections}}
+                        <h1 class="h2 section-title">{{this.title}}</h1>
+                        {{#each this.body}}
+                            {{#switch this.type}}
+                                {{#case '1'}}
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-xl-8 offset-xl-2">-->
+<!--                                            <div class="simple-page pt-0">-->
+                                                {{{this.content}}}
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                {{/case}}
+                                {{#case '2'}}
+                                    <div class="row">
+                                        <div class="col-xl-8 offset-xl-2">
+                                            <div class="simple-page pt-0">
+                                                <div class="simple-swiper">
+                                                    <div class="swiper-entry">
+                                                        <div class="swiper-container" data-options='{"slidesPerView":1,"autoHeight":true}'>
+                                                            <div class="swiper-wrapper">
+                                                                {{#each this.content}}
+                                                                    <div class="swiper-slide">
+                                                                        <div class="img-wrapp"><img src="{{this.image}}" alt="" class="img"></div>
+                                                                        <figure class="simple-figure m-0">
+                                                                            <figcaption>{{this.text}}</figcaption>
+                                                                        </figure>
+                                                                    </div>
+                                                                {{/each}}
+                                                            </div>
+                                                            <div class="swiper-pagination"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{/case}}
+                                {{#case '3'}}
+                                    <div class="section pt-0">
+                                        {{#each this.content}}
+                                            {{#ifCond this.left "==" "true"}}
+                                                <div class="row benefit">
+                                                    <div class="col-xl-7 offset-xl-1">
+                                                        <div class="pr-xl-27"><img src="/img/preloader.jpg" data-i-src="{{this.image}}" alt="" class="img"></div>
+                                                    </div>
+                                                    <div class="col-xl-3">
+                                                        <div class="benefit-desc d-flex flex-column justify-content-center">
+                                                            <div class="benefit-title type-1 d-flex align-items-center h4">{{this.title}}</div>
+                                                            <p>{{this.text}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {{else}}
+                                                <div class="row benefit">
+                                                    <div class="col-xl-3 offset-xl-1 order-2 order-xl-1">
+                                                        <div class="benefit-desc d-flex flex-column justify-content-center">
+                                                            <div class="benefit-title type-1 d-flex align-items-center h4">{{this.title}}</div>
+                                                            <p>{{this.text}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-7 order-1 order-xl-2">
+                                                        <div class="pr-xl-27"><img src="/img/preloader.jpg" data-i-src="{{this.image}}" alt="" class="img"></div>
+                                                    </div>
+                                                </div>
+                                            {{/ifCond}}
+                                        {{/each}}
+                                    </div>
+                                {{/case}}
+                                {{#case '4'}}
+                                    <div class="mobile-slider mobile-fullwidth">
+                                        <div class="swiper-entry">
+                                            <div class="swiper-container" data-options='{"slidesPerView":2, "spaceBetween": 15, "pagination": {"type": "fraction", "el": ".swiper-pagination"}, "breakpoints": {"1199": {"slidesPerView": 3, "pagination": {"type": "fraction"}}}}'>
+                                                <div class="swiper-button-prev d-none"></div>
+                                                <div class="swiper-button-next d-none"></div>
+                                                <div class="swiper-wrapper row justify-content-xl-center flex-nowrap flex-xl-wrap">
+                                                    {{#each this.content}}
+                                                        <div class="swiper-slide col-xl-3">
+                                                            <div class="circle">
+                                                                <div class="circle-entry d-flex flex-column justify-content-center">
+                                                                    <div class="circle-icon"><img src="/img/preloader.jpg" data-i-src="{{this.image}}" alt=""></div>
+                                                                    <div class="circle-title">{{this.title}}</div>
+                                                                    <div class="circle-excerpt text-truncate line-2">{{this.text}}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {{/each}}
+                                                </div>
+                                                <div class="swiper-pagination d-xl-none"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{/case}}
+                                {{#case '5'}}
+                                    <div class="section pt-0">
+                                        <!--                                    <div class="h3 section-title type-3 text-center">Сервіси</div>-->
+                                        <div class="row cols-3">
+                                            {{#each this.content}}
+                                                <div class="col-md-6 col-lg-4">
+                                                    <div class="post">
+                                                        <div class="post-img size-1"><a href="post/{{this.link}}"><img src="{{this.image}}" alt="" class="img"></a></div>
+                                                        <div class="post-info">
+                                                            <a href="post/{{this.link}}" class="h5 post-title d-block">{{this.title}}</a>
+                                                            <div class="post-excerpt text-truncate line-3">{{this.text}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {{/each}}
+                                        </div>
+                                        <div class="spacer-sm"></div>
+                                    </div>
+                                {{/case}}
+                                {{#case '6'}}
+                                    <div class="section pt-0">
+                                        <div class="row">
+                                            <div class="col-xl-8 offset-xl-2">
+                                                <div class="accordion">
+                                                    {{#each this.content}}
+                                                        <div class="accordion-item">
+                                                            <div class="h5 accordion-title">{{this.title}}</div>
+                                                            <div class="accordion-inner">
+                                                                <div class="simple-page p-0">
+                                                                    {{{this.text}}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {{/each}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{/case}}
+                            {{/switch}}
+                        {{/each}}
+                    {{/each}}
+<!--                    <div class="col-xl-8 offset-xl-2">-->
+<!--                        <h1 class="h2 section-title">Замовлення</h1>-->
+<!--                        <div class="simple-page p-0">-->
+<!--                            <h4>Як заробити замовлення?</h4>-->
+<!--                            <ol>-->
+<!--                                <li>Більше працівників та учнів</li>-->
+<!--                                <li>Відмінності розвитку ринків</li>-->
+<!--                                <li>Інноваційні вироби для всіх житлових приміщень</li>-->
+<!--                                <li>Інвестиції та виробничі потужності</li>-->
+<!--                            </ol>-->
+<!--                            <h4>Як оформити замовлення</h4>-->
+<!--                            <p>Завдяки хорошому старту компанії Blum – виробнику фурнітури із Форарльберга – вдалось закінчити фінансовий рік із загальним оборотом 1.906,92 млн євро. Різні технології руху від Blum дають змогу виробнику виділитися й урізноманітнити дизайн меблів. Водночас ми постійно стежимо за тим, щоб асортимент був лаконічний та місткий. Так, наприклад, із однією напрямною – <b>BLUMOTION S</b> – можна поєднати три технології руху:</p>-->
+<!--                            <figure class="simple-figure">-->
+<!--                                <img src="/img/simple-img3.jpg" alt="" class="img">-->
+<!--                            </figure>-->
+<!--                            <h4>Стабільний розвиток Blum попри корона-кризу</h4>-->
+<!--                            <ul>-->
+<!--                                <li>Більше працівників та учнів</li>-->
+<!--                                <li>Відмінності розвитку ринків</li>-->
+<!--                                <li>Інноваційні вироби для всіх житлових приміщень</li>-->
+<!--                                <li>Інвестиції та виробничі потужності</li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+
+<!--                        <div class="spacer-md"></div>-->
+
+<!--                        <div class="h3 section-title type-2">Запитання та відповіді</div>-->
+<!--                        <div class="accordion">-->
+<!--                            <div class="accordion-item">-->
+<!--                                <div class="h5 accordion-title">Який асортимент товарів буде запропонований у магазині міського формату BLUM в Києві?</div>-->
+<!--                                <div class="accordion-inner">-->
+<!--                                    <div class="simple-page p-0">-->
+<!--                                        <p>Серед товарів будуть меблі та інші товари для дому, їхня кількість складатиме близько 4600 одиниць на момент відкриття магазину. Крім того, ми плануємо запропонувати ширший асортимент товарів онлайн, завдяки динамічному розвитку онлайн продажів в Україні. Ми б хотіли повною мірою скористатися цією можливістю, щоб надати якомога більше переваг мільйонам українських споживачів BLUM.</p>-->
+<!--                                        <ul>-->
+<!--                                            <li>BLUMOTION</li>-->
+<!--                                            <li>SERVO-DRIVE</li>-->
+<!--                                            <li>TIP-ON BLUMOTION</li>-->
+<!--                                            <li>SERVOBOX</li>-->
+<!--                                            <li>BLUMOTION</li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="accordion-item">-->
+<!--                                <div class="h5 accordion-title">Чому я не можу зв’язатись із Центром обслуговування клієнтів?</div>-->
+<!--                                <div class="accordion-inner">-->
+<!--                                    <div class="simple-page p-0">-->
+<!--                                        <p>Серед товарів будуть меблі та інші товари для дому, їхня кількість складатиме близько 4600 одиниць на момент відкриття магазину. Крім того, ми плануємо запропонувати ширший асортимент товарів онлайн, завдяки динамічному розвитку онлайн продажів в Україні. Ми б хотіли повною мірою скористатися цією можливістю, щоб надати якомога більше переваг мільйонам українських споживачів BLUM.</p>-->
+<!--                                        <ul>-->
+<!--                                            <li>BLUMOTION</li>-->
+<!--                                            <li>SERVO-DRIVE</li>-->
+<!--                                            <li>TIP-ON BLUMOTION</li>-->
+<!--                                            <li>SERVOBOX</li>-->
+<!--                                            <li>BLUMOTION</li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="accordion-item">-->
+<!--                                <div class="h5 accordion-title">Чи відкриє BLUM магазин «класичного формату» в Україні у майбутньому?</div>-->
+<!--                                <div class="accordion-inner">-->
+<!--                                    <div class="simple-page p-0">-->
+<!--                                        <p>Серед товарів будуть меблі та інші товари для дому, їхня кількість складатиме близько 4600 одиниць на момент відкриття магазину. Крім того, ми плануємо запропонувати ширший асортимент товарів онлайн, завдяки динамічному розвитку онлайн продажів в Україні. Ми б хотіли повною мірою скористатися цією можливістю, щоб надати якомога більше переваг мільйонам українських споживачів BLUM.</p>-->
+<!--                                        <ul>-->
+<!--                                            <li>BLUMOTION</li>-->
+<!--                                            <li>SERVO-DRIVE</li>-->
+<!--                                            <li>TIP-ON BLUMOTION</li>-->
+<!--                                            <li>SERVOBOX</li>-->
+<!--                                            <li>BLUMOTION</li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="accordion-item">-->
+<!--                                <div class="h5 accordion-title">Чому BLUM відкриває свій перший магазин в Україні в новому форматі?</div>-->
+<!--                                <div class="accordion-inner">-->
+<!--                                    <div class="simple-page p-0">-->
+<!--                                        <p>Серед товарів будуть меблі та інші товари для дому, їхня кількість складатиме близько 4600 одиниць на момент відкриття магазину. Крім того, ми плануємо запропонувати ширший асортимент товарів онлайн, завдяки динамічному розвитку онлайн продажів в Україні. Ми б хотіли повною мірою скористатися цією можливістю, щоб надати якомога більше переваг мільйонам українських споживачів BLUM.</p>-->
+<!--                                        <ul>-->
+<!--                                            <li>BLUMOTION</li>-->
+<!--                                            <li>SERVO-DRIVE</li>-->
+<!--                                            <li>TIP-ON BLUMOTION</li>-->
+<!--                                            <li>SERVOBOX</li>-->
+<!--                                            <li>BLUMOTION</li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="accordion-item">-->
+<!--                                <div class="h5 accordion-title">Чи є інші ринки, на яких BLUM відкриває свої магазини в новому форматі?</div>-->
+<!--                                <div class="accordion-inner">-->
+<!--                                    <div class="simple-page p-0">-->
+<!--                                        <p>Серед товарів будуть меблі та інші товари для дому, їхня кількість складатиме близько 4600 одиниць на момент відкриття магазину. Крім того, ми плануємо запропонувати ширший асортимент товарів онлайн, завдяки динамічному розвитку онлайн продажів в Україні. Ми б хотіли повною мірою скористатися цією можливістю, щоб надати якомога більше переваг мільйонам українських споживачів BLUM.</p>-->
+<!--                                        <ul>-->
+<!--                                            <li>BLUMOTION</li>-->
+<!--                                            <li>SERVO-DRIVE</li>-->
+<!--                                            <li>TIP-ON BLUMOTION</li>-->
+<!--                                            <li>SERVOBOX</li>-->
+<!--                                            <li>BLUMOTION</li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+            </div>
+        </div>
+
+    </main>
+
+<!--    {> footer}-->
+
+<!--</div>-->
+
+<!--{> popups }-->
+
+<!--{> bottom}-->
+
+<!--</body>-->
+
+<!--</html>-->

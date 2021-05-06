@@ -1,0 +1,97 @@
+
+    <main>
+        <div class="section type-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-xl-3 offset-lt-2 offset-xl-1">
+                        <div class="categories-menu">
+                            <!-- <div class="category-title d-xl-none">Особисті дані</div> -->
+                            <ul class="links categories-list d-none d-lg-block">
+                                <li class="categories-list-item"><a href="/client/cabinet" class="current active">Особисті дані</a></li>
+                                <li class="categories-list-item"><a href="/client/cabinet/history-orders">Історія замовлень</a></li>
+                                <li class="categories-list-item"><a href="/client/cabinet/password">Зміна паролю</a></li>
+                            </ul>
+                            <div class="select-box type-1 d-lg-none">
+                                <select class="SelectBox default" onchange="location = this.value;">
+                                    <option value="cabinet">Особисті дані</option>
+                                    <option value="cabinet-history">Історія замовлень</option>
+                                    <option value="cabinet-password">Зміна паролю</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="spacer-xs"></div>
+                    </div>
+                    <div class="col-lg-6 col-lt-5 col-xl-4">
+
+                        {{#each unreadRejections}}
+                            <div class="alert d-flex align-items-center"><img src="/img/icons/alert-circle.svg" alt="" class="img">Вибачте, вам було відмовлено у зміні даних <button data-id="{{this.id}}" data-massage="{{this.reason_for_rejection}}" data-rel="3" class="openRejectionPopup btn-link size-1 ml-auto open-popup">Детальніше</button></div>
+                        {{/each}}
+
+                        <form class="data-form" action="/cabinet/update-client-data" method="POST">
+                            <div class="h4 title">Особисті дані</div>
+                            <input type="text" value="{{last_name}}" class="input" disabled>
+                            <input type="text" value="{{first_name}}" class="input" disabled>
+                            <div class="row type-1 mt-15">
+                                <div class="col-md-6"><input type="tel" value="{{phone}}" class="input" disabled></div>
+                                <div class="col-md-6 mt-15 mt-md-0"><input type="{{email}}" value="voitsehivskyi.v@gmail.com" class="input" disabled></div>
+                            </div>
+                            <button data-rel="4" class="btn-link size-1 d-flex align-items-center mt-20 open-popup"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M18.3998 3.69683C18.15 3.69683 17.9026 3.74604 17.6717 3.84165C17.4409 3.93727 17.2312 4.07741 17.0545 4.25408L4.82555 16.483L3.81655 20.1827L7.51622 19.1737L19.7452 6.94475C19.9218 6.76807 20.062 6.55833 20.1576 6.3275C20.2532 6.09667 20.3024 5.84927 20.3024 5.59941C20.3024 5.34956 20.2532 5.10216 20.1576 4.87133C20.062 4.64049 19.9218 4.43075 19.7452 4.25408C19.5685 4.07741 19.3587 3.93727 19.1279 3.84165C18.8971 3.74604 18.6497 3.69683 18.3998 3.69683ZM17.1463 2.57308C17.5437 2.40846 17.9697 2.32373 18.3998 2.32373C18.83 2.32373 19.256 2.40846 19.6534 2.57308C20.0508 2.7377 20.4119 2.97898 20.7161 3.28316C21.0203 3.58733 21.2615 3.94844 21.4262 4.34586C21.5908 4.74329 21.6755 5.16925 21.6755 5.59941C21.6755 6.02958 21.5908 6.45554 21.4262 6.85296C21.2615 7.25039 21.0203 7.6115 20.7161 7.91567L8.35822 20.2735L8.2293 20.4025L8.0534 20.4504L3.01871 21.8235L1.85959 22.1397L2.17571 20.9805L3.54881 15.9458L3.59678 15.7699L3.7257 15.641L16.0836 3.28316C16.3877 2.97898 16.7489 2.7377 17.1463 2.57308Z" />
+                            </svg>Редагувати дані</button>
+
+                            <div class="spacer-30"></div>
+
+                            <div class="h4 title">Адреса доставки</div>
+                            <div class="d-flex align-items-center">
+                                <input type="text" value="{{region_activity.region}}" class="input" disabled>
+                                <button data-rel="7" class="btn-link size-1 d-flex align-items-center ml-15 open-popup"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M18.3998 3.69683C18.15 3.69683 17.9026 3.74604 17.6717 3.84165C17.4409 3.93727 17.2312 4.07741 17.0545 4.25408L4.82555 16.483L3.81655 20.1827L7.51622 19.1737L19.7452 6.94475C19.9218 6.76807 20.062 6.55833 20.1576 6.3275C20.2532 6.09667 20.3024 5.84927 20.3024 5.59941C20.3024 5.34956 20.2532 5.10216 20.1576 4.87133C20.062 4.64049 19.9218 4.43075 19.7452 4.25408C19.5685 4.07741 19.3587 3.93727 19.1279 3.84165C18.8971 3.74604 18.6497 3.69683 18.3998 3.69683ZM17.1463 2.57308C17.5437 2.40846 17.9697 2.32373 18.3998 2.32373C18.83 2.32373 19.256 2.40846 19.6534 2.57308C20.0508 2.7377 20.4119 2.97898 20.7161 3.28316C21.0203 3.58733 21.2615 3.94844 21.4262 4.34586C21.5908 4.74329 21.6755 5.16925 21.6755 5.59941C21.6755 6.02958 21.5908 6.45554 21.4262 6.85296C21.2615 7.25039 21.0203 7.6115 20.7161 7.91567L8.35822 20.2735L8.2293 20.4025L8.0534 20.4504L3.01871 21.8235L1.85959 22.1397L2.17571 20.9805L3.54881 15.9458L3.59678 15.7699L3.7257 15.641L16.0836 3.28316C16.3877 2.97898 16.7489 2.7377 17.1463 2.57308Z" />
+                                </svg>Змінити</button>
+                            </div>
+                            <div class="select-box mt-15">
+                                <input type="text" placeholder="Місто" name="city" value="{{city}}" class="input" required>
+                            </div>
+                            <div class="row type-1 mt-15">
+                                <div class="col-md-6"><input type="number" name="index" value="{{index}}" placeholder="Індекс" class="input" required></div>
+                                <div class="col-md-6 mt-15 mt-md-0"><input type="text" name="mailing_address" value="{{mailing_address}}" placeholder="Вулиця" class="input" required></div>
+                            </div>
+                            <div class="row type-1 mt-15">
+                                <div class="col-md-6"><input type="number" name="house_number" value="{{house_number}}" placeholder="№ будинку" class="input" required></div>
+                                <div class="col-md-6 mt-15 mt-md-0"><input type="number" name="apartment_number" value="{{apartment_number}}" placeholder="№ квартири" class="input" required></div>
+                            </div>
+
+                            <div class="spacer-30"></div>
+
+                            <div class="h4 title">Компанія</div>
+                            <input type="text" placeholder="Веб-сайт" name="company_url" value="{{client.company_url}}" class="input" required>
+                            <input type="text" placeholder="Компанія" name="company_name" value="{{client.company_name}}" class="input mt-15" required>
+                            <div class="select-box mt-15">
+                                <select placeholder="Вид діяльності" name="activity_id" class="SelectBox default">
+                                    {{#each activities}}
+                                        <option {{#ifCond ../client.activity_id '==' this.id}} selected {{/ifCond}}  value="{{this.id}}" >{{this.title}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="select-box mt-15">
+                                <select placeholder="Посада" name="position_activity_id" class="SelectBox default">
+                                    {{#each position_activity}}
+                                        <option {{#ifCond ../client.position_activity_id '==' this.id}} selected {{/ifCond}}  value="{{this.id}}" >{{this.title}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="d-flex align-items-center mt-15">
+                                <input type="text" value="{{dealerData.company_name}}" class="input" disabled>
+                                <button data-rel="5" class="btn-link size-1 d-flex align-items-center ml-15 open-popup"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M18.3998 3.69683C18.15 3.69683 17.9026 3.74604 17.6717 3.84165C17.4409 3.93727 17.2312 4.07741 17.0545 4.25408L4.82555 16.483L3.81655 20.1827L7.51622 19.1737L19.7452 6.94475C19.9218 6.76807 20.062 6.55833 20.1576 6.3275C20.2532 6.09667 20.3024 5.84927 20.3024 5.59941C20.3024 5.34956 20.2532 5.10216 20.1576 4.87133C20.062 4.64049 19.9218 4.43075 19.7452 4.25408C19.5685 4.07741 19.3587 3.93727 19.1279 3.84165C18.8971 3.74604 18.6497 3.69683 18.3998 3.69683ZM17.1463 2.57308C17.5437 2.40846 17.9697 2.32373 18.3998 2.32373C18.83 2.32373 19.256 2.40846 19.6534 2.57308C20.0508 2.7377 20.4119 2.97898 20.7161 3.28316C21.0203 3.58733 21.2615 3.94844 21.4262 4.34586C21.5908 4.74329 21.6755 5.16925 21.6755 5.59941C21.6755 6.02958 21.5908 6.45554 21.4262 6.85296C21.2615 7.25039 21.0203 7.6115 20.7161 7.91567L8.35822 20.2735L8.2293 20.4025L8.0534 20.4504L3.01871 21.8235L1.85959 22.1397L2.17571 20.9805L3.54881 15.9458L3.59678 15.7699L3.7257 15.641L16.0836 3.28316C16.3877 2.97898 16.7489 2.7377 17.1463 2.57308Z" />
+                                </svg>Змінити</button>
+                            </div>
+
+                            <div class="spacer-30"></div>
+
+                            <button onclick="false" type="submit" class="submitByAjax has-spinner btn btn-primary btn-invert btn-block">Зберегти зміни</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>

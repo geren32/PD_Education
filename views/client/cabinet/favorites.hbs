@@ -1,0 +1,53 @@
+<main>
+
+    <div class="section">
+        <div class="container">
+            <h1 class="h2 section-title">Улюблені товари</h1>
+            <div class="catalog-top d-flex flex-column flex-md-row flex-wrap align-items-center justify-content-between text-md">
+                <div class="catalog-num">Кількість результатів: &nbsp;<b class="weight-normal color-dark products_count"><span>{{pagination.count}}</span> шт.</b></div>
+<!--                <div class="catalog-sort d-flex align-items-center">Категорія: <div class="select-box type-1">-->
+<!--                    <select class="SelectBox default " id="favorite-select">-->
+<!--                        <option value="">Всі </option>-->
+<!--                        {{#each category_fav}}-->
+<!--                        <option value="{{this.title}}">{{this.title}}</option>-->
+<!--                        {{/each}}-->
+<!--                    </select>-->
+<!--                </div>-->
+                </div>
+            </div>
+
+            <div class="row cols-4 style-1 ProductAjax" id="ProductAjax" data-url="/client/cabinet/favorites">
+                {{#each result.rows}}
+                <div class="col-md-6 col-lg-4 col-xl-3 card js-product">
+                    <div class="card-img"><a href="/{{product.slag}}"><img src="{{product.image}}" alt="">
+                        {{#each ../this.promo_label}}<span class="card-labels d-flex flex-wrap">
+                         <span class="card-label" style="background-color: {{this.background}} ; ">{{this.label}}</span></span>{{/each}}
+                        </a>
+                        <button class="card-delete delete-item favorite"  data-id-product="{{this.product.id}}" data-type="{{this.type}}">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18" stroke-width="1.5" stroke-linecap="square" />
+                        <path d="M6 6L18 18" stroke-width="1.5" stroke-linecap="square" />
+                    </svg></button>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-code">{{product.sku}}</div>
+                        <div class="card-title h5"><a href="/{{product.slag}}" class="text-truncate line-2">{{product.name}}</a></div>
+                        <div class="card-excerpt text-truncate line-2">{{product.description}}</div>
+                        <div class="card-bott d-flex align-items-center justify-content-between">
+                            <div class="card-price">від {{product.price}} грн</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                {{/each}}
+
+            </div>
+
+            <div class="spacer-sm"></div>
+
+            {{> pagination }}
+        </div>
+    </div>
+
+</main>
