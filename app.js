@@ -9,11 +9,11 @@ const cors = require('cors');
 
 const passportUtil = require('./utils/passport-util');
 let clientRouter = require('./routes/client');
-let invoceRouter = require('./routes/invoice');
+
 
 let usersRouter = require('./routes/users');
 
-let educator = require('./routes/educator');
+
 let authRouter = require('./routes/auth');
 let adminAuthRouter = require('./routes/admin.auth');
 
@@ -87,7 +87,7 @@ app.set('view engine', '.hbs');
 
 
 
-app.use('/educator',educator);
+
 app.use('/auth', authRouter);
 app.use('/client', getClientInfoMiddleware, clientRouter);
 // app.use('/product', productRouter);
@@ -96,7 +96,7 @@ app.use('/api/admin/user', adminUserRouter);
 app.use('/api/auth/admin', adminAuthRouter);
 // app.use('/api/admin/booking', adminBookingRouter);
 // app.use('/api/admin/product', adminProductRouter);
-app.use('/invoce', invoceRouter);
+
 
 
 

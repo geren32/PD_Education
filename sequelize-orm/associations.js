@@ -1,147 +1,55 @@
 function associations(sequelize) {
-<<<<<<< HEAD
-    const { invoice, salon, orders,
-        users, sales_person, sales_message,
-        salon_address, salon_brands, brands, promotions
-    } = sequelize.models;
-
-
-    // salon.hasMany(invoice,{foreignKey:'salon_id',sourceKey:'id'});
-    // invoice.belongsTo(salon,{foreignKey:'salon_id',sourceKey:'id'});
-
-    salon.hasMany(invoice, { foreignKey: 'salon_id', sourceKey: 'id' });
-    invoice.belongsTo(salon, { foreignKey: 'salon_id', sourceKey: 'id' });
-
-    orders.hasMany(invoice, { foreignKey: 'order_id', sourceKey: 'id' });
-    invoice.belongsTo(orders, { foreignKey: 'order_id', sourceKey: 'id' });
-
-    users.hasMany(salon, { foreignKey: 'user_id', sourceKey: 'id' });
-    salon.belongsTo(users, { foreignKey: 'user_id', sourceKey: 'id' });
-
-    sales_person.hasMany(salon, { foreignKey: 'sales_id', sourceKey: 'id' })
-    salon.belongsTo(sales_person, { foreignKey: 'sales_id', sourceKey: 'id' })
-
-    users.hasMany(sales_person, { foreignKey: "user_id", sourceKey: 'id' })
-    sales_person.belongsTo(users, { foreignKey: "user_id", sourceKey: 'id' })
-
-    salon.hasMany(sales_message, { foreignKey: "salon_id", sourceKey: "id" })
-    sales_message.belongsTo(salon, { foreignKey: "salon_id", sourceKey: "id" })
-
-    sales_person.hasMany(sales_message, { foreignKey: "sales_id", sourceKey: "id" })
-    sales_message.belongsTo(sales_person, { foreignKey: "sales_id", sourceKey: "id" })
-
-    salon.hasMany(salon_address, { foreignKey: 'salon_id', sourceKey: 'id' })
-    salon_address.belongsTo(salon, { foreignKey: 'salon_id', sourceKey: 'id' })
-
-    salon.hasMany(salon_brands,{foreignKey:'salon_id',sourceKey:'id'})
-    salon_brands.belongsTo(salon, {foreignKey:'salon_id',sourceKey:'id'})
-
-    brands.hasMany(salon_brands,{foreignKey:'brand_id',sourceKey:'id'})
-    salon_brands.belongsTo(brands, {foreignKey:'brand_id',sourceKey:'id'})
- 
-    brands.hasMany(promotions,{foreignKey:'brand_id',sourceKey:'id'})
-    promotions.belongsTo(brands,{foreignKey:'brand_id',sourceKey:'id'})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
     const { bag_items , bag_items_requests , brands , cart , education , education_kilometers, education_report, educator, invoice,
     lessons, materials, materials_cat, orders, products, promotions, sales_massage, sales_person, salon, salon_address, salon_brands,
-    salon_lessons, training, users} = sequelize.models;
+    salon_lesson, training, users} = sequelize.models;
 
 
 
 
-    users.hasMany(orders,{ foreignKey: 'users_id', sourceKey: 'id'});
+    users.hasOne(orders,{ foreignKey: 'users_id', sourceKey: 'id'});
     orders.belongsTo(users, { foreignKey: 'users_id', sourceKey: 'id'});
 
-    users.hasMany(education,{ foreignKey: 'education_users_id_fk', sourceKey: 'id'});
-    education.belongsTo(users, { foreignKey: 'education_users_id_fk', sourceKey: 'id'});
+    users.hasOne(education,{ foreignKey: 'user_id', sourceKey: 'id'});
+    education.belongsTo(users, { foreignKey: 'users_id', sourceKey: 'id'});
 
-    users.hasMany(bag_items,{foreignKey: 'bag_items_users_id_fk', sourceKey: 'id'})
-    bag_items.belongsTo(users,{foreignKey: 'bag_items_users_id_fk', sourceKey: 'id'})
+    dealer.hasMany(booking,{ foreignKey: 'dealer_id', sourceKey: 'id'});
+    booking.belongsTo(dealer,{ foreignKey: 'dealer_id', sourceKey: 'id'});
 
-    users.hasMany(cart,{foreignKey: 'cart_users_id', sourceKey: 'id'})
-    cart.belongsTo(users,{foreignKey: 'cart_users_id', sourceKey: 'id'})
+    user.hasOne(manager_sr,{ foreignKey: 'user_id', sourceKey: 'id'});
+    manager_sr.belongsTo(user, { foreignKey: 'user_id', sourceKey: 'id'});
 
-    users.hasMany(sales_person,{foreignKey: 'sales_id', sourceKey: 'id'})
-    sales_person.belongsTo(users,{foreignKey: 'sales_id', sourceKey: 'id'})
+    user.hasOne(manager_blum,{ foreignKey: 'user_id', sourceKey: 'id'});
+    manager_blum.belongsTo(user, { foreignKey: 'user_id', sourceKey: 'id'});
 
-    brands.hasMany(sales_person,{foreignKey: 'sales_person_brands_id_fk', sourceKey: 'id'})
-    sales_person.belongsTo(brands,{foreignKey: 'sales_person_brands_id_fk', sourceKey: 'id'})
+    region_activity.hasMany(user,{ foreignKey: 'region_activity_id', sourceKey: 'id'});
+    user.belongsTo(region_activity, { foreignKey: 'region_activity_id', sourceKey: 'id'});
 
-    brands.hasMany(salon_lessons,{foreignKey: 'salon_lessons_brands_id_fk', sourceKey: 'id'})
-    salon_lessons.belongsTo(brands,{foreignKey: 'salon_lessons_brands_id_fk', sourceKey: 'id'})
+    user.hasOne(client,{ foreignKey: 'user_id', sourceKey: 'id'});
+    client.belongsTo(user, { foreignKey: 'user_id', sourceKey: 'id'});
 
-    brands.hasMany(promotions,{foreignKey: 'promotions_id', sourceKey: 'id'})
-    promotions.belongsTo(brands,{foreignKey: 'promotions_id', sourceKey: 'id'})
+    booking.hasMany(payment,{ foreignKey: 'booking_id', sourceKey: 'id'});
+    payment.belongsTo(booking,{ foreignKey: 'booking_id', sourceKey: 'id'});
 
-    brands.hasMany(salon_brands,{foreignKey: 'salon_brands_brands_id_fk', sourceKey: 'id'})
-    salon_brands.belongsTo(brands,{foreignKey: 'salon_brands_brands_id_fk', sourceKey: 'id'})
+    user.hasMany(payment,{ foreignKey: 'user_id', sourceKey: 'id'});
+    payment.belongsTo(user,{ foreignKey: 'user_id', sourceKey: 'id'});
 
-    brands.hasMany(educator,{foreignKey: 'educator_brands_id_fk', sourceKey: 'id'})
-    educator.belongsTo(brands,{foreignKey: 'educator_brands_id_fk', sourceKey: 'id'})
+    user.hasMany(booking,{ foreignKey: 'user_id', sourceKey: 'id'});
+    booking.belongsTo(user,{ foreignKey: 'user_id', sourceKey: 'id'});
 
-    brands.hasMany(materials_cat,{foreignKey: 'materials_cat_brands_id_fk', sourceKey: 'id'})
-    materials_cat.belongsTo(brands,{foreignKey: 'materials_cat_brands_id_fk', sourceKey: 'id'})
+    dealer.hasMany(client,{ foreignKey: 'dealer_id', sourceKey: 'id' });
+    client.belongsTo(dealer, { foreignKey: 'dealer_id', sourceKey: 'id'});
 
-    materials_cat.hasMany(materials,{foreignKey: 'materials_materials_cat_id_fk', sourceKey: 'id'})
-    materials.belongsTo(materials_cat,{foreignKey: 'materials_materials_cat_id_fk', sourceKey: 'id'})
+    booking.hasMany(booking_attachment,{ foreignKey: 'booking_id', sourceKey: 'id'});
+    booking_attachment.belongsTo(booking,{ foreignKey: 'booking_id', sourceKey: 'id'});
 
-    products.hasMany(cart,{foreignKey: 'products_cart_id_fk', sourceKey: 'id'})
-    cart.belongsTo(products,{foreignKey: 'products_cart_id_fk', sourceKey: 'id'})
+    address.hasMany(booking,{ foreignKey: 'address_id', sourceKey: 'id'});
+    booking.belongsTo(address,{ foreignKey: 'address_id', sourceKey: 'id'});
 
-    educator.hasMany(education,{foreignKey: 'education_educator_id_fk', sourceKey: 'id'})
-    education.belongsTo(educator,{foreignKey: 'education_educator_id_fk', sourceKey: 'id'})
+    booking.hasMany(orders,{ foreignKey: 'booking_id', sourceKey: 'id'});
+    orders.belongsTo(booking,{ foreignKey: 'booking_id', sourceKey: 'id'});
 
-    education.hasMany(education_report,{foreignKey: 'education_report_education_id_fk', sourceKey: 'id'})
-    education_report.belongsTo(education,{foreignKey: 'education_report_education_id_fk', sourceKey: 'id'})
-
-    salon_address.hasMany(education,{foreignKey: 'address_id', sourceKey: 'id'})
-    education.belongsTo(salon_address,{foreignKey: 'address_id', sourceKey: 'id'})
-
-
-
-
-    // user.hasMany(booking,{ foreignKey: 'user_id', sourceKey: 'id'});
-    // booking.belongsTo(user,{ foreignKey: 'user_id', sourceKey: 'id'});
-    //
-    // dealer.hasMany(client,{ foreignKey: 'dealer_id', sourceKey: 'id' });
-    // client.belongsTo(dealer, { foreignKey: 'dealer_id', sourceKey: 'id'});
-    //
-    // booking.hasMany(booking_attachment,{ foreignKey: 'booking_id', sourceKey: 'id'});
-    // booking_attachment.belongsTo(booking,{ foreignKey: 'booking_id', sourceKey: 'id'});
-    //
-    // address.hasMany(booking,{ foreignKey: 'address_id', sourceKey: 'id'});
-    // booking.belongsTo(address,{ foreignKey: 'address_id', sourceKey: 'id'});
-    //
-    // booking.hasMany(orders,{ foreignKey: 'booking_id', sourceKey: 'id'});
-    // orders.belongsTo(booking,{ foreignKey: 'booking_id', sourceKey: 'id'});
-    //
-    // product.hasMany(orders,{ foreignKey: 'product_id', sourceKey: 'id'});
-    // orders.belongsTo(product,{ foreignKey: 'product_id', sourceKey: 'id'});
+    product.hasMany(orders,{ foreignKey: 'product_id', sourceKey: 'id'});
+    orders.belongsTo(product,{ foreignKey: 'product_id', sourceKey: 'id'});
 
     // product.hasMany(product_variations,{ foreignKey: 'product_id', sourceKey: 'id'});
     //
@@ -365,7 +273,6 @@ function associations(sequelize) {
     //
     // forms.hasMany(form_comments, {foreignKey: 'form_id', sourceKey: 'id'});
     // form_comments.belongsTo(forms, {foreignKey: 'form_id', sourceKey: 'id'});
->>>>>>> commit to me!
 
 }
 

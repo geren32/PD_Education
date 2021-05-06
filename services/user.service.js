@@ -13,7 +13,7 @@ const userAttributes = [
 
 
 module.exports = {
-    createUser: async (users, trans) => {
+    createUser: async (user, trans) => {
         let transaction = null;
         try {
             transaction = trans ? trans : await sequelize.transaction();
@@ -77,19 +77,19 @@ module.exports = {
                     model: models.client,
                     include: [
                         { model: models.position_activity },
-                      
+                        { model: models.activity },
                         { model: models.dealer }
                     ]
                 },
                 { model: models.dealer, include: [
                         { model: models.position_activity },
-                     
+                        { model: models.activity },
                         { model: models.client },
                         { model: models.phone_numbers},
                         { model: models.manager_sr}
                     ] },
                 { model: models.manager_sr, include:[
-                        
+                        {model: models.activity},
                         {model: models.position_activity},
                         {model: models.region_activity, through:{attributes:[]} },
                         {model: models.dealer}
@@ -131,10 +131,10 @@ module.exports = {
         } : { users: [], count: 0 };
     },
 
-    getUserById: async (users_id) => {
+    getUserById: async (user_id) => {
         try {
 
-            let result = await models.users.findByPk(users_id, {
+            let result = await models.users.findByPk(user_id, {
                 attributes: ['id', 'last_name', 'first_name', 'email', 'phone', 'type', 'created_at', 'bonuses'],
 
             });
@@ -366,17 +366,17 @@ module.exports = {
 
 
  },
-    findAllAcivity: async () => {
-        let result = await models.activity.findAll({
-            attributes: ['id', 'title'],
-        })
+    // findAllAcivity: async () => {
+    //     let result = await models.activity.findAll({
+    //         attributes: ['id', 'title'],
+    //     })
 
-     return  result.map(function(item) {
-            return item.toJSON();
-        })
+    //  return  result.map(function(item) {
+    //         return item.toJSON();
+    //     })
 
 
-    },
+    // },
 
     findAllPositionAcivity: async () => {
         let result = await models.position_activity.findAll({
