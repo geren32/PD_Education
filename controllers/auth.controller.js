@@ -41,8 +41,13 @@ module.exports = {
 
     registerNewClient: async (req, res) => {
 
+<<<<<<< HEAD
         let { first_name, last_name, email, password, confirm_password, phone
    } = req.body;
+=======
+        let { first_name, last_name, email, password, confirm_password, phone, index, 
+  city } = req.body;
+>>>>>>> commit to me!
 
         if (!last_name) {
             return res.status(200).json({ lastNameNotExist: true });
@@ -66,6 +71,12 @@ module.exports = {
             return res.status(200).json({ notEmail: true });
         }
       
+<<<<<<< HEAD
+=======
+        if (!city) {
+            return res.status(200).json({ cityNotExist: true });
+        }
+>>>>>>> commit to me!
      
        
       
@@ -75,7 +86,11 @@ module.exports = {
             if (userExist) {
                 return res.status(200).json({ emailExist: true });
             }
+<<<<<<< HEAD
             const phoneExist = await userService.getUser({ phone: phone }, ['id']);
+=======
+            const phoneExist = await userService.getUser({ phone: phone_number }, ['id']);
+>>>>>>> commit to me!
             if (phoneExist) {
                 return res.status(200).json({ phoneExist: true });
             }
@@ -83,11 +98,19 @@ module.exports = {
             let userObj = {
                 first_name, last_name, email: email,
                 password: await bcryptUtil.hashPassword(password),
+<<<<<<< HEAD
                 phone: phone,
                 user_type:"client"
 
             };
           console.log(userObj);
+=======
+              phone: phone
+               
+
+            };
+          
+>>>>>>> commit to me!
             user = await userService.createUser(userObj, { transaction });
             // client = await user.createClient(client, { transaction });
 
@@ -95,6 +118,7 @@ module.exports = {
             await user.update({
                 confirm_token: localToken.confirmToken,
                 confirm_token_type: 'register',
+<<<<<<< HEAD
                 confirm_token_expiry: localToken.confirmTokenExpires,
               
             }, { transaction })
@@ -103,6 +127,16 @@ module.exports = {
                 subject: 'Підтвердження електронної адреси',
                 data: {
                     userName: email,
+=======
+                confirm_token_expires: localToken.confirmTokenExpires,
+                updatedAt:Math.floor(new Date().getTime() / 1000)
+            }, { transaction })
+            let mailObj = {
+                to: new_email,
+                subject: 'Підтвердження електронної адреси',
+                data: {
+                    userName: new_email,
+>>>>>>> commit to me!
                     token: localToken.confirmToken
                 }
             };

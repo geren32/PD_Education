@@ -77,19 +77,31 @@ module.exports = {
                     model: models.client,
                     include: [
                         { model: models.position_activity },
+<<<<<<< HEAD
                       
+=======
+                        { model: models.activity },
+>>>>>>> commit to me!
                         { model: models.dealer }
                     ]
                 },
                 { model: models.dealer, include: [
                         { model: models.position_activity },
+<<<<<<< HEAD
                      
+=======
+                        { model: models.activity },
+>>>>>>> commit to me!
                         { model: models.client },
                         { model: models.phone_numbers},
                         { model: models.manager_sr}
                     ] },
                 { model: models.manager_sr, include:[
+<<<<<<< HEAD
                         
+=======
+                        {model: models.activity},
+>>>>>>> commit to me!
                         {model: models.position_activity},
                         {model: models.region_activity, through:{attributes:[]} },
                         {model: models.dealer}

@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 // const { models } = require('../sequelize-orm');
 // const sequelize = require('../sequelize-orm');
+=======
+const { models } = require('../sequelize-orm');
+const sequelize = require('../sequelize-orm');
+>>>>>>> commit to me!
 const clientService = require('../services/client.service');
 // const dealerService = require('../services/dealer.service');
 const userService = require('../services/user.service');

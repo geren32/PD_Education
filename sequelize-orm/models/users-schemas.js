@@ -34,7 +34,11 @@ module.exports = (sequelize) => {
         confirm_token: {
             type: DataTypes.STRING(255),
         },
+<<<<<<< HEAD
         confirm_token_expiry: {
+=======
+        confirm_token_expires: {
+>>>>>>> commit to me!
             type: DataTypes.INTEGER(11),
         },
         confirm_token_type: {
