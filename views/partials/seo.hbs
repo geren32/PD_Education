@@ -1,0 +1,29 @@
+<div class="seo-block text-center text-xl-left d-none d-xl-block">
+    <div class="container">
+        <div class="row">
+
+            <!-- if has img add this block -->
+<!--            <div class="col-xl-5 offset-xl-1"><img src="/img/preloader.jpg" data-i-src="/img/logo-lg.svg" alt="" class="img"></div>-->
+            {{#if seoPage.image includeZero=true}}
+                <div class="col-xl-5 offset-xl-1"><img src="/img/preloader.jpg" data-i-src="{{seoPage.image}}" alt="" class="img"></div>
+            {{/if}}
+            <!-- if has img add this block -->
+
+            <div {{#if seoPage.image includeZero=true}} class="col-xl-5"{{else}} class="col-12"{{/if}}><!-- if NOT has img remove 'col-xl-5' and add class 'col-12' -->
+                <div class="pl-xl-30 acc-item">
+                    <div class="spacer-xs d-xl-none"></div>
+<!--                    <h1 class="seo-title h4">Облаштуймо майбутнє разом</h1>-->
+                    <h1 class="seo-title h4">{{seoPage.title}}</h1>
+<!--                    <p>Кожен тренд означає новий шанс: бути одним із перших. Blum прагне постійно надавати своїм партнерам потрібну підтримку. З інноваційними виробами, котрі відповідають актуальному рівню розвитку. Із новими сервісами, що ...</p>-->
+                    <p>{{seoPage.text}}</p>
+                    <div class="acc-body hidden-text">
+<!--                        <p>Ми регулярно проводимо опитування серед наших покупців, щоб покращити свій сервіс і якість продукції, яку надаємо. Тому, можемо впевнено заявити, що ми знаємо як допомогти вам обрати інгредієнти, елементи декору та інструменти для випічки ваших страв</p>-->
+                        <p>{{seoPage.hidden_text}}</p>
+                    </div>
+                    <button class="btn-link read-more d-inline-flex align-items-center"><span>Читати більше</span><span>Згорнути</span><svg width="14" height="9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.469 7.53l-6-6L1.529.468 7 5.939l5.47-5.47 1.06 1.06-6 6-.53.53-.53-.53z" /></svg></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

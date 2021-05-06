@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    {{> top}}
+
+</head>
+
+<body>
+<!-- LOADER -->
+<div id="loader-wrapper"></div>
+
+<div id="content-block">
+
+    {{> header}}
+
+
+
+        {{{ body }}}
+
+
+
+
+    {{> footer}}
+
+</div>
+<!-- COOKIES -->
+<div class="cookies-block">
+    <div class="d-lg-flex align-items-center text-center text-lg-left">
+        <p>Наш сайт використовує cookies-файли для того, щоб відрізнити вас від інших користувачів нашого ресурсу. це дозволяє забезпечувати зручний перегляд нашого сайту, а також дає можливість покращувати його. Для того щоб продовжити роботу з сайту, вам необхідно прийняти умови <a href="/cookies">Політики Cookies</a>.</p>
+        <button type="button" class="btn btn-primary btn-invert close-cookies">Прийняти</button>
+    </div>
+</div>
+<!-- END COOKIES -->
+{{> popups }}
+
+{{> bottom}}
+
+{{> map }}
+
+</body>
+
+</html>

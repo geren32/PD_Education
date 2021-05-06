@@ -1,0 +1,33 @@
+<div class="custom-pagination">
+    <div class="pagination pagination-centered">
+    <ul>
+        {{#ifCond pagination.page ">" "3" }}
+            {{#ifCond pagination.min "!=" "1" }}
+                <li class="item-pagination-blog {{#ifCond 1 "==" pagination.page }} active  {{/ifCond}}" data-id = "1">  <a href="#">1</a></li>
+            {{/ifCond}}
+        {{/ifCond}}
+            {{#ifCond pagination.page ">" "3" }}
+                {{#ifCond pagination.min ">" "2" }}
+                <li class="dott item-pagination-blog">...</li>
+                {{/ifCond}}
+            {{/ifCond}}
+    {{#items countPages}}
+        {{#ifCond @index ">=" pagination.page}}
+            {{#ifCond @index "<" pagination.max}}
+                <li class="item-pagination-blog {{#ifCond @index "==" pagination.page }}  active  {{/ifCond}} " data-id = "{{@index}}"><a href="#">{{@index}}</a></li>
+            {{/ifCond}}
+            {{else}}
+            {{#ifCond pagination.min "<=" @index}}
+                <li class=" item-pagination-blog {{#unless @index}}  active  {{/unless}} " data-id = "{{ @index}}"><a href="#">{{@index}}</a></li>
+            {{/ifCond}}
+        {{/ifCond}}
+    {{/items}}
+        {{#ifCond countPages ">=" pagination.max}}
+            {{#ifCond pagination.lastElem "==" true}}
+                <li class="dott item-pagination-blog">...</li>
+            {{/ifCond}}
+                <li class="item-pagination-blog {{#ifCond countPages "==" pagination.page }} active  {{/ifCond}}" data-id = "{{countPages}}">  <a href="#">{{countPages }}</a></li>
+           {{/ifCond}}
+    </ul>
+    </div>
+</div>

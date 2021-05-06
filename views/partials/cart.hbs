@@ -1,0 +1,245 @@
+<div class="cart">
+    <div class="cart_title">
+        <div class="h4">Ваш кошик</div>
+        <button class="btn-close cart-close"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5304 2.53044L15.0608 2.00011L14.0001 0.939453L13.4698 1.46978L8.00011 6.93945L2.53044 1.46978L2.00011 0.939453L0.939453 2.00011L1.46978 2.53044L6.93945 8.00011L1.46978 13.4698L0.939453 14.0001L2.00011 15.0608L2.53044 14.5304L8.00011 9.06077L13.4698 14.5304L14.0001 15.0608L15.0608 14.0001L14.5304 13.4698L9.06077 8.00011L14.5304 2.53044Z" />
+        </svg></button>
+    </div>
+    <div id="cart-popup-out" class="cart-popup-out">
+        <div class="cart_items" id="CartAjax">
+            {{#each cart.products}}
+                <div class="prod_horiz" data-price="{{this.variation.price}}">
+                    <div class="d-flex align-items-start">
+                        <a class="prod_horiz-img" href="{{this.product.slag}}">
+                            <img class="img" src="img/preloader.jpg" data-i-src="{{this.product.image}}">
+                        </a>
+                        <div class="prod_horiz-desc">
+                            <div class="card-code">{{product.sku}}</div>
+                            <a class="title h5" href="{{this.product.slag}}">{{this.product.name}}</a>
+
+                            <div class="product_additions">{{this.product.short_description}}</div>
+
+                            <div class="prod_horiz-controls">
+                                <div class="price_default h5">
+                                    <b>{{this.variation.price}}</b> грн
+                                </div>
+
+                                <div class="thumb-input-number">
+                                    <button type="button" class="add-product-to-checkout" product="{{this.order.product_id}}" variation="{{this.order.variation_id}}" data="-1" is_cart="true">-</button>
+                                    <input value="{{this.order.count}}" readonly="" tabindex="-1">
+                                    <button type="button" class="add-product-to-checkout" product="{{this.order.product_id}}" variation="{{this.order.variation_id}}" data="1" is_cart="true">+</button>
+                                </div>
+                            </div>
+                            <button class="btn-close delete-order" order_id="{{this.order.id}}" is_cart="true"><svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 4h12M5.333 3.999V2.665a1.333 1.333 0 011.333-1.333h2.667a1.333 1.333 0 011.333 1.333V4m2 0v9.333a1.333 1.333 0 01-1.333 1.333H4.666a1.333 1.333 0 01-1.333-1.333V3.999h9.333zM6.667 7.332v4M9.333 7.332v4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+
+            {{#each cart.kits}}
+                <div class="prod_horiz" data-price="{{this.price}}">
+                    <div class="d-flex align-items-start">
+                        <a class="prod_horiz-img" href="{{this.kit.slag}}">
+                            <img class="img" src="{{this.kit.image}}">
+                        </a>
+                        <div class="prod_horiz-desc">
+                            <div class="card-code">{{this.kit.sku}}</div>
+                            <a class="title h5" href="{{this.kit.slag}}">{{this.kit.name}}</a>
+
+                            <div class="product_additions">{{this.kit.short_description}}</div>
+
+                            <div class="prod_horiz-controls">
+                                <div class="price_default h5">
+                                    <b>{{this.price}}</b> грн
+                                </div>
+
+                                <div class="thumb-input-number">
+                                    <button type="button" class="add-product-kit-to-checkout" product_kit_id="{{this.kit.id}}" kit="{{this.productsJson}}" data="-1" is_cart="true">-</button>
+                                    <input value="{{this.order.count}}" readonly="" tabindex="-1">
+                                    <button type="button" class="add-product-kit-to-checkout" product_kit_id="{{this.kit.id}}" kit="{{this.productsJson}}" data="1" is_cart="true">+</button>
+                                </div>
+                            </div>
+                            <button class="btn-close delete-order" order_kit_id="{{this.order.id}}" is_cart="true"><svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 4h12M5.333 3.999V2.665a1.333 1.333 0 011.333-1.333h2.667a1.333 1.333 0 011.333 1.333V4m2 0v9.333a1.333 1.333 0 01-1.333 1.333H4.666a1.333 1.333 0 01-1.333-1.333V3.999h9.333zM6.667 7.332v4M9.333 7.332v4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+                        </div>
+                    </div>
+                    <table cellpadding="0" cellspacing="0">
+                        {{#each this.products}}
+                            <tr>
+                                <td>{{this.product.name}}</td>
+                                <td class="nowrap">{{this.info.quantity}} шт.</td>
+<!--                                <td>Коричневий</td>-->
+                            </tr>
+                        {{/each}}
+                    </table>
+                </div>
+            {{/each}}
+
+<!--            <div class="prod_horiz js-product" data-price="6247">-->
+<!--                <div class="d-flex align-items-start">-->
+<!--                    <a class="prod_horiz-img" href="product-detail">-->
+<!--                        <img class="img" src="img/preloader.jpg" data-i-src="img/product-3.jpg">-->
+<!--                    </a>-->
+<!--                    <div class="prod_horiz-desc">-->
+<!--                        <div class="card-code">#DQDB2M</div>-->
+<!--                        <a class="title h5" href="product-detail">Тримач для ножів</a>-->
+
+<!--                        <div class="product_additions">Сірий; 300×240×120 мм; BLUMOTION; SERVOBOX</div>-->
+
+<!--                        <div class="prod_horiz-controls">-->
+<!--                            <div class="price_default h5">-->
+<!--                                <b>6247</b> грн-->
+<!--                            </div>-->
+
+<!--                            <div class="thumb-input-number">-->
+<!--                                <button type="button" class="decrement">-</button>-->
+<!--                                <input value="1" readonly="" tabindex="-1">-->
+<!--                                <button type="button" class="increment">+</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <button class="btn-close"><svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                            <path d="M2 4h12M5.333 3.999V2.665a1.333 1.333 0 011.333-1.333h2.667a1.333 1.333 0 011.333 1.333V4m2 0v9.333a1.333 1.333 0 01-1.333 1.333H4.666a1.333 1.333 0 01-1.333-1.333V3.999h9.333zM6.667 7.332v4M9.333 7.332v4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <table cellpadding="0" cellspacing="0">-->
+<!--                    <tr>-->
+<!--                        <td>Тримач для ножів </td>-->
+<!--                        <td>Чорний</td>-->
+<!--                        <td>1 шт.</td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td>Тримач для тарілок</td>-->
+<!--                        <td>Метал</td>-->
+<!--                        <td>4 шт.</td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td>Підіймальний механізм Aventos HF 30 кг з системою BLUEMOTION</td>-->
+<!--                        <td>BLUMOTION</td>-->
+<!--                        <td>9 шт.</td>-->
+<!--                    </tr>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--            <div class="prod_horiz js-product" data-price="2460">-->
+<!--                <div class="d-flex align-items-start">-->
+<!--                    <a class="prod_horiz-img" href="product-detail">-->
+<!--                        <img class="img" src="img/preloader.jpg" data-i-src="img/product-3.jpg">-->
+<!--                    </a>-->
+<!--                    <div class="prod_horiz-desc">-->
+<!--                        <div class="card-code">#DQDB2M</div>-->
+<!--                        <a class="title h5" href="product-detail">Комплект підіймальних механізмів AVENTO HS</a>-->
+
+<!--                        <div class="product_additions">Сірий; 300×240×120 мм; BLUMOTION; SERVOBOX</div>-->
+
+<!--                        <div class="prod_horiz-controls">-->
+<!--                            <div class="price_default h5">-->
+<!--                                <b>2460</b> грн-->
+<!--                            </div>-->
+
+<!--                            <div class="thumb-input-number">-->
+<!--                                <button type="button" class="decrement">-</button>-->
+<!--                                <input value="1" readonly="" tabindex="-1">-->
+<!--                                <button type="button" class="increment">+</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <button class="btn-close"><svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                            <path d="M2 4h12M5.333 3.999V2.665a1.333 1.333 0 011.333-1.333h2.667a1.333 1.333 0 011.333 1.333V4m2 0v9.333a1.333 1.333 0 01-1.333 1.333H4.666a1.333 1.333 0 01-1.333-1.333V3.999h9.333zM6.667 7.332v4M9.333 7.332v4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="prod_horiz js-product" data-price="2460">-->
+<!--                <div class="d-flex align-items-start">-->
+<!--                    <a class="prod_horiz-img" href="product-detail">-->
+<!--                        <img class="img" src="img/preloader.jpg" data-i-src="img/product-4.jpg">-->
+<!--                    </a>-->
+<!--                    <div class="prod_horiz-desc">-->
+<!--                        <div class="card-code">#DQDB2M</div>-->
+<!--                        <a class="title h5" href="product-detail">Комплект підіймальних механізмів AVENTO HS</a>-->
+
+<!--                        <div class="product_additions">Сірий; 300×240×120 мм; BLUMOTION; SERVOBOX</div>-->
+
+<!--                        <div class="prod_horiz-controls">-->
+<!--                            <div class="price_default h5">-->
+<!--                                <b>2460</b> грн-->
+<!--                            </div>-->
+
+<!--                            <div class="thumb-input-number">-->
+<!--                                <button type="button" class="decrement">-</button>-->
+<!--                                <input value="1" readonly="" tabindex="-1">-->
+<!--                                <button type="button" class="increment">+</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <button class="btn-close"><svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                            <path d="M2 4h12M5.333 3.999V2.665a1.333 1.333 0 011.333-1.333h2.667a1.333 1.333 0 011.333 1.333V4m2 0v9.333a1.333 1.333 0 01-1.333 1.333H4.666a1.333 1.333 0 01-1.333-1.333V3.999h9.333zM6.667 7.332v4M9.333 7.332v4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="prod_horiz js-product" data-price="2460">-->
+<!--                <div class="d-flex align-items-start">-->
+<!--                    <a class="prod_horiz-img" href="product-detail">-->
+<!--                        <img class="img" src="img/preloader.jpg" data-i-src="img/product-1.jpg">-->
+<!--                    </a>-->
+<!--                    <div class="prod_horiz-desc">-->
+<!--                        <div class="card-code">#DQDB2M</div>-->
+<!--                        <a class="title h5" href="product-detail">Комплект підіймальних механізмів AVENTO HS</a>-->
+
+<!--                        <div class="product_additions">Сірий; 300×240×120 мм; BLUMOTION; SERVOBOX</div>-->
+
+<!--                        <div class="prod_horiz-controls">-->
+<!--                            <div class="price_default h5">-->
+<!--                                <b>2460</b> грн-->
+<!--                            </div>-->
+
+<!--                            <div class="thumb-input-number">-->
+<!--                                <button type="button" class="decrement">-</button>-->
+<!--                                <input value="1" readonly="" tabindex="-1">-->
+<!--                                <button type="button" class="increment">+</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <button class="btn-close"><svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                            <path d="M2 4h12M5.333 3.999V2.665a1.333 1.333 0 011.333-1.333h2.667a1.333 1.333 0 011.333 1.333V4m2 0v9.333a1.333 1.333 0 01-1.333 1.333H4.666a1.333 1.333 0 01-1.333-1.333V3.999h9.333zM6.667 7.332v4M9.333 7.332v4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="prod_horiz js-product" data-price="2460">-->
+<!--                <div class="d-flex align-items-start">-->
+<!--                    <a class="prod_horiz-img" href="product-detail">-->
+<!--                        <img class="img" src="img/preloader.jpg" data-i-src="img/product-2.jpg">-->
+<!--                    </a>-->
+<!--                    <div class="prod_horiz-desc">-->
+<!--                        <div class="card-code">#DQDB2M</div>-->
+<!--                        <a class="title h5" href="product-detail">Комплект підіймальних механізмів AVENTO HS</a>-->
+
+<!--                        <div class="product_additions">Сірий; 300×240×120 мм; BLUMOTION; SERVOBOX</div>-->
+
+<!--                        <div class="prod_horiz-controls">-->
+<!--                            <div class="price_default h5">-->
+<!--                                <b>2460</b> грн-->
+<!--                            </div>-->
+
+<!--                            <div class="thumb-input-number">-->
+<!--                                <button type="button" class="decrement">-</button>-->
+<!--                                <input value="1" readonly="" tabindex="-1">-->
+<!--                                <button type="button" class="increment">+</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <button class="btn-close"><svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                            <path d="M2 4h12M5.333 3.999V2.665a1.333 1.333 0 011.333-1.333h2.667a1.333 1.333 0 011.333 1.333V4m2 0v9.333a1.333 1.333 0 01-1.333 1.333H4.666a1.333 1.333 0 01-1.333-1.333V3.999h9.333zM6.667 7.332v4M9.333 7.332v4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="cart-empty-message">
+                <div class="title h5">Кошик порожній</div>
+                <a class="btn btn-primary type-1" href="catalog">Перейти до каталогу</a>
+            </div>
+
+        </div>
+                <div class="cart_bottom">
+                    <div class="cart_price-wrap">
+                        <span>Загальна вартість</span><span><b id="card-total-price" class="card-total-price">{{cart.totalPrice}}</b> грн</span>
+                    </div>
+                    <a href="checkout" class="btn btn-primary btn-invert btn-block" id="cart-submit">Оформити замовлення</a>
+                </div>
+    </div>
+</div>
+<div class="cart_bg-layer"></div>

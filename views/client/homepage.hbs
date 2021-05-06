@@ -1,0 +1,284 @@
+<main>
+
+    {{!-- <!-- MAIN SLIDER -->
+    <div class="swiper-control">
+        <div class="swiper-entry slider">
+            <div class="swiper-container" data-options='{"watchSlidesVisibility": true, "watchSlidesProgress": true, "slidesPerView":1, "fadeEffect": {"crossFade": true}, "parallax":true}'>
+                <div class="swiper-wrapper">
+                    {{#each page.body.banners}}
+                        <div class="swiper-slide">
+                            <div data-swiper-parallax="40%">
+                                <img src="/img/preloader.jpg" data-i-src="{{this.banner.image}}" alt="" class="slider-img img d-none d-sm-block">
+                                <img src="/img/preloader.jpg" data-i-src="{{this.banner.image_mobile}}" alt="" class="slider-img img d-sm-none">
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+                <div class="swiper-pagination container d-lg-none"></div>
+            </div>
+        </div>
+        <div class="swiper-entry slider">
+            <div class="swiper-container" data-options='{"watchSlidesVisibility": true,  "watchSlidesProgress": true, "slidesPerView":1, "fadeEffect": {"crossFade": true}, "effect":"fade"}'>
+                <div class="swiper-button-prev d-none d-xl-flex"><svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.06077 7.00006L8.53044 1.53039L7.46978 0.469727L1.46978 6.46973L0.939453 7.00006L1.46978 7.53039L7.46978 13.5304L8.53044 12.4697L3.06077 7.00006Z" />
+                </svg></div>
+                <div class="swiper-button-next d-none d-xl-flex"><svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1.52941 0.469727L7.52941 6.46973L8.05974 7.00006L7.52941 7.53039L1.52941 13.5304L0.46875 12.4697L5.93842 7.00006L0.46875 1.53039L1.52941 0.469727Z" />
+                </svg></div>
+                <div class="swiper-wrapper">
+                    {{#each page.body.banners}}
+                        <div class="swiper-slide">
+                            <div class="slider-caption d-lg-flex align-items-lg-center text-center text-lg-left">
+                                <div class="container">
+                                    <div class="slider-mw">
+                                        <div class="h1 slider-title text-truncate line-2">{{this.title}}</div>
+                                        <p class="text-lg text-truncate line-2 d-none d-xl-block">{{this.text}}</p>
+                                        <div class="slider-btn">
+                                            {{#if this.link includeZero=true}}<a href="{{this.link}}" class="btn btn-primary">{{this.link_title}}</a>{{/if}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+                <div class="swiper-pagination container d-none d-lg-block"></div>
+                <div class="swiper-overlay d-none d-lg-block"></div>
+            </div>
+        </div>
+    </div> --}}
+    <div class="spacer-md"></div>
+    <!-- END MAIN SLIDER -->
+
+    <!-- PRODUCTS -->
+    <div class="container">
+        <div class="tabs">
+            <div class="tab-nav">
+                <div class="tab-toggle d-flex justify-content-center">
+                    <div class="active">Рекомендації</div>
+                    <div>Новинки</div>
+                    {{#if first_name includeZero=true}}<div>Спец пропозиції</div>{{/if}}
+                </div>
+            </div>
+            <div class="tab">
+                <div class="swiper-entry swiper-1 swiper-width-1 animate-item">
+                    <div class="swiper-container" data-options='{"autoHeight": true, "spaceBetween": 15, "pagination": {"el": ".swiper-pagination", "type": "fraction"}, "breakpoints": {"320": {"slidesPerView": 1}, "576": {"slidesPerView": 2, "autoHeight": false}, "992": {"slidesPerView": 3, "spaceBetween": 30}, "1200": {"slidesPerView": 4, "spaceBetween": 30, "pagination": {"el": ".swiper-pagination", "type": "bullets", "clickable": true}}}}'>
+                        <div class="swiper-wrapper">
+                            {{#each product.recommended}}
+                                <div class="swiper-slide">
+                                    <div class="card">
+                                        <div class="card-img"><a href="{{this.slag}}"><img src="/img/preloader.jpg" data-i-src="{{this.image}}" alt=""><span class="card-labels d-flex flex-wrap"><span class="card-label color-1">Новинка</span></span></a>
+                                        </div>
+                                        <div class="card-info js-product">
+                                            <div class="card-code">{{this.color}}</div>
+                                            <div class="card-title h5"><a href="{{this.slag}}" class="text-truncate line-2">{{this.name}}</a></div>
+                                            <div class="card-excerpt text-truncate line-2">{{this.short_description}}</div>
+                                            {{#if ../first_name includeZero=true}}
+                                                <div class="card-bott d-flex align-items-center justify-content-between">
+                                                    {{#if this.old_price includeZero=true}}
+                                                        <div class="card-price"><span class="old">{{this.old_price}} грн</span><span class="new">{{this.price}} грн</span></div>
+                                                    {{else}}
+                                                        <div class="card-price">від {{this.price}} грн</div>
+                                                    {{/if}}
+                                                    <div class="card-options d-flex">
+                                                        <button class="card-favourite add-to-favourite"><svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.501 5.501 0 10-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78v0z" stroke-width="1.5" />
+                                                        </svg></button>
+                                                        <button class="card-cart order-btn add-product-to-cart" product ="{{this.id}}" variation ="{{#each this.product_variations}}{{this.id}}{{/each}}"><svg width="23" height="23" viewbox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 1.75h3.39c.234 1.108.597 2.705.995 4.42a1031.083 1031.083 0 002.061 8.685l.157.648.041.172.011.045.003.011v.003l.73-.176-.73.177.14.573h.59v-.75.75h12.885l.146-.562-.727-.188.727.188v-.002l.001-.004.004-.015.016-.061.06-.233a452.38 452.38 0 00.905-3.583c.519-2.087 1.101-4.499 1.332-5.708l.17-.89H5.712A180.997 180.997 0 014.735.853L4.615.25H0v1.5zm7.983 13.058h-.005l-.074-.305A1429.431 1429.431 0 016.06 6.75h15.018a195.99 195.99 0 01-1.129 4.736 508.422 508.422 0 01-.838 3.322H7.983zM8 21.5a.5.5 0 100-1 .5.5 0 000 1zm2-.5a2 2 0 11-4 0 2 2 0 014 0zm10 .5a.5.5 0 100-1 .5.5 0 000 1zm2-.5a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                        </svg></button>
+                                                    </div>
+                                                </div>
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                </div>
+                            {{/each}}
+                        </div>
+                        <div class="swiper-controls d-flex justify-content-between align-items-center">
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-wrapp d-none d-xl-flex">
+                                <div class="swiper-button-prev"><svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.06077 7.00006L8.53044 1.53039L7.46978 0.469727L1.46978 6.46973L0.939453 7.00006L1.46978 7.53039L7.46978 13.5304L8.53044 12.4697L3.06077 7.00006Z" />
+                                </svg></div>
+                                <div class="swiper-button-next"><svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1.52941 0.469727L7.52941 6.46973L8.05974 7.00006L7.52941 7.53039L1.52941 13.5304L0.46875 12.4697L5.93842 7.00006L0.46875 1.53039L1.52941 0.469727Z" />
+                                </svg></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab">
+                <div class="swiper-entry swiper-1 swiper-width-1 animate-item">
+                    <div class="swiper-container" data-options='{"autoHeight": true, "spaceBetween": 15, "pagination": {"el": ".swiper-pagination", "type": "fraction"}, "breakpoints": {"320": {"slidesPerView": 1}, "576": {"slidesPerView": 2, "autoHeight": false}, "992": {"slidesPerView": 3, "spaceBetween": 30}, "1200": {"slidesPerView": 4, "spaceBetween": 30, "pagination": {"el": ".swiper-pagination", "type": "bullets", "clickable": true}}}}'>
+                        <div class="swiper-wrapper">
+                            {{#each product.new}}
+                                <div class="swiper-slide">
+                                    <div class="card">
+                                        <div class="card-img"><a href="{{this.slag}}"><img src="/img/preloader.jpg" data-i-src="{{this.image}}" alt=""><span class="card-labels d-flex flex-wrap"><span class="card-label color-1">Новинка</span></span></a>
+                                        </div>
+                                        <div class="card-info js-product">
+                                            <div class="card-code">{{this.color}}</div>
+                                            <div class="card-title h5"><a href="{{this.slag}}" class="text-truncate line-2">{{this.name}}</a></div>
+                                            <div class="card-excerpt text-truncate line-2">{{this.short_description}}</div>
+                                            {{#if ../first_name includeZero=true}}
+                                            <div class="card-bott d-flex align-items-center justify-content-between">
+                                                {{#if this.old_price includeZero=true}}
+                                                    <div class="card-price"><span class="old">{{this.old_price}} грн</span><span class="new">{{this.price}} грн</span></div>
+                                                {{else}}
+                                                <div class="card-price">від {{this.price}} грн</div>
+                                                {{/if}}
+                                                <div class="card-options d-flex">
+                                                    <button class="card-favourite add-to-favourite"><svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.501 5.501 0 10-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78v0z" stroke-width="1.5" />
+                                                    </svg></button>
+                                                    <button class="card-cart order-btn add-product-to-cart" product ="{{this.id}}" variation ="{{#each this.product_variations}}{{this.id}}{{/each}}"><svg width="23" height="23" viewbox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 1.75h3.39c.234 1.108.597 2.705.995 4.42a1031.083 1031.083 0 002.061 8.685l.157.648.041.172.011.045.003.011v.003l.73-.176-.73.177.14.573h.59v-.75.75h12.885l.146-.562-.727-.188.727.188v-.002l.001-.004.004-.015.016-.061.06-.233a452.38 452.38 0 00.905-3.583c.519-2.087 1.101-4.499 1.332-5.708l.17-.89H5.712A180.997 180.997 0 014.735.853L4.615.25H0v1.5zm7.983 13.058h-.005l-.074-.305A1429.431 1429.431 0 016.06 6.75h15.018a195.99 195.99 0 01-1.129 4.736 508.422 508.422 0 01-.838 3.322H7.983zM8 21.5a.5.5 0 100-1 .5.5 0 000 1zm2-.5a2 2 0 11-4 0 2 2 0 014 0zm10 .5a.5.5 0 100-1 .5.5 0 000 1zm2-.5a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                    </svg></button>
+                                                </div>
+                                            </div>
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                </div>
+                            {{/each}}
+                        </div>
+                        <div class="swiper-controls d-flex justify-content-between align-items-center">
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-wrapp d-none d-xl-flex">
+                                <div class="swiper-button-prev"><svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.06077 7.00006L8.53044 1.53039L7.46978 0.469727L1.46978 6.46973L0.939453 7.00006L1.46978 7.53039L7.46978 13.5304L8.53044 12.4697L3.06077 7.00006Z" />
+                                </svg></div>
+                                <div class="swiper-button-next"><svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1.52941 0.469727L7.52941 6.46973L8.05974 7.00006L7.52941 7.53039L1.52941 13.5304L0.46875 12.4697L5.93842 7.00006L0.46875 1.53039L1.52941 0.469727Z" />
+                                </svg></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{#if first_name includeZero=true}}
+            <div class="tab">
+                <div class="swiper-entry swiper-1 swiper-width-1 animate-item">
+                    <div class="swiper-container" data-options='{"autoHeight": true, "spaceBetween": 15, "pagination": {"el": ".swiper-pagination", "type": "fraction"}, "breakpoints": {"320": {"slidesPerView": 1}, "576": {"slidesPerView": 2, "autoHeight": false}, "992": {"slidesPerView": 3, "spaceBetween": 30}, "1200": {"slidesPerView": 4, "spaceBetween": 30, "pagination": {"el": ".swiper-pagination", "type": "bullets", "clickable": true}}}}'>
+                        <div class="swiper-wrapper">
+                            {{#each product.propositions}}
+                                <div class="swiper-slide">
+                                    <div class="card">
+                                        <div class="card-img"><a href="{{this.slag}}"><img src="/img/preloader.jpg" data-i-src="{{this.image}}" alt=""><span class="card-labels d-flex flex-wrap"><span class="card-label color-1">Новинка</span></span></a>
+                                        </div>
+                                        <div class="card-info js-product">
+                                            <div class="card-code">{{this.color}}</div>
+                                            <div class="card-title h5"><a href="{{this.slag}}" class="text-truncate line-2">{{this.name}}</a></div>
+                                            <div class="card-excerpt text-truncate line-2">{{this.short_description}}</div>
+                                            {{#if ../first_name includeZero=true}}
+                                                <div class="card-bott d-flex align-items-center justify-content-between">
+                                                    {{#if this.old_price includeZero=true}}
+                                                        <div class="card-price"><span class="old">{{this.old_price}} грн</span><span class="new">{{this.price}} грн</span></div>
+                                                    {{else}}
+                                                        <div class="card-price">від {{this.price}} грн</div>
+                                                    {{/if}}
+                                                    <div class="card-options d-flex">
+                                                        <button class="card-favourite add-to-favourite"><svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.501 5.501 0 10-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78v0z" stroke-width="1.5" />
+                                                        </svg></button>
+                                                        <button class="card-cart order-btn add-product-to-cart" product ="{{this.id}}" variation ="{{#each this.product_variations}}{{this.id}}{{/each}}"><svg width="23" height="23" viewbox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 1.75h3.39c.234 1.108.597 2.705.995 4.42a1031.083 1031.083 0 002.061 8.685l.157.648.041.172.011.045.003.011v.003l.73-.176-.73.177.14.573h.59v-.75.75h12.885l.146-.562-.727-.188.727.188v-.002l.001-.004.004-.015.016-.061.06-.233a452.38 452.38 0 00.905-3.583c.519-2.087 1.101-4.499 1.332-5.708l.17-.89H5.712A180.997 180.997 0 014.735.853L4.615.25H0v1.5zm7.983 13.058h-.005l-.074-.305A1429.431 1429.431 0 016.06 6.75h15.018a195.99 195.99 0 01-1.129 4.736 508.422 508.422 0 01-.838 3.322H7.983zM8 21.5a.5.5 0 100-1 .5.5 0 000 1zm2-.5a2 2 0 11-4 0 2 2 0 014 0zm10 .5a.5.5 0 100-1 .5.5 0 000 1zm2-.5a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                        </svg></button>
+                                                    </div>
+                                                </div>
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                </div>
+                            {{/each}}
+                        </div>
+                        <div class="swiper-controls d-flex justify-content-between align-items-center">
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-wrapp d-none d-xl-flex">
+                                <div class="swiper-button-prev"><svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.06077 7.00006L8.53044 1.53039L7.46978 0.469727L1.46978 6.46973L0.939453 7.00006L1.46978 7.53039L7.46978 13.5304L8.53044 12.4697L3.06077 7.00006Z" />
+                                </svg></div>
+                                <div class="swiper-button-next"><svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1.52941 0.469727L7.52941 6.46973L8.05974 7.00006L7.52941 7.53039L1.52941 13.5304L0.46875 12.4697L5.93842 7.00006L0.46875 1.53039L1.52941 0.469727Z" />
+                                </svg></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+    <div class="spacer-md"></div>
+    <!-- END PRODUCTS -->
+
+    <!-- CATEGORIES -->
+    <div class="container">
+        <div class="h2 section-title">Категорії комплектів</div>
+        <div class="desktop-slider">
+            <div class="swiper-entry swiper-1">
+                <div class="swiper-container" data-options='{"breakpoints": {"768": {"slidesPerView": 2, "spaceBetween": 30},"992": {"slidesPerView": 4, "spaceBetween": 30}}}'>
+                    <div class="swiper-wrapper row flex-wrap flex-md-nowrap">
+                        {{#each product.categories}}
+                            <div class="swiper-slide col-6 col-md-3">
+                                <a href="{{this.slag}}" class="img-box type-1"><img src="/img/preloader.jpg" data-i-src="{{this.image}}" alt=""><span class="img-box-info"><span class="img-box-title">{{this.title}}</span></span></a>
+                            </div>
+                        {{/each}}
+                    </div>
+                    <div class="swiper-controls d-flex justify-content-center justify-content-md-between align-items-center">
+                        <a href="catalog-kit" class="btn btn-primary btn-invert">Переглянути всі категорії</a>
+                        <div class="swiper-button-wrapp d-none d-md-flex">
+                            <div class="swiper-button-prev"><svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.06077 7.00006L8.53044 1.53039L7.46978 0.469727L1.46978 6.46973L0.939453 7.00006L1.46978 7.53039L7.46978 13.5304L8.53044 12.4697L3.06077 7.00006Z" />
+                            </svg></div>
+                            <div class="swiper-button-next"><svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1.52941 0.469727L7.52941 6.46973L8.05974 7.00006L7.52941 7.53039L1.52941 13.5304L0.46875 12.4697L5.93842 7.00006L0.46875 1.53039L1.52941 0.469727Z" />
+                            </svg></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spacer-md"></div>
+    <!-- END CATEGORIES -->
+
+    <!-- BENEFITS -->
+    <div class="container">
+                <div class="h2 section-title">{{page.body.advantages.title}}</div>
+                <div class="mobile-slider mobile-fullwidth">
+                    <div class="swiper-entry">
+                        <div class="swiper-container" data-options='{"slidesPerView":2, "spaceBetween": 15, "pagination": {"type": "fraction", "el": ".swiper-pagination"}, "breakpoints": {"1199": {"slidesPerView": 3, "pagination": {"type": "fraction"}}}}'>
+                            <div class="swiper-button-prev d-none"></div>
+                            <div class="swiper-button-next d-none"></div>
+                            <div class="swiper-wrapper row justify-content-xl-center flex-nowrap flex-xl-wrap">
+                                {{#each page.body.advantages.content}}
+                                    <div class="swiper-slide col-xl-3">
+                                        <div class="circle">
+                                            <div class="circle-entry d-flex flex-column justify-content-center">
+                                                <div class="circle-icon"><img src="/img/preloader.jpg" data-i-src="{{this.image}}" alt=""></div>
+                                                <div class="circle-title">{{this.title}}</div>
+                                                <div class="circle-excerpt text-truncate line-2">{{this.text}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{/each}}
+                            </div>
+                            <div class="swiper-pagination d-xl-none"></div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+    <div class="spacer-md"></div>
+    <!-- END BENEFITS -->
+
+    <!-- SEO BLOCK -->
+    {{#if seoPage includeZero=true}}
+        {{> seo }}
+    {{/if}}
+    <!-- END SEO BLOCK -->
+
+</main>
+
