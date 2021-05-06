@@ -24,11 +24,11 @@ module.exports =  function(passport){
     // passport config
     passport.use(new JwtStrategy(opts, async function(jwt_payload, done) {
         try {
-            const user = await models.user.findOne({where:{id:jwt_payload.userid, access_token: opts.jwtFromRequest}}, {include: [
+            const user = await models.users.findOne({where:{id:jwt_payload.userid, access_token: opts.jwtFromRequest}}, {include: [
                     {model: models.client/*, include: [{model: models.dealer}]*/},
-                    {model: models.dealer},
-                    {model: models.manager_sr},
-                    {model: models.manager_blum}
+                    // {model: models.dealer},
+                    // {model: models.manager_sr},
+                    // {model: models.manager_blum}
                 ]});
 
             let userDataReq = getDataFromUserToReq(user);
@@ -60,7 +60,7 @@ module.exports =  function(passport, LocalStrategy, flash){
         },
 
         async (email, password, authCheckDone) => {
-            const user = await models.user.findOne({
+            const user = await models.users.findOne({
                 where: { email }
             });
             if (!user) {

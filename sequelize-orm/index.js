@@ -70,8 +70,8 @@ const modelDefiners = [
     require('./models/meta-data-schemas'),
     require('./models/product_favorites-schemas'),
     require('./models/form-comments-schemas'),
-    require('./models/forms-schemas')
-
+    require('./models/forms-schemas'),
+    require('./models/users-schemas')
 
 ];
 
