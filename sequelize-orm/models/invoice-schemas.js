@@ -37,7 +37,7 @@ module.exports = (sequelize) => {
             },
             invoice_id: {
                 type: DataTypes.INTEGER(11),
-                allowNull: false,
+                // allowNull: false,
 
             },
             downloaded: {
