@@ -10,10 +10,10 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         title: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         logo: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
     }, {
 

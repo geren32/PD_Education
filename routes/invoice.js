@@ -13,5 +13,5 @@ router
     .delete('/deleteInvoice/:id', invoceController.deleteInvoiceById)
 
     //endregion
-    
+    .get('/sales/:id', invoceController.getAllSales)
 module.exports = router;

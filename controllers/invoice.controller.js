@@ -45,7 +45,16 @@ module.exports = {
      return res.status(200).json(result);
 
      },
-    
+     getAllSales :async (req,res)=>{
+    let id= req.params.id;
+
+
+    let result = await salonService.getAllSabic(id);
+
+
+    return res.status(200).json(result);
+
+     }
 
 
 

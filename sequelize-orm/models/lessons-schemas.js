@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
 
             },
             title: {
-                type: DataTypes.STRING,
+                type: DataTypes.STRING(255),
 
             },
             point_required: {
@@ -34,19 +34,19 @@ module.exports = (sequelize) => {
 
             },
             invitation: {
-                type: DataTypes.STRING,
+                type: DataTypes.STRING(255),
 
             },
             certificate: {
-                type: DataTypes.STRING,
+                type: DataTypes.STRING(255),
 
             },
             presentation: {
-                type: DataTypes.STRING,
+                type: DataTypes.STRING(255),
 
             },
             video: {
-                type: DataTypes.STRING,
+                type: DataTypes.STRING(255),
 
             },
 

@@ -10,13 +10,13 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         title: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         banner: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         file: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         brand_id: {
             type: DataTypes.INTEGER(11),

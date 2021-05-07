@@ -10,15 +10,15 @@ module.exports = (sequelize) => {
                 primaryKey: true
             },
             title: {
-                type: DataTypes.STRING,
+                type: DataTypes.STRING(255),
 
             },
             sku: {
-                type: DataTypes.STRING,
+                type: DataTypes.STRING(255),
 
             },
             image: {
-                type: DataTypes.STRING,
+                type: DataTypes.STRING(255),
 
             },
             assigned_date: {
@@ -40,7 +40,7 @@ module.exports = (sequelize) => {
 
             },
             type: {
-                type: DataTypes.STRING,
+                type: DataTypes.STRING(255),
 
             },
 

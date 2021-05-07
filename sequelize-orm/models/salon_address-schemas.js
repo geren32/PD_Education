@@ -10,39 +10,39 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         salon_id:{
-            type: DataTypes.INTEGER,
+            type: DataTypes.INTEGER(11),
             allowNull: false
         },
         title: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         address: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         city: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         zip: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         first_name: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         last_name: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         phone: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         phone_contact: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
 
         },
         email: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         email_contact: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING(255)
         }
     }, {
 

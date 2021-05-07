@@ -10,10 +10,10 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         title: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         type: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         parent_id: {
             type: DataTypes.INTEGER(11),

@@ -13,11 +13,8 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER(11),
         },
         brand_id: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
-        date: {
-            type:DataTypes.INTEGER(11),
-        }
     }, {
 
         tableName: 'educator',

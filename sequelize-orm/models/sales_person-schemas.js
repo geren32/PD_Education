@@ -13,10 +13,10 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER(11),
         },
         address: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         brand_id: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
     }, {
 

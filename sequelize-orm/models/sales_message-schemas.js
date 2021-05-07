@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
         date: {
             type: DataTypes.INTEGER(11),
         },
-        message: {
+        massage: {
             type: DataTypes.TEXT,
         },
     }, {

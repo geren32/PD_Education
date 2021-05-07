@@ -10,19 +10,19 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         title: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         cat_id: {
             type: DataTypes.INTEGER(11),
         },
         type: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         content: {
             type: DataTypes.TEXT,
         },
         content_type: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
     }, {
 

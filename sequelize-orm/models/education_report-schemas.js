@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER(11),
         },
         invoice_file: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         days: {
             type: DataTypes.INTEGER(11),

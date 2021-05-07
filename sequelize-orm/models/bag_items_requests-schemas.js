@@ -19,14 +19,18 @@ module.exports = (sequelize) => {
 
             },
             status: {
-                type: DataTypes.STRING,
+                type: DataTypes.STRING(255),
 
             },
             text:{
               type: DataTypes.TEXT
             },
+            number: {
+                type: DataTypes.STRING(255),
+                allowNull:false,
 
-            response: {
+            },
+            responce: {
                 type: DataTypes.TEXT
 
             },

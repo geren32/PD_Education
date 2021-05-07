@@ -10,10 +10,10 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         title: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         price: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.INTEGER(11),
         },
         count: {
             type: DataTypes.INTEGER(11),

@@ -10,67 +10,57 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         user_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false
+            type: DataTypes.INTEGER(11),
         },
         date: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.INTEGER(11),
         },
         hours: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         client_number: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         address_id: {
-            type: DataTypes.INTEGER,
-            allowNull:false
+            type: DataTypes.INTEGER(11),
         },
         brand_id: {
-            type: DataTypes.INTEGER,
-            allowNull:false
+            type: DataTypes.INTEGER(11),
         },
         lesson_id: {
-            type: DataTypes.INTEGER,
-            allowNull:false
+            type: DataTypes.INTEGER(11),
         },
         training_id: {
-            type: DataTypes.INTEGER,
-            allowNull:false
+            type: DataTypes.INTEGER(11),
         },
         salon_id: {
-            type: DataTypes.INTEGER,
-            allowNull:false
+            type: DataTypes.INTEGER(11),
         },
         education_type: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.INTEGER(11),
         },
         person_count: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.INTEGER(11),
         },
         education_status: {
-            type: DataTypes.STRING,
-            allowNull:false
+            type: DataTypes.STRING(255),
         },
         contact_phone: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
         },
         contact_email: {
-            type: DataTypes.STRING,
-        },
-        contacted_date: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING(255),
         },
         created_date: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.INTEGER(11),
         },
         finished_date: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.INTEGER(11),
         },
-        cancel_date: {
-            type: DataTypes.INTEGER,
+        cancell_date: {
+            type: DataTypes.INTEGER(11),
         },
-        prod_quote: {
+        prod_qoute: {
             type: DataTypes.INTEGER
         }
     }, {

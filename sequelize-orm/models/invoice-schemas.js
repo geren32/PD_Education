@@ -23,11 +23,11 @@ module.exports = (sequelize) => {
 
             },
             status: {
-                type: DataTypes.STRING,
+                type: DataTypes.STRING(255),
 
             },
             number: {
-                type: DataTypes.STRING,
+                type: DataTypes.STRING(255),
                 allowNull:false,
 
             },
@@ -37,7 +37,7 @@ module.exports = (sequelize) => {
             },
             invoice_id: {
                 type: DataTypes.INTEGER(11),
-                allowNull: false,
+                // allowNull: false,
 
             },
             downloaded: {

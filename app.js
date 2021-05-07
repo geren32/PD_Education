@@ -9,33 +9,33 @@ const cors = require('cors');
 
 const passportUtil = require('./utils/passport-util');
 let clientRouter = require('./routes/client');
-let shopRouter = require('./routes/shop');
+let invoceRouter = require('./routes/invoice');
 
 let usersRouter = require('./routes/users');
 
 
 let authRouter = require('./routes/auth');
 let adminAuthRouter = require('./routes/admin.auth');
-let adminBookingRouter = require('./routes/admin.booking');
-let adminProductRouter = require('./routes/admin.product');
+
+// let adminProductRouter = require('./routes/admin.product');
 let adminUserRouter = require('./routes/admin.user');
 
-let adminBlogRouter = require('./routes/admin.blog');
-let adminUploadRouter = require('./routes/admin.upload');
-let bookingRouter = require('./routes/booking');
-let productRouter = require('./routes/product');
-let importProduct = require('./routes/admin.importProduct');
+
+
+
+// let productRouter = require('./routes/product');
+// let importProduct = require('./routes/admin.importProduct');
 const moment = require('moment');
-const slag = require('./routes/slag');
-const adminPageRouter = require('./routes/admin.page');
-const adminFormsRouter = require('./routes/admin.form')
+// const slag = require('./routes/slag');
+
+
 
 const passportMiddleware = require('./middlewares/passport.middlewares');
 const getClientInfoMiddleware = require('./middlewares/get-client-info.middlewares');
 
 
 
-const metaDataMiddleware = require('./middlewares/meta-data.middleware');
+// const metaDataMiddleware = require('./middlewares/meta-data.middleware');
 
 const app = express();
 
@@ -81,35 +81,30 @@ const hbs = expbs.create({
 app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 
-app.use(metaDataMiddleware);
-app.use('/', slag);
+// app.use(metaDataMiddleware);
+// app.use('/', slag);
+
+
+
+
 
 app.use('/auth', authRouter);
 app.use('/client', getClientInfoMiddleware, clientRouter);
-app.use('/shop', getClientInfoMiddleware, shopRouter);
-app.use('/booking', bookingRouter);
-app.use('/product', productRouter);
-
-
-
-
-
-app.use('/import', importProduct);
-
-
-app.use('/api/auth/admin', adminAuthRouter);
-app.use('/api/admin/booking', adminBookingRouter);
-app.use('/api/admin/product', adminProductRouter);
+// app.use('/product', productRouter);
+// app.use('/import', importProduct);
 app.use('/api/admin/user', adminUserRouter);
-
-app.use('/api/admin/blog', adminBlogRouter);
-app.use('/api/admin/upload', adminUploadRouter);
-app.use('/api/admin/form', adminFormsRouter);
-
-
+app.use('/api/auth/admin', adminAuthRouter);
+// app.use('/api/admin/booking', adminBookingRouter);
+// app.use('/api/admin/product', adminProductRouter);
+app.use('/invoce', invoceRouter);
 
 
-app.use('/api/admin/page', adminPageRouter);
+
+
+
+
+
+
 app.use('/', getClientInfoMiddleware, clientRouter);
 
 
