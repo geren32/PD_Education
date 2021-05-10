@@ -99,6 +99,7 @@ module.exports = {
 
         const result = await clientService.readRejectionMessage(id);
 
+
         res.json(true);
     },
 
