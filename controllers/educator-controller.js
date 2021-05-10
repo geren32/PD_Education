@@ -18,25 +18,37 @@ module.exports = {
                 errCode: 400
             });
         }
-    },
-    alreadyTraining: async (req, res) => {
         const id = req.params.id;
         if (!id) throw new Error('No id');
 
-        const result = await educatorService.alreadyTraining(id);
-         res.json(true);
-    },
-    getDatta: async (req, res) => {
-        try {
-            const result = await educatorService.getDatta(user_id)
-            return  res.json(result);
-        } catch (err) {
-            return res.status(400).json({
-                massage: err.massage,
-                errCode: 400
-            })
+        const ready = await educatorService.alreadyTraining(id);
+        res.json(true);
+
+        const result = await educatorService.returnIn7Days(id);
+
+        if (result.education_status !== config.GLOBAL_STATUSES.ACTIVE){
+            new Date(+result.contact_date * 1000);
+            if (result.contact_date >= result.contact_date * 44040192) {
+                res.render('/', {
+                    error: "you have not confirmed the lesson"
+                });
+            }
         }
+        return res.json(result);
     },
+
+            getDatta: async
+        (req, res) => {
+            try {
+                const result = await educatorService.getDatta(user_id)
+                return res.json(result);
+            } catch (err) {
+                return res.status(400).json({
+                    massage: err.massage,
+                    errCode: 400
+                })
+            }
+        },
 
     getProductsForTraining: async (req, res) => {
         try {

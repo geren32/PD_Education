@@ -33,7 +33,8 @@ module.exports = {
 
     },
     alreadyTraining: async (id) => {
-        const read = await models.education.update({is_read_rejection: true,education_status:config.GLOBAL_STATUSES.ACTIVE ,educated_date:Math.floor(new Date().getTime() / 1000),}, {where: { id: id }});
+        const read = await models.education.update({is_read_rejection: true,education_status:config.GLOBAL_STATUSES.ACTIVE ,
+            contact_date:Math.floor(new Date().getTime() / 1000),}, {where: { id: id }});
         return read;
     },
 
@@ -53,7 +54,7 @@ module.exports = {
             throw err;
         }
     },
-    getProductsForTraining: async () => {
+    getProductsForTraining: async (id) => {
         try {
             let result = await models.products.findAll({
                attributes: ['title','price']
@@ -61,6 +62,18 @@ module.exports = {
 
         }catch (error){
             error.code= 400
+        }
+    },
+    returnIn7Days: async (id) => {
+        try {
+            let result = await models.education.findAll({
+                attributes:['educated_date','education_status']
+
+            })
+
+        }catch (error) {
+            error.code = 400
+
         }
     }
 
