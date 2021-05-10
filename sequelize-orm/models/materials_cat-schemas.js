@@ -10,17 +10,10 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         title: {
-<<<<<<< HEAD
-            type: DataTypes.STRING(255),
-        },
-        type: {
-            type: DataTypes.STRING(255),
-=======
             type: DataTypes.STRING,
         },
         type: {
             type: DataTypes.STRING,
->>>>>>> update commit to me!
         },
         parent_id: {
             type: DataTypes.INTEGER(11),
