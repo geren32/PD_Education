@@ -9,18 +9,22 @@ module.exports = {
         try {
 
             const result = await educatorService.GetAssignedTraining()
+            console.log(JSON.parse(JSON.stringify(result)))
+            res.render('client/cabinet/education',)
             return res.json(result);
-            // res.render('client/cabinet/education', {
-            //     DATE:date, Time:hours, NUMBER:client_number,
-            //     status:education_status, contact:contact_phone,
-            // })
-
         } catch (err) {
             return res.status(400).json({
                 message: err.message,
                 errCode: 400
             });
         }
+    },
+    alreadyTraining: async (req, res) => {
+        const id = req.params.id;
+        if (!id) throw new Error('No id');
+
+        const result = await educatorService.alreadyTraining(id);
+         res.json(true);
     },
     getDatta: async (req, res) => {
         try {
