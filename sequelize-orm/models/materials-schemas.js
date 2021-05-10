@@ -10,19 +10,31 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         title: {
+<<<<<<< HEAD
             type: DataTypes.STRING(255),
+=======
+            type: DataTypes.STRING,
+>>>>>>> update commit to me!
         },
         cat_id: {
             type: DataTypes.INTEGER(11),
         },
         type: {
+<<<<<<< HEAD
             type: DataTypes.STRING(255),
+=======
+            type: DataTypes.STRING,
+>>>>>>> update commit to me!
         },
         content: {
             type: DataTypes.TEXT,
         },
         content_type: {
+<<<<<<< HEAD
             type: DataTypes.STRING(255),
+=======
+            type: DataTypes.STRING,
+>>>>>>> update commit to me!
         },
     }, {
 

@@ -18,8 +18,17 @@ module.exports = (sequelize) => {
         },
         date: {
             type: DataTypes.INTEGER(11),
+<<<<<<< HEAD
+            defaultValue: function(){
+                return Math.floor(new Date().getTime()/1000)
+
+            }
+        },
+        message: {
+=======
         },
         massage: {
+>>>>>>> update commit to me!
             type: DataTypes.TEXT,
         },
     }, {

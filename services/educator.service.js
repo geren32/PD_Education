@@ -10,56 +10,40 @@ module.exports = {
     GetAssignedTraining: async (user_id) => {
         let filter = user_id;
         if (typeof user_id !== 'object') {
-            filter = { user_id: user_id }
+            filter = { id: user_id }
         }
+
        try {
-           const result = await models.education.findAll({
+           const result = await models.education.findOne({
                where: filter,
-               attributes: ['id','date', 'hours', 'client_number', 'education_status', 'contact_phone', 'contacted_date', 'education_type','address_id'],
+                   include: [
+                       {
+                           model: models.education,
+                           include: [{model: models.salon_address, attributes: ['address']}],
+                           model: models.education,
+                           attributes: ['date', 'hours', 'client_number', 'education_status', 'contact phone']
 
-
-                    include: [
-                        {model: models.salon_address, attributes: ['address'],}
-                    ]
-       });
-           return result.map(function(item) {
-               return item.toJSON();
-           })
-
+                       }
+                   ]
+               })
+            return result.toJSON();
        }catch (error) {
            error.code=400
        }
 
     },
-    lessonConfirmation: async (id) => {
-        const read = await models.education.update({education_status:config.GLOBAL_STATUSES.ACTIVE ,
-            contacted_date:Math.floor(new Date().getTime() / 1000),}, {where: { id: id }});
-        return read;
-    },
-
-    checkForAvailability : async (user_id) =>{
+    getDatta : async (trans) =>{
+        let transaction = null;
         try {
-            const auditDate = await models.educator.findAll({
-                where:
-                    {user_id: user_id}
-            })
-            return auditDate;
+            transaction = trans ? trans : await sequelize.transaction();
+            let result = await models.educator.create(date,{transaction});
 
-        } catch (err) {
-            err.code = 400;
-            throw err;
-        }
-    },
+            if (!trans) await transaction.commit();
+            return result;
 
-    recordingTheDate : async (user_id,createDate) =>{
-        try {
-                const result = await models.educator.update(
-                    {date:createDate},
-                    {where: {user_id:user_id}
-                    })
 
-                return result;
         }   catch (err) {
+            if (transaction) await transaction.rollback();
             err.code = 400;
             throw err;
         }
@@ -67,102 +51,12 @@ module.exports = {
     getProductsForTraining: async () => {
         try {
             let result = await models.products.findAll({
-               attributes: ['id','title','price']
-            })
-            console.log(result)
-            return result.map(function(item) {
-                return item.toJSON();
+               attributes: ['title','price']
             })
 
         }catch (error){
             error.code= 400
         }
-    },
-    returnIn7Days: async (user_id) => {
-        try {
-
-            let result = await models.education.findAll({
-                where: {user_id:user_id},
-                attributes:['id','contacted_date','education_status','created_date']
-            })
-
-
-            return result.map(function(item) {
-                return item.toJSON();
-            });
-
-
-        } catch (error) {
-            error.code = 400
-
-        }
-    },
-    productForOrder:async (OrdersObj) => {
-        try {
-            console.log(OrdersObj)
-
-            let result = await models.orders.create(
-                OrdersObj
-            )
-            return result.toJSON();
-
-        } catch (error) {
-            error.code = 400
-
-
-        }
-    },
-    getEquipmentEducator: async (user_id) => {
-        try {
-            let filter = user_id;
-            if (typeof user_id !== 'object') {
-                filter = { user_id: user_id }
-            }
-            let result = await models.bag_items.findAll({
-                where:filter
-                }
-
-            )
-            return result.map(function(item) {
-                return item.toJSON();
-            })
-
-
-
-        }catch (error) {
-            error.code = 400
-        }
-    },
-    changeRequestEquipmentEducator: async (BagObj) => {
-        try{
-
-            let result = await models.bag_items_requests.create(BagObj)
-            return result.toJSON();
-        }catch (error) {
-            error.code = 400
-        }
-    },
-    createReportForEducation: async (ReportObj) => {
-        try{
-
-            let result = await models.education_report.create(ReportObj)
-            return result.toJSON();
-
-        }catch (error) {
-            error.code = 400
-        }
-    },
-    createEducationKilometers: async (KilometersObj) => {
-        try {console.log(KilometersObj)
-            let result = await models.education_kilometers.create(KilometersObj)
-            return result.toJSON();
-
-        }catch (error){
-            error.code = 400
-        }
     }
-
-
-
 
 }

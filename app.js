@@ -13,7 +13,7 @@ let invoceRouter = require('./routes/invoice');
 
 let usersRouter = require('./routes/users');
 
-
+let educator = require('./routes/educator');
 let authRouter = require('./routes/auth');
 let adminAuthRouter = require('./routes/admin.auth');
 
@@ -87,7 +87,7 @@ app.set('view engine', '.hbs');
 
 
 
-
+app.use('/educator',educator);
 app.use('/auth', authRouter);
 app.use('/client', getClientInfoMiddleware, clientRouter);
 // app.use('/product', productRouter);
