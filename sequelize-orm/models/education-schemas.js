@@ -16,10 +16,17 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER(11),
         },
         hours: {
+<<<<<<< HEAD
             type: DataTypes.STRING(255),
         },
         client_number: {
             type: DataTypes.STRING(255),
+=======
+            type: DataTypes.STRING,
+        },
+        client_number: {
+            type: DataTypes.STRING,
+>>>>>>> update commit to me!
         },
         address_id: {
             type: DataTypes.INTEGER(11),
@@ -43,6 +50,7 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER(11),
         },
         education_status: {
+<<<<<<< HEAD
             type: DataTypes.STRING(255),
         },
         contact_phone: {
@@ -50,6 +58,15 @@ module.exports = (sequelize) => {
         },
         contact_email: {
             type: DataTypes.STRING(255),
+=======
+            type: DataTypes.STRING,
+        },
+        contact_phone: {
+            type: DataTypes.STRING,
+        },
+        contact_email: {
+            type: DataTypes.STRING,
+>>>>>>> update commit to me!
         },
         created_date: {
             type: DataTypes.INTEGER(11),
@@ -57,10 +74,17 @@ module.exports = (sequelize) => {
         finished_date: {
             type: DataTypes.INTEGER(11),
         },
+<<<<<<< HEAD
         cancell_date: {
             type: DataTypes.INTEGER(11),
         },
         prod_qoute: {
+=======
+        cancel_date: {
+            type: DataTypes.INTEGER(11),
+        },
+        prod_quote: {
+>>>>>>> update commit to me!
             type: DataTypes.INTEGER
         }
     }, {

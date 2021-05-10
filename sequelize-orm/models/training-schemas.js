@@ -10,10 +10,17 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         title: {
+<<<<<<< HEAD
             type: DataTypes.STRING(255),
         },
         file: {
             type: DataTypes.STRING(255),
+=======
+            type: DataTypes.STRING,
+        },
+        file: {
+            type: DataTypes.STRING,
+>>>>>>> update commit to me!
         },
         online_option: {
             type: DataTypes.INTEGER(11),

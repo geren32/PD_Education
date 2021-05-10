@@ -10,6 +10,7 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         title: {
+<<<<<<< HEAD
             type: DataTypes.STRING(255),
         },
         banner: {
@@ -17,6 +18,15 @@ module.exports = (sequelize) => {
         },
         file: {
             type: DataTypes.STRING(255),
+=======
+            type: DataTypes.STRING,
+        },
+        banner: {
+            type: DataTypes.STRING,
+        },
+        file: {
+            type: DataTypes.STRING,
+>>>>>>> update commit to me!
         },
         brand_id: {
             type: DataTypes.INTEGER(11),

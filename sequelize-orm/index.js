@@ -15,27 +15,11 @@ console.log(`Creating connection to mysql: ${mysqlUrl}`);
 const sequelize = new Sequelize(mysqlDb, mysqlUser, mysqlPassword, {
     host: mysqlUrl,
     dialect: 'mysql',
-<<<<<<< HEAD
-    //  logging: false
-=======
   //  logging: false
->>>>>>> commit to me!
     //dialectOptions: { options: { encrypt: true } }
 });
 
 const modelDefiners = [
-<<<<<<< HEAD
-    require('./models/invoice-schemas'),
-    require('./models/users-schemas'),
-    require('./models/salon-schemas'),
-    require('./models/orders-schemas'),
-  require('./models/sales_person-schemas'),
-  require('./models/sales_message-schemas'),
-  require('./models/salon_address-schemas'),
-  require('./models/salon_brands-schemas'),
-  require('./models/brands-schemas'),
-  require('./models/promotions-schemas')
-=======
     require('./models/dealer-schemas'),
     require('./models/user-schemas'),
     require('./models/menu-schemas'),
@@ -89,7 +73,6 @@ const modelDefiners = [
     require('./models/forms-schemas'),
     require('./models/users-schemas')
 
->>>>>>> commit to me!
 ];
 
 // Define all models according to their files.

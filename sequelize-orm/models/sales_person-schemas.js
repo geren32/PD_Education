@@ -13,10 +13,17 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER(11),
         },
         address: {
+<<<<<<< HEAD
             type: DataTypes.STRING(255),
         },
         brand_id: {
             type: DataTypes.STRING(255),
+=======
+            type: DataTypes.STRING,
+        },
+        brand_id: {
+            type: DataTypes.STRING,
+>>>>>>> update commit to me!
         },
     }, {
 

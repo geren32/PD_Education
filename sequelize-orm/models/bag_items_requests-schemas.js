@@ -19,14 +19,22 @@ module.exports = (sequelize) => {
 
             },
             status: {
+<<<<<<< HEAD
                 type: DataTypes.STRING(255),
+=======
+                type: DataTypes.STRING,
+>>>>>>> update commit to me!
 
             },
             text:{
               type: DataTypes.TEXT
             },
             number: {
+<<<<<<< HEAD
                 type: DataTypes.STRING(255),
+=======
+                type: DataTypes.STRING,
+>>>>>>> update commit to me!
                 allowNull:false,
 
             },
