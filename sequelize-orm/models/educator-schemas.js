@@ -13,16 +13,11 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER(11),
         },
         brand_id: {
-<<<<<<< HEAD
-            type: DataTypes.STRING(255),
-        },
-=======
             type: DataTypes.STRING,
         },
         date: {
             type:DataTypes.INTEGER(11),
         }
->>>>>>> update commit to me!
     }, {
 
         tableName: 'educator',

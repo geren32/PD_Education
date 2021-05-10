@@ -23,19 +23,11 @@ module.exports = (sequelize) => {
 
             },
             status: {
-<<<<<<< HEAD
-                type: DataTypes.STRING(255),
-
-            },
-            number: {
-                type: DataTypes.STRING(255),
-=======
                 type: DataTypes.STRING,
 
             },
             number: {
                 type: DataTypes.STRING,
->>>>>>> update commit to me!
                 allowNull:false,
 
             },
@@ -45,11 +37,7 @@ module.exports = (sequelize) => {
             },
             invoice_id: {
                 type: DataTypes.INTEGER(11),
-<<<<<<< HEAD
-                // allowNull: false,
-=======
                 allowNull: false,
->>>>>>> update commit to me!
 
             },
             downloaded: {

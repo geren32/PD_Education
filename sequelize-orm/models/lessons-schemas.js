@@ -20,11 +20,7 @@ module.exports = (sequelize) => {
 
             },
             title: {
-<<<<<<< HEAD
-                type: DataTypes.STRING(255),
-=======
                 type: DataTypes.STRING,
->>>>>>> update commit to me!
 
             },
             point_required: {
@@ -38,21 +34,6 @@ module.exports = (sequelize) => {
 
             },
             invitation: {
-<<<<<<< HEAD
-                type: DataTypes.STRING(255),
-
-            },
-            certificate: {
-                type: DataTypes.STRING(255),
-
-            },
-            presentation: {
-                type: DataTypes.STRING(255),
-
-            },
-            video: {
-                type: DataTypes.STRING(255),
-=======
                 type: DataTypes.STRING,
 
             },
@@ -66,7 +47,6 @@ module.exports = (sequelize) => {
             },
             video: {
                 type: DataTypes.STRING,
->>>>>>> update commit to me!
 
             },
 

@@ -10,17 +10,6 @@ module.exports = (sequelize) => {
                 primaryKey: true
             },
             title: {
-<<<<<<< HEAD
-                type: DataTypes.STRING(255),
-
-            },
-            sku: {
-                type: DataTypes.STRING(255),
-
-            },
-            image: {
-                type: DataTypes.STRING(255),
-=======
                 type: DataTypes.STRING,
 
             },
@@ -30,7 +19,6 @@ module.exports = (sequelize) => {
             },
             image: {
                 type: DataTypes.STRING,
->>>>>>> update commit to me!
 
             },
             assigned_date: {
@@ -52,11 +40,7 @@ module.exports = (sequelize) => {
 
             },
             type: {
-<<<<<<< HEAD
-                type: DataTypes.STRING(255),
-=======
                 type: DataTypes.STRING,
->>>>>>> update commit to me!
 
             },
 
