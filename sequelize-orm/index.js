@@ -24,7 +24,9 @@ const modelDefiners = [
     require('./models/users-schemas'),
     require('./models/salon-schemas'),
     require('./models/orders-schemas'),
-  require('./models/sales_person-schemas')
+  require('./models/sales_person-schemas'),
+  require('./models/sales_message-schemas'),
+  require('./models/salon_address-schemas')
 ];
 
 // Define all models according to their files.
