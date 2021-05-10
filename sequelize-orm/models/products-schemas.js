@@ -2,32 +2,31 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
 
-    sequelize.define('orders', {
+    sequelize.define('products', {
         id: {
             autoIncrement: true,
-            type: DataTypes.INTEGER(11),
+            type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true
         },
-        date: {
-            type: DataTypes.INTEGER(11),
-
+        title: {
+            type: DataTypes.STRING,
         },
-        user_id: {
+        price: {
             type: DataTypes.INTEGER(11),
         },
-        products: {
-            type: DataTypes.TEXT,
+        count: {
+            type: DataTypes.INTEGER(11),
         },
         brand_id: {
             type: DataTypes.INTEGER(11),
         },
-        address_id: {
+        created_date: {
             type: DataTypes.INTEGER(11),
         },
     }, {
 
-        tableName: 'orders',
+        tableName: 'products',
         timestamps: false,
 
     });

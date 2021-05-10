@@ -2,32 +2,34 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
 
-    sequelize.define('orders', {
+    sequelize.define('education_report', {
         id: {
             autoIncrement: true,
             type: DataTypes.INTEGER(11),
             allowNull: false,
             primaryKey: true
         },
-        date: {
+        education_id: {
             type: DataTypes.INTEGER(11),
-
+        },
+        invoice_file: {
+            type: DataTypes.STRING,
+        },
+        days: {
+            type: DataTypes.INTEGER(11),
+        },
+        text: {
+            type: DataTypes.TEXT,
+        },
+        response: {
+            type: DataTypes.TEXT,
         },
         user_id: {
             type: DataTypes.INTEGER(11),
         },
-        products: {
-            type: DataTypes.TEXT,
-        },
-        brand_id: {
-            type: DataTypes.INTEGER(11),
-        },
-        address_id: {
-            type: DataTypes.INTEGER(11),
-        },
     }, {
 
-        tableName: 'orders',
+        tableName: 'education_report',
         timestamps: false,
 
     });
