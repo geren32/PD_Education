@@ -21,7 +21,7 @@ module.exports = {
                            model: models.education,
                            include: [{model: models.salon_address, attributes: ['address']}],
                            model: models.education,
-                           attributes: ['date', 'hours', 'client_number', 'education_status', 'contact phone']
+                           attributes: ['date', 'hours', 'client_number', 'education_status', 'contact phone','contacted_date','education_type']
 
                        }
                    ]
@@ -32,6 +32,11 @@ module.exports = {
        }
 
     },
+    alreadyTraining: async (id) => {
+        const read = await models.education.update({is_read_rejection: true,education_status:config.GLOBAL_STATUSES.ACTIVE ,educated_date:Math.floor(new Date().getTime() / 1000),}, {where: { id: id }});
+        return read;
+    },
+
     getDatta : async (trans) =>{
         let transaction = null;
         try {
@@ -58,5 +63,7 @@ module.exports = {
             error.code= 400
         }
     }
+
+
 
 }
