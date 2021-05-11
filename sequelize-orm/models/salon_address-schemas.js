@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         salon_id:{
-            type: DataTypes.INTEGER(11),
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         title: {
