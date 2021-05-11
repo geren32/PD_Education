@@ -51,6 +51,10 @@ function associations(sequelize) {
     education.hasMany(education_report,{foreignKey: 'education_report_education_id_fk', sourceKey: 'id'})
     education_report.belongsTo(education,{foreignKey: 'education_report_education_id_fk', sourceKey: 'id'})
 
+    salon_address.hasMany(education,{foreignKey: 'address_id', sourceKey: 'id'})
+    education.belongsTo(salon_address,{foreignKey: 'address_id', sourceKey: 'id'})
+
+
 
 
     // user.hasMany(booking,{ foreignKey: 'user_id', sourceKey: 'id'});

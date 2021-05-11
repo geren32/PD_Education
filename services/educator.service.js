@@ -10,23 +10,22 @@ module.exports = {
     GetAssignedTraining: async (user_id) => {
         let filter = user_id;
         if (typeof user_id !== 'object') {
-            filter = { id: user_id }
+            filter = { user_id: user_id }
         }
-
        try {
-           const result = await models.education.findOne({
+           const result = await models.education.findAll({
                where: filter,
-                   include: [
-                       {
-                           model: models.education,
-                           include: [{model: models.salon_address, attributes: ['address']}],
-                           model: models.education,
-                           attributes: ['date', 'hours', 'client_number', 'education_status', 'contact phone','contacted_date','education_type']
+               attributes: ['date', 'hours', 'client_number', 'education_status', 'contact_phone', 'contacted_date', 'education_type','address_id'],
 
-                       }
-                   ]
-               })
-            return result.toJSON();
+
+                    include: [
+                        {model: models.salon_address, attributes: ['address'],}
+                    ]
+       });
+           return result.map(function(item) {
+               return item.toJSON();
+           })
+           console.log(result);
        }catch (error) {
            error.code=400
        }
@@ -38,18 +37,17 @@ module.exports = {
         return read;
     },
 
-    getDatta : async (trans) =>{
-        let transaction = null;
+
+
+    getDatta : async (user_id) =>{
         try {
-            transaction = trans ? trans : await sequelize.transaction();
-            let result = await models.educator.create(date,{transaction});
 
-            if (!trans) await transaction.commit();
+            const result = await models.educator.create({
+                user_id,
+                date,
+            } )
             return result;
-
-
         }   catch (err) {
-            if (transaction) await transaction.rollback();
             err.code = 400;
             throw err;
         }
@@ -59,6 +57,7 @@ module.exports = {
             let result = await models.products.findAll({
                attributes: ['title','price']
             })
+            return result;
 
         }catch (error){
             error.code= 400
@@ -67,9 +66,9 @@ module.exports = {
     returnIn7Days: async (id) => {
         try {
             let result = await models.education.findAll({
-                attributes:['educated_date','education_status']
-
+                attributes:['contacted_date','education_status']
             })
+            return result;
 
         }catch (error) {
             error.code = 400
