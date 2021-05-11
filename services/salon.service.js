@@ -11,7 +11,13 @@ const userAttributes = [
     'email',
     'phone',
 ];
+const salonAttributes = [
+    'billing_first_name',
+    'billing_last_name',
+    'billing_phone',
+    'billing_email'
 
+]
 
 
 
@@ -28,12 +34,12 @@ module.exports = {
             include: [
                 { model: models.users, attributes: userAttributes },
                 {
-                    model: models.sales_person, attributes: ['address'], include: [
-                        { model: models.users, attributes: userAttributes }
-                    ]
-                }
-            ]
-        })
+                    model: models.sales_person,
+                    attributes: ["address"],
+                    include: [{ model: models.users, attributes: userAttributes }],
+                },
+            ],
+        });
 
         let arr = overview.sales_id.split(',');
 
@@ -116,15 +122,15 @@ module.exports = {
     },
     updateSalonById: async (data, id, trans) => {
         let transaction = null;
- 
+
         try {
             transaction = trans ? trans : await sequelize.transaction();
-            
-            let result = await models.salon.update(data, { where: id }, {transaction} )
+
+            let result = await models.salon.update(data, { where: id }, { transaction })
 
             result = await models.salon.findOne(
                 {
-                    where:  id,
+                    where: id,
                     include: [{ model: models.users, attributes: userAttributes }], transaction
                 })
 
@@ -132,21 +138,111 @@ module.exports = {
             if (!trans) await transaction.commit();
             return result.toJSON();
         } catch (error) {
-           
+
             error.code = 400;
             if (transaction) await transaction.rollback();
-            throw err;
+            throw error;
         }
 
     },
-    
-    getSalonAdressBySalonId : async (id)=>{
 
-        let result = await models.salon_address.findOne({where: {salon_id:id}});
- 
-return result.toJSON();
+    getSalonAdressBySalonId: async (id) => {
 
+        try {
+            let result = await models.salon_address.findAll({
+                where: { salon_id: id },
+                include: [
+                    { model: models.salon, attributes: salonAttributes }
+                ]
+            });
+
+            result = result.map(function (item) {
+                return item.toJSON();
+            })
+
+            return result
+        }
+        catch (err) {
+            err.code = 400;
+            throw err;
+        }
+    },
+    editSalonAddressById: async (data, id, trans) => {
+        let transaction = null;
+        try {
+            transaction = trans ? trans : await sequelize.transaction();
+            let result = await models.salon_address.update(data, { where: id }, { transaction });
+
+            result = await models.salon_address.findOne({
+                where: id,
+                include: [
+                    { model: models.salon, attributes: salonAttributes }
+                ],
+                transaction
+            });
+
+            if (!trans) await transaction.commit();
+            return result.toJSON();
+        }
+        catch (error) {
+            error.code = 400;
+            if (transaction) await transaction.rollback();
+            throw error;
+
+
+        }
+    },
+    deleteSalonAddressId: async (id, trans) => {
+        let transaction = null;
+        try {
+            transaction = trans ? trans : await sequelize.transaction();
+            let result = await models.salon_address.destroy({
+                where: { id: id },
+                transaction
+            })
+            if (!trans) await transaction.commit();
+            return result;
+        } catch (err) {
+            err.code = 400;
+            if (transaction) await transaction.rollback();
+            throw err;
+        }
+    },
+    getSalonBrands: async (id) => {
+
+        try {
+            let result = await models.salon_brands.findAll({
+                where: id,
+                include: [
+                    { model: models.brands, attributes: ['title', 'logo'] }
+                ]
+            })
+          
+            for (let item of result) {
+                
+
+                result = await models.salon_brands.findAll({
+                    where: { date: { [Op.lt]: item.date + 15778800 } },
+                    include: [
+                        { model: models.brands, attributes: ['title', 'logo'] }
+                    ]
+                })
+                // console.log(result.map(function (item) {
+                //     return item.toJSON();
+                // }));
+               return result.map(function (item) {
+                    return item.toJSON();
+                }) 
+            }
+
+
+        } catch (error) {
+            error.code = 400;
+            throw error;
+
+        }
     }
+
 
 
 

@@ -17,7 +17,7 @@ module.exports = {
   
   
   
-   
+    
     JWT_SECRET_ADMIN: options['access-token-secret'] || 'uf7e^WaiUGFSA7fd8&^dadhADMIN',
     ACCESS_TOKEN_LIFETIME: options['access-token-lifetime'] || '30m',
 

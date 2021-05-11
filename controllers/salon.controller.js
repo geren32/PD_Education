@@ -50,13 +50,13 @@ module.exports = {
 
     },
     updateSalonById: async (req, res) => {
-        console.log("-------------------------");  let { billing_title, billing_address, billing_city, billing_zip, billing_nip, billing_first_name, billing_last_name, billing_phone, billing_email } = req.body;
+        let { billing_title, billing_address, billing_city, billing_zip, billing_nip, billing_first_name, billing_last_name, billing_phone, billing_email } = req.body;
         let id = req.headers.id;
 
-         if(!billing_title || !billing_address  || !billing_city ||  !billing_zip || !billing_nip  || !billing_first_name || !billing_last_name || !billing_phone || !billing_email){
+        if (!billing_title || !billing_address || !billing_city || !billing_zip || !billing_nip || !billing_first_name || !billing_last_name || !billing_phone || !billing_email) {
             res.status(403).json({ message: "Some field provided" });
-         }
-       
+        }
+
         let result = await salonService.updateSalonById({
             billing_title: billing_title,
             billing_address: billing_address,
@@ -73,19 +73,51 @@ module.exports = {
         res.status(200).json(result);
     },
 
-    getSalonAddressById: async (req,res)=>{
-       let id = req.headers.id;
+    getSalonAddressById: async (req, res) => {
+        let id = req.headers.id;
+        let result = await salonService.getSalonAdressBySalonId(id);
+        if (!result) {
+            return res.status(403).json({ message: "User id not provided" });
+        }
 
-     if(!id){
-        return res.status(403).json({ message: "User id not provided" });
-     }
-     
-     let result = await salonService.getSalonAdressBySalonId(id);
 
-     res.status(200).json(result);
 
+        res.status(200).json(result);
+
+    },
+
+    editSalonAddressById: async (req, res) => {
+        let id = req.params.id;
+        let { title, address, city, zip, first_name, last_name, phone, phone_contact, email, email_contact } = req.body;
+
+
+        let result = await salonService.editSalonAddressById({ title, address, city, zip, first_name, last_name, phone, phone_contact, email, email_contact }, { id: id });
+
+        return res.status(200).json(result);
+
+    },
+    deleteSalonAddressById: async (req, res) => {
+        let id = req.params.id
+
+        let result = await salonService.deleteSalonAddressId(id);
+        if (!result) {
+            return res.status(403).json({ message: " id not provided" });
+
+        }
+        return res.status(200).json(result);
+
+    },
+
+    checkSalonBrands: async (req, res) => {
+        let id = req.headers.id;
+        let result = await salonService.getSalonBrands({ salon_id: id });
+        if (!result) {
+            return res.status(403).json({ message: "User id not provided" });
+
+        }
+
+        return res.status(200).json(result);
     }
-
 
 
 
