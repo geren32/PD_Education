@@ -208,39 +208,63 @@ module.exports = {
             throw err;
         }
     },
-    getSalonBrands: async (id) => {
-
+    getSalonBrands: async (id,trans) => {
+        let transaction = null;
+        let date = new Date( );
+let sixmounth= 15778800;
+let rangesix= Math.floor(date.getTime()/1000)-sixmounth;
+console.log(rangesix);
         try {
+            transaction = trans ? trans : await sequelize.transaction();
             let result = await models.salon_brands.findAll({
-                where: id,
+                where: {
+                    [Op.and]:[
+                        {salon_id:id },
+                        {date:{[Op.gt]: rangesix}}
+                    ]},
                 include: [
                     { model: models.brands, attributes: ['title', 'logo'] }
-                ]
+                ],
+                transaction
             })
           
-            for (let item of result) {
+            // for (let item of result) {
                 
 
-                result = await models.salon_brands.findAll({
-                    where: { date: { [Op.lt]: item.date + 15778800 } },
-                    include: [
-                        { model: models.brands, attributes: ['title', 'logo'] }
-                    ]
-                })
-                // console.log(result.map(function (item) {
-                //     return item.toJSON();
-                // }));
-               return result.map(function (item) {
-                    return item.toJSON();
-                }) 
-            }
-
+            //     result = await models.salon_brands.findAll({
+            //         where: { date: { [Op.lt]: item.date + 15778800 } },
+            //         include: [
+            //             { model: models.brands, attributes: ['title', 'logo'] }
+            //         ],
+            //         transaction
+            //     })
+            //     // console.log(result.map(function (item) {
+            //     //     return item.toJSON();
+            //     // }));
+            //     // for(key of result){
+            //     // console.log(key.id);}
+            //    return result.map(function (item) {
+            //         return item.toJSON();
+            //     }) 
+            // }
+            return result.map(function (item) {
+                        return item.toJSON();
+                    }) 
 
         } catch (error) {
             error.code = 400;
             throw error;
 
         }
+    },
+    getBrandPromotions: async (id)=>{
+              
+
+      
+
+
+
+
     }
 
 
