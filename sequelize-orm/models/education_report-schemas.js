@@ -13,7 +13,11 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER(11),
         },
         invoice_file: {
+<<<<<<< HEAD
             type: DataTypes.STRING(255),
+=======
+            type: DataTypes.STRING,
+>>>>>>> update commit to me!
         },
         days: {
             type: DataTypes.INTEGER(11),

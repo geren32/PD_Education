@@ -10,10 +10,11 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         salon_id:{
-            type: DataTypes.INTEGER(11),
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         title: {
+<<<<<<< HEAD
             type: DataTypes.STRING(255),
         },
         address: {
@@ -43,6 +44,37 @@ module.exports = (sequelize) => {
         },
         email_contact: {
             type: DataTypes.STRING(255)
+=======
+            type: DataTypes.STRING,
+        },
+        address: {
+            type: DataTypes.STRING,
+        },
+        city: {
+            type: DataTypes.STRING,
+        },
+        zip: {
+            type: DataTypes.STRING,
+        },
+        first_name: {
+            type: DataTypes.STRING,
+        },
+        last_name: {
+            type: DataTypes.STRING,
+        },
+        phone: {
+            type: DataTypes.STRING,
+        },
+        phone_contact: {
+            type: DataTypes.STRING,
+
+        },
+        email: {
+            type: DataTypes.STRING,
+        },
+        email_contact: {
+            type: DataTypes.STRING
+>>>>>>> update commit to me!
         }
     }, {
 

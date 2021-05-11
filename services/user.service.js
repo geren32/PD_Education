@@ -13,7 +13,7 @@ const userAttributes = [
 
 
 module.exports = {
-    createUser: async (user, trans) => {
+    createUser: async (users, trans) => {
         let transaction = null;
         try {
             transaction = trans ? trans : await sequelize.transaction();
@@ -77,19 +77,31 @@ module.exports = {
                     model: models.client,
                     include: [
                         { model: models.position_activity },
+<<<<<<< HEAD
                       
+=======
+                        { model: models.activity },
+>>>>>>> commit to me!
                         { model: models.dealer }
                     ]
                 },
                 { model: models.dealer, include: [
                         { model: models.position_activity },
+<<<<<<< HEAD
                      
+=======
+                        { model: models.activity },
+>>>>>>> commit to me!
                         { model: models.client },
                         { model: models.phone_numbers},
                         { model: models.manager_sr}
                     ] },
                 { model: models.manager_sr, include:[
+<<<<<<< HEAD
                         
+=======
+                        {model: models.activity},
+>>>>>>> commit to me!
                         {model: models.position_activity},
                         {model: models.region_activity, through:{attributes:[]} },
                         {model: models.dealer}
@@ -131,10 +143,10 @@ module.exports = {
         } : { users: [], count: 0 };
     },
 
-    getUserById: async (user_id) => {
+    getUserById: async (users_id) => {
         try {
 
-            let result = await models.users.findByPk(user_id, {
+            let result = await models.users.findByPk(users_id, {
                 attributes: ['id', 'last_name', 'first_name', 'email', 'phone', 'type', 'created_at', 'bonuses'],
 
             });
