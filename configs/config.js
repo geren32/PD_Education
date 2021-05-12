@@ -15,7 +15,7 @@ module.exports = {
       
 
   
-  
+  SIX_MOUNTH_DATE: 15778800,
   
     
     JWT_SECRET_ADMIN: options['access-token-secret'] || 'uf7e^WaiUGFSA7fd8&^dadhADMIN',

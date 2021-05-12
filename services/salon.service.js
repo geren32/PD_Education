@@ -1,33 +1,18 @@
-const { models, model } = require('../sequelize-orm');
-const sequelize = require('../sequelize-orm');
-const { Op, where } = require("sequelize");
+const { models } = require("../sequelize-orm");
+const sequelize = require("../sequelize-orm");
+const { Op } = require("sequelize");
+const config = require("../configs/config");
 
-
-
-const userAttributes = [
-
-    'last_name',
-    'first_name',
-    'email',
-    'phone',
-];
+const userAttributes = ["last_name", "first_name", "email", "phone"];
 const salonAttributes = [
-    'billing_first_name',
-    'billing_last_name',
-    'billing_phone',
-    'billing_email'
-
-]
-
-
-
+    "billing_first_name",
+    "billing_last_name",
+    "billing_phone",
+    "billing_email",
+];
 
 module.exports = {
-
     getSalesPersons: async (filter) => {
-
-
-
         // if (!filter) filter = null;
         let overview = await models.salon.findOne({
             where: { id: filter },
@@ -41,7 +26,7 @@ module.exports = {
             ],
         });
 
-        let arr = overview.sales_id.split(',');
+        let arr = overview.sales_id.split(",");
 
         let list = [];
         if (arr && arr.length) {
@@ -49,53 +34,40 @@ module.exports = {
             arr.forEach((element) => {
                 sales_ids.push(element);
             });
-            list.push({ [Op.or]: sales_ids })
-
+            list.push({ [Op.or]: sales_ids });
         }
-
 
         let arr2 = [];
         for (let item of list) {
-
             let result = await models.sales_person.findAll({
                 where: { id: item },
-                include: [{ model: models.users, attributes: userAttributes }]
+                include: [{ model: models.users, attributes: userAttributes }],
             });
 
             result = result.map(function (item) {
                 return item.toJSON();
-            })
+            });
 
             arr2.push(result);
-
         }
         return arr2;
     },
 
     MessageToSales: async (data, trans) => {
-
         let transaction = null;
         try {
             transaction = trans ? trans : await sequelize.transaction();
             console.log(data);
             let result = await models.sales_message.create(data, { transaction });
 
-
-
-
             if (!trans) await transaction.commit();
 
-
             return result;
-
         } catch (error) {
             error.code = 400;
             if (transaction) await transaction.rollback();
             throw error;
         }
-
-
-
     },
     getSalonById: async (id, trans) => {
         let transaction = null;
@@ -104,21 +76,17 @@ module.exports = {
             transaction = trans ? trans : await sequelize.transaction();
             let result = await models.salon.findOne({
                 where: { id: id },
-                include: [{ model: models.users, attributes: userAttributes }]
-                , transaction
-            })
+                include: [{ model: models.users, attributes: userAttributes }],
+                transaction,
+            });
             if (!trans) await transaction.commit();
 
-
             return result.toJSON();
-
-
         } catch (error) {
             err.code = 400;
             if (transaction) await transaction.rollback();
             throw err;
         }
-
     },
     updateSalonById: async (data, id, trans) => {
         let transaction = null;
@@ -126,43 +94,40 @@ module.exports = {
         try {
             transaction = trans ? trans : await sequelize.transaction();
 
-            let result = await models.salon.update(data, { where: id }, { transaction })
+            let result = await models.salon.update(
+                data,
+                { where: id },
+                { transaction }
+            );
 
-            result = await models.salon.findOne(
-                {
-                    where: id,
-                    include: [{ model: models.users, attributes: userAttributes }], transaction
-                })
-
+            result = await models.salon.findOne({
+                where: id,
+                include: [{ model: models.users, attributes: userAttributes }],
+                transaction,
+            });
 
             if (!trans) await transaction.commit();
             return result.toJSON();
         } catch (error) {
-
             error.code = 400;
             if (transaction) await transaction.rollback();
             throw error;
         }
-
     },
 
     getSalonAdressBySalonId: async (id) => {
-
         try {
             let result = await models.salon_address.findAll({
                 where: { salon_id: id },
-                include: [
-                    { model: models.salon, attributes: salonAttributes }
-                ]
+                include: [{ model: models.salon, attributes: salonAttributes }],
             });
 
             result = result.map(function (item) {
                 return item.toJSON();
-            })
+            });
 
-            return result
-        }
-        catch (err) {
+            return result;
+        } catch (err) {
             err.code = 400;
             throw err;
         }
@@ -171,25 +136,24 @@ module.exports = {
         let transaction = null;
         try {
             transaction = trans ? trans : await sequelize.transaction();
-            let result = await models.salon_address.update(data, { where: id }, { transaction });
+            let result = await models.salon_address.update(
+                data,
+                { where: id },
+                { transaction }
+            );
 
             result = await models.salon_address.findOne({
                 where: id,
-                include: [
-                    { model: models.salon, attributes: salonAttributes }
-                ],
-                transaction
+                include: [{ model: models.salon, attributes: salonAttributes }],
+                transaction,
             });
 
             if (!trans) await transaction.commit();
             return result.toJSON();
-        }
-        catch (error) {
+        } catch (error) {
             error.code = 400;
             if (transaction) await transaction.rollback();
             throw error;
-
-
         }
     },
     deleteSalonAddressId: async (id, trans) => {
@@ -198,8 +162,8 @@ module.exports = {
             transaction = trans ? trans : await sequelize.transaction();
             let result = await models.salon_address.destroy({
                 where: { id: id },
-                transaction
-            })
+                transaction,
+            });
             if (!trans) await transaction.commit();
             return result;
         } catch (err) {
@@ -208,67 +172,66 @@ module.exports = {
             throw err;
         }
     },
-    getSalonBrands: async (id,trans) => {
-        let transaction = null;
-        let date = new Date( );
-let sixmounth= 15778800;
-let rangesix= Math.floor(date.getTime()/1000)-sixmounth;
-console.log(rangesix);
+    getSalonBrands: async (id) => {
+        let date = new Date();
+        let period_date = Math.floor(date.getTime() / 1000);
+        // let sixmounth= 15778800;
+        let rangesix = Math.floor(date.getTime() / 1000) - config.SIX_MOUNTH_DATE;
+
         try {
-            transaction = trans ? trans : await sequelize.transaction();
+            // transaction = trans ? trans : await sequelize.transaction();
             let result = await models.salon_brands.findAll({
                 where: {
-                    [Op.and]:[
-                        {salon_id:id },
-                        {date:{[Op.gt]: rangesix}}
-                    ]},
-                include: [
-                    { model: models.brands, attributes: ['title', 'logo'] }
-                ],
-                transaction
-            })
-          
-            // for (let item of result) {
-                
+                    [Op.and]: [{ salon_id: id }, { date: { [Op.gt]: rangesix } }],
+                },
+                include: [{ model: models.brands, attributes: ["title", "logo"] }],
+            });
 
-            //     result = await models.salon_brands.findAll({
-            //         where: { date: { [Op.lt]: item.date + 15778800 } },
-            //         include: [
-            //             { model: models.brands, attributes: ['title', 'logo'] }
-            //         ],
-            //         transaction
-            //     })
-            //     // console.log(result.map(function (item) {
-            //     //     return item.toJSON();
-            //     // }));
-            //     // for(key of result){
-            //     // console.log(key.id);}
-            //    return result.map(function (item) {
-            //         return item.toJSON();
-            //     }) 
-            // }
             return result.map(function (item) {
-                        return item.toJSON();
-                    }) 
-
+                return item.toJSON();
+            });
         } catch (error) {
             error.code = 400;
             throw error;
-
         }
     },
-    getBrandPromotions: async (id)=>{
-              
+    getBrandPromotions: async (id) => {
+        let date = new Date();
+        let period_date = Math.floor(date.getTime() / 1000);
 
-      
+        let rangesix = Math.floor(date.getTime() / 1000) - config.SIX_MOUNTH_DATE;
 
+        try {
+            // transaction = trans ? trans : await sequelize.transaction();
+            let result = await models.salon_brands.findAll({
+                where: {
+                    [Op.and]: [{ salon_id: id }, { date: { [Op.gt]: rangesix } }],
+                },
+                include: [{ model: models.brands, attributes: ["title", "logo"] }],
+            });
+            let list = [];
+            for (let item of result) {
+                list.push(item.brand_id);
+            }
 
+            let result2 = await models.promotions.findAll({
+                where: {
+                    [Op.and]: [
+                        { brand_id: list },
+                        { active: 1 },
+                        { start_date: { [Op.lt]: period_date } },
+                        { end_date: { [Op.gt]: period_date } },
+                    ],
+                },
+                include: [{ model: models.brands, attributes: ["title", "logo"] }],
+            });
 
-
-    }
-
-
-
-
-
-}
+            return result2.map(function (item) {
+                return item.toJSON();
+            });
+        } catch (error) {
+            error.code = 400;
+            throw error;
+        }
+    },
+};

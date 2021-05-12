@@ -15,5 +15,6 @@ router
 ////#endregion
 ////#region  salon_brands
 .get('/salon_brands',salonController.checkSalonBrands)
+.get('/promotionsfor_brands',salonController.checkPromotionsofBrands);
 
 module.exports= router;

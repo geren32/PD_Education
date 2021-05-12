@@ -110,13 +110,28 @@ module.exports = {
 
     checkSalonBrands: async (req, res) => {
         let id = req.headers.id;
-        let result = await salonService.getSalonBrands( id );
+        let result = await salonService.getSalonBrands(id);
         if (!result) {
             return res.status(403).json({ message: "User id not provided" });
 
         }
 
         return res.status(200).json(result);
+    },
+    checkPromotionsofBrands: async (req, res) => {
+        let id = req.headers.id;
+        let result = await salonService.getBrandPromotions(id);
+
+        if (!result) {
+            return res.status(403).json({ message: "Brand id not provided" });
+        }
+        return res.status(200).json(result);
+
+
+
+
+
+
     }
 
 
