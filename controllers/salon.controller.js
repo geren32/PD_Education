@@ -76,7 +76,7 @@ module.exports = {
     getSalonAddressById: async (req, res) => {
         let id = req.headers.id;
         let result = await salonService.getSalonAdressBySalonId(id);
-        if (!result) {
+        if (!result.length) {
             return res.status(403).json({ message: "User id not provided" });
         }
 
@@ -100,7 +100,7 @@ module.exports = {
         let id = req.params.id
 
         let result = await salonService.deleteSalonAddressId(id);
-        if (!result) {
+        if (!result.length) {
             return res.status(403).json({ message: " id not provided" });
 
         }
@@ -111,7 +111,7 @@ module.exports = {
     checkSalonBrands: async (req, res) => {
         let id = req.headers.id;
         let result = await salonService.getSalonBrands(id);
-        if (!result) {
+        if (!result.length) {
             return res.status(403).json({ message: "User id not provided" });
 
         }
@@ -120,16 +120,69 @@ module.exports = {
     },
     checkPromotionsofBrands: async (req, res) => {
         let id = req.headers.id;
-        let result = await salonService.getBrandPromotions(id);
 
-        if (!result) {
+        // let result = await salonService.getBrandPromotions(id);
+
+        let result = await salonService.getSalonBrands(id);
+        if (!result.length) {
             return res.status(403).json({ message: "Brand id not provided" });
         }
-        return res.status(200).json(result);
+        let list = [];
+        for (let item of result) {
+            list.push(item.brand_id);
+        }
+        let promotions = await salonService.getBrandPromotions(list);
 
+        return res.status(200).json(promotions);
+    },
 
+    getMaterials: async (req, res) => {
+        let id = req.headers.id;
 
+        let result = await salonService.getSalonBrands(id);
+        if (!result.length) {
+            return res.status(403).json({ message: "Brand id not provided" });
+        }
+        let list = [];
+        for (let item of result) {
+            list.push(item.brand_id);
+        }
+        if (!list.length) {
+            return res.status(403).json({ message: "Brand id not provided" });
+        }
+        let material_cat = await salonService.getMaterialsCatById(list);
 
+        let cat_id = [];
+        for (let item of material_cat) {
+            cat_id.push(item.brand_id);
+        }
+
+        if (!cat_id.length) {
+            return res.status(403).json({ message: "Cat_id not provided" });
+        }
+        let material = await salonService.getMaterials(cat_id);
+        console.log(material)
+        return res.status(200).json(material);
+
+    },
+    getMaterialsCatById: async (req, res) => {
+        let id = req.headers.id;
+        let result = await salonService.getSalonBrands(id);
+        if (!result.length) {
+            return res.status(403).json({ message: "Brand id not provided" });
+        }
+        let list = [];
+        for (let item of result) {
+            list.push(item.brand_id);
+        }
+   
+        if (!list.length) {
+            return res.status(403).json({ message: "Cat_id not provided" });
+        }
+
+        let material_cat = await salonService.getMaterialsCatById(list);
+
+        return res.status(200).json(material_cat);
 
 
     }

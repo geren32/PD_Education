@@ -29,7 +29,10 @@ const modelDefiners = [
   require('./models/salon_address-schemas'),
   require('./models/salon_brands-schemas'),
   require('./models/brands-schemas'),
-  require('./models/promotions-schemas')
+  require('./models/promotions-schemas'),
+  require('./models/education-schemas'),
+  require('./models/materials-schemas'),
+  require('./models/materials_cat-schemas')
 ];
 
 // Define all models according to their files.

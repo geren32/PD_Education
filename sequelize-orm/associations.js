@@ -1,7 +1,8 @@
 function associations(sequelize) {
     const { invoice, salon, orders,
         users, sales_person, sales_message,
-        salon_address, salon_brands, brands, promotions
+        salon_address, salon_brands, brands, promotions,
+        materials, materials_cat
     } = sequelize.models;
 
 
@@ -40,9 +41,12 @@ function associations(sequelize) {
  
     brands.hasMany(promotions,{foreignKey:'brand_id',sourceKey:'id'})
     promotions.belongsTo(brands,{foreignKey:'brand_id',sourceKey:'id'})
+    
+    brands.hasMany(materials_cat,{foreignKey:'brand_id',sourceKey:'id'})
+    materials_cat.belongsTo(brands, {foreignKey:'brand_id',sourceKey:'id'})
 
-
-
+    materials_cat.hasMany(materials,{foreignKey:'cat_id',sourceKey:'id'})
+    materials.belongsTo(materials_cat,{foreignKey:'cat_id',sourceKey:'id'})
 
 
 

@@ -70,7 +70,7 @@ module.exports = {
         }
     },
     getSalonById: async (id, trans) => {
-        let transaction = null;
+
 
         try {
             transaction = trans ? trans : await sequelize.transaction();
@@ -79,17 +79,17 @@ module.exports = {
                 include: [{ model: models.users, attributes: userAttributes }],
                 transaction,
             });
-            if (!trans) await transaction.commit();
+
 
             return result.toJSON();
         } catch (error) {
             err.code = 400;
-            if (transaction) await transaction.rollback();
+
             throw err;
         }
     },
     updateSalonById: async (data, id, trans) => {
-        let transaction = null;
+
 
         try {
             transaction = trans ? trans : await sequelize.transaction();
@@ -174,8 +174,6 @@ module.exports = {
     },
     getSalonBrands: async (id) => {
         let date = new Date();
-        let period_date = Math.floor(date.getTime() / 1000);
-        // let sixmounth= 15778800;
         let rangesix = Math.floor(date.getTime() / 1000) - config.SIX_MOUNTH_DATE;
 
         try {
@@ -199,25 +197,25 @@ module.exports = {
         let date = new Date();
         let period_date = Math.floor(date.getTime() / 1000);
 
-        let rangesix = Math.floor(date.getTime() / 1000) - config.SIX_MOUNTH_DATE;
+        // let rangesix = Math.floor(date.getTime() / 1000) - config.SIX_MOUNTH_DATE;
 
         try {
-            // transaction = trans ? trans : await sequelize.transaction();
-            let result = await models.salon_brands.findAll({
-                where: {
-                    [Op.and]: [{ salon_id: id }, { date: { [Op.gt]: rangesix } }],
-                },
-                include: [{ model: models.brands, attributes: ["title", "logo"] }],
-            });
-            let list = [];
-            for (let item of result) {
-                list.push(item.brand_id);
-            }
+            // // transaction = trans ? trans : await sequelize.transaction();
+            // let result = await models.salon_brands.findAll({
+            //     where: {
+            //         [Op.and]: [{ salon_id: id }, { date: { [Op.gt]: rangesix } }],
+            //     },
+            //     include: [{ model: models.brands, attributes: ["title", "logo"] }],
+            // });
+            // let list = [];
+            // for (let item of result) {
+            //     list.push(item.brand_id);
+            // }
 
-            let result2 = await models.promotions.findAll({
+            let result = await models.promotions.findAll({
                 where: {
                     [Op.and]: [
-                        { brand_id: list },
+                        { brand_id: id },
                         { active: 1 },
                         { start_date: { [Op.lt]: period_date } },
                         { end_date: { [Op.gt]: period_date } },
@@ -226,7 +224,7 @@ module.exports = {
                 include: [{ model: models.brands, attributes: ["title", "logo"] }],
             });
 
-            return result2.map(function (item) {
+            return result.map(function (item) {
                 return item.toJSON();
             });
         } catch (error) {
@@ -234,4 +232,39 @@ module.exports = {
             throw error;
         }
     },
+    getMaterialsCatById: async (id) => {
+        try {
+            let result = await models.materials_cat.findAll({ where: { brand_id: id } })
+            return result.map(function (item) {
+                return item.toJSON();
+            });
+
+        } catch (error) {
+            error.code = 400;
+            throw error;
+        }
+    },
+    getMaterials: async (id) => {
+
+        try {
+            let result = await models.materials.findAll({
+                where: { cat_id: id },
+                include: [{
+                    model: models.materials_cat, attributes: ['title', 'type', 'section', 'brand_id'],
+                    include: [{ model: models.brands, attributes: ["title", "logo"] }
+                    ]
+                }]
+            })
+            return result.map(function (item) {
+                return item.toJSON();
+            });
+
+
+        } catch (error) {
+            error.code = 400;
+            throw error;
+        }
+
+    }
+
 };

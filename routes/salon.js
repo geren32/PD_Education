@@ -12,9 +12,14 @@ router
 .get('/salon_address',salonController.getSalonAddressById)
 .post('/salon_address/:id',salonController.editSalonAddressById)
 .post('/deletesalon_address/:id',salonController.deleteSalonAddressById)
-////#endregion
-////#region  salon_brands
+//#endregion
+//#region  salon_brands
 .get('/salon_brands',salonController.checkSalonBrands)
-.get('/promotionsfor_brands',salonController.checkPromotionsofBrands);
+.get('/brand_promotions',salonController.checkPromotionsofBrands)
+////#endregion
+//#region materials
+.get('/salon_materials',salonController.getMaterials)
+.get('/material_cat',salonController.getMaterialsCatById)
+//#endregion
 
 module.exports= router;

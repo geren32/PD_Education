@@ -22,9 +22,13 @@ module.exports = (sequelize) => {
         brand_id: {
             type: DataTypes.INTEGER(11),
         },
+        
         address_id: {
             type: DataTypes.INTEGER(11),
         },
+        salon_id:{
+            type:DataTypes.INTEGER(11)
+        }
     }, {
 
         tableName: 'orders',
