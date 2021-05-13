@@ -43,7 +43,7 @@ module.exports = {
         try {
             let {id} = req.body
 
-            const ready = await educatorService.alreadyTraining(id);
+            const ready = await educatorService.lessonConfirmation(id);
             res.json(true);
             return ready;
 
@@ -73,9 +73,11 @@ console.log('select a date')
     createEducatorDate: async (req, res) => {
         try {
             let {user_id,date} = req.body;
-            console.log(date)
-            if (!date){
-                console.log('виберіть дату')
+
+            if (!date || !user_id) {
+                res.status(403).json({
+                    message: "виберіть дату"
+                })
             }
                 let createDate = [date]
 
@@ -107,13 +109,29 @@ console.log('select a date')
 
     },
     productForOrder: async (req,res) => {
+
         try{
-            let {id,quantity,brand_id,user_id,address_id} = req.body
-            if (!quantity) {
-                throw  new Error('please specify quantity')
+
+            let {id,quantity,brand_id,user_id,address_id,salon_id} = req.body
+
+            if (!quantity || !id || !brand_id || !user_id || !address_id || !salon_id) {
+
+                res.status(403).json({ message: "Some field provided" });
             }
             let products = [id,quantity]
-            const  result = await educatorService.productForOrder(products,brand_id,user_id,address_id)
+
+            products = JSON.stringify(products);
+
+            const OrdersObj = {
+                salon_id:salon_id,
+                products:products,
+                brand_id:brand_id,
+                user_id:user_id,
+                address_id:address_id,
+                date:Math.floor(new Date().getTime() / 1000)
+            }
+
+            const result = await educatorService.productForOrder(OrdersObj)
             return result;
 
 
@@ -123,5 +141,104 @@ console.log('select a date')
                 errCode: 400
             })
         }
+    },
+
+    getEquipmentEducator: async (req,res) => {
+        try {
+            let {user_id} = req.body
+
+            const result = await educatorService.getEquipmentEducator(user_id)
+
+            return res.json(result);
+
+        }catch (err) {
+            return res.status(400).json({
+                massage: err.massage,
+                errCode: 400
+            })
+        }
+    },
+    changeRequestEquipmentEducator: async (req,res) => {
+        try {
+            let {user_id,id,text} = req.body
+
+            if (!text || !id || !user_id){
+
+                res.status(403).json({ message: "Some field provided" });
+            }
+            let BagObj ={
+                status:config.REQUEST_STATUS.CONSIDERED,
+                bag_id:id,
+                user_id:user_id,
+                text:text,
+                date:Math.floor(new Date().getTime() / 1000),
+            }
+
+            const result = await educatorService.changeRequestEquipmentEducator(BagObj)
+
+            return res.json(result);
+
+        }catch (err) {
+            return res.status(400).json({
+                massage: err.massage,
+                errCode: 400
+            })
+        }
+    },
+    createReportForEducation: async (req,res) => {
+        try {
+            let {user_id,text,id,days,invoice_file} = req.body
+
+            if (!user_id || !text || !id || !days || !invoice_file){
+
+                res.status(403).json({ message: "Some field provided" });
+            }
+
+            let ReportObj = {
+                user_id:user_id,
+                text:text,
+                education_id:id,
+                days:days,
+                invoice_file:invoice_file,
+            }
+
+            const result = await educatorService.createReportForEducation(ReportObj)
+
+            return res.json(result);
+
+        }catch (err) {
+            return res.status(400).json({
+                massage: err.massage,
+                errCode: 400
+            })
+        }
+    },
+    createEducationKilometers : async (req,res) => {
+        try {
+            let {id,education_id,kilometers,additional,invoice_file,user_id} = req.body
+
+            if (!id || !education_id || !kilometers || !additional || !invoice_file || !user_id){
+                res.status(403).json({ message: "Some field provided" });
+            }
+            let KilometersObj = {
+                report_id:id,
+                education_id:education_id,
+                kilometers:kilometers,
+                additional:additional,
+                invoice_file:invoice_file,
+                user_id:user_id,
+            }
+
+            const  result = await educatorService.createEducationKilometers(KilometersObj)
+
+            return res.json(result);
+
+        }catch (err){
+            return res.status(400).json({
+                massage:err.massage,
+                errCode:400
+            })
+        }
     }
+
 }

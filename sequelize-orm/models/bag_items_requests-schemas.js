@@ -25,12 +25,8 @@ module.exports = (sequelize) => {
             text:{
               type: DataTypes.TEXT
             },
-            number: {
-                type: DataTypes.STRING,
-                allowNull:false,
 
-            },
-            responce: {
+            response: {
                 type: DataTypes.TEXT
 
             },
