@@ -15,7 +15,7 @@ module.exports = {
        try {
            const result = await models.education.findAll({
                where: filter,
-               attributes: ['date', 'hours', 'client_number', 'education_status', 'contact_phone', 'contacted_date', 'education_type','address_id'],
+               attributes: ['id','date', 'hours', 'client_number', 'education_status', 'contact_phone', 'contacted_date', 'education_type','address_id'],
 
 
                     include: [
@@ -25,54 +25,96 @@ module.exports = {
            return result.map(function(item) {
                return item.toJSON();
            })
-           console.log(result);
+
        }catch (error) {
            error.code=400
        }
 
     },
     alreadyTraining: async (id) => {
-        const read = await models.education.update({is_read_rejection: true,education_status:config.GLOBAL_STATUSES.ACTIVE ,
-            contact_date:Math.floor(new Date().getTime() / 1000),}, {where: { id: id }});
+        const read = await models.education.update({education_status:config.GLOBAL_STATUSES.ACTIVE ,
+            contacted_date:Math.floor(new Date().getTime() / 1000),}, {where: { id: id }});
         return read;
     },
 
-
-
-    getDatta : async (user_id) =>{
+    checkForAvailability : async (user_id) =>{
         try {
+            const auditDate = await models.educator.findAll({
+                where:
+                    {user_id: user_id}
+            })
+            return auditDate;
 
-            const result = await models.educator.create({
-                user_id,
-                date,
-            } )
-            return result;
+        } catch (err) {
+            err.code = 400;
+            throw err;
+        }
+    },
+
+    recordingTheDate : async (user_id,createDate) =>{
+        try {
+                const result = await models.educator.update(
+                    {date:createDate},
+                    {where: {user_id:user_id}
+                    })
+
+                return result;
         }   catch (err) {
             err.code = 400;
             throw err;
         }
     },
-    getProductsForTraining: async (id) => {
+    getProductsForTraining: async () => {
         try {
             let result = await models.products.findAll({
-               attributes: ['title','price']
+               attributes: ['id','title','price']
             })
-            return result;
+            console.log(result)
+            return result.map(function(item) {
+                return item.toJSON();
+            })
 
         }catch (error){
             error.code= 400
         }
     },
-    returnIn7Days: async (id) => {
+    returnIn7Days: async (user_id) => {
         try {
-            let result = await models.education.findAll({
-                attributes:['contacted_date','education_status']
-            })
-            return result;
 
-        }catch (error) {
+            let result = await models.education.findAll({
+                where: {user_id:user_id},
+                attributes:['id','contacted_date','education_status','created_date']
+            })
+
+
+            return result.map(function(item) {
+                return item.toJSON();
+            });
+
+
+        } catch (error) {
             error.code = 400
 
+        }
+    },
+    productForOrder:async (products,brand_id,user_id,address_id) => {
+        try {
+            console.log(products,brand_id,user_id,address_id)
+            JSON.stringify(products);
+
+            let result = await models.orders.create({
+                products:products,
+                brand_id:brand_id,
+                user_id:user_id,
+                address_id:address_id,
+                date:Math.floor(new Date().getTime() / 1000)
+
+            })
+            console.log('asdadasdasd')
+            return result;
+
+        } catch (error) {
+            error.code = 400
         }
     }
 

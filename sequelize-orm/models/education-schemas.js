@@ -58,6 +58,9 @@ module.exports = (sequelize) => {
         contact_email: {
             type: DataTypes.STRING,
         },
+        contacted_date: {
+            type: DataTypes.INTEGER,
+        },
         created_date: {
             type: DataTypes.INTEGER,
         },
