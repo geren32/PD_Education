@@ -17,7 +17,7 @@ module.exports = {
         let transaction = null;
         try {
             transaction = trans ? trans : await sequelize.transaction();
-            const result = await models.users.create(user, transaction);
+            const result = await models.users.create(users, transaction);
             if (!trans) await transaction.commit();
             return result;
         } catch (err) {

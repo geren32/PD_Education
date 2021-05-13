@@ -85,6 +85,11 @@ module.exports = {
         WAITING: 3,
         DUPLICATE_POST:4
     },
+    REQUEST_STATUS:{
+        ENTERED:0,
+        CONSIDERED:1,
+        REJECTED:2,
+    },
 
     CHANGE_DATA_REQUEST_STATUSES:{
         0: 'Не розглянуто',
