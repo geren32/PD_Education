@@ -2,7 +2,7 @@ function associations(sequelize) {
     const { invoice, salon, orders,
         users, sales_person, sales_message,
         salon_address, salon_brands, brands, promotions,
-        materials, materials_cat
+        materials, materials_cat, products
     } = sequelize.models;
 
 
@@ -48,12 +48,25 @@ function associations(sequelize) {
     materials_cat.hasMany(materials,{foreignKey:'cat_id',sourceKey:'id'})
     materials.belongsTo(materials_cat,{foreignKey:'cat_id',sourceKey:'id'})
 
+  
 
+    brands.hasMany(products,{foreignKey:'brand_id', sourceKey:'id'})
+    products.belongsTo(brands, {foreignKey:'brand_id',sourceKey:'id'})
 
+    brands.hasMany(sales_person,{foreignKey:'brand_id',sourceKey:'id'})
+    sales_person.belongsTo(brands, {foreignKey:'brand_id',sourceKey:'id'})
 
+    brands.hasMany(orders,{foreignKey:'brand_id',sourceKey:'id'})
+    orders.belongsTo(brands,{foreignKey:'brand_id',sourceKey:'id'})
 
+    salon_address.hasMany(orders,{foreignKey:'address_id',sourceKey:'id'})
+    orders.belongsTo(salon_address,{foreignKey:'address_id',sourceKey:'id'})
 
+    users.hasMany(orders,{foreignKey:'user_id',sourceKey:'id'})
+    orders.belongsTo(users,{foreignKey:'user_id',sourceKey:'id'})
+// sales_person.belongsToMany(, {through: 'brands',
 
+// foreignKey:'brand_id'})
 
 
 

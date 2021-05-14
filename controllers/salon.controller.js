@@ -185,11 +185,81 @@ module.exports = {
         return res.status(200).json(material_cat);
 
 
+    },
+    getBrandsSalesPerson :async (req,res)=>{
+        let id = req.headers.id;
+        let result = await salonService.getSalesPersons(id);
+        if(!result.length)
+        {
+            return res.status(403).json({ message: "User id not provided" });
+        }
+      
+        let list = [];  
+        for (let item of result) {
+            let arr = item.brand_id.split(",");
+        if (arr && arr.length) {
+
+            arr.forEach((element) => {
+                list.push(element);
+            });
+
+        } 
     }
+    
+    
+let brands= await salonService.getSalesPersonsBrands(list);
+console.log(brands);
+return res.status(200).json(brands);
+  
+ 
+
+    },
+    getProducts : async(req,res)=>{
+   let {brand_id,sort}= req.body;
+
+   let result = await salonService.getProductsById(brand_id,sort);
+
+   return res.status(200).json(result);
 
 
+    },
+    productForOrder: async (req,res) => {
 
+     
 
+            let {id,quantity,brand_id,user_id,address_id,salon_id} = req.body
+            if (!quantity) {
+                throw  new Error('please specify quantity')
+            }
+            let products = [id,quantity]
+
+            products = JSON.stringify(products);
+
+            const OrdersObj = {
+                salon_id:salon_id,
+                products:products,
+                brand_id:brand_id,
+                user_id:user_id,
+                address_id:address_id
+            }
+            let myprod= await salonService.getProducts(id);
+          
+            if(quantity>myprod.count){
+               
+                return res.status(403).json({ message: "Not enought products" })
+            }
+            else        
+{let result = await salonService.productForOrder(OrdersObj);
+    let mycount =myprod.count-quantity;
+    console.log(mycount);
+let sobaka= await salonService.updateProductById({count:mycount},id);
+console.log(sobaka);
+
+            return res.status(200).json(result);
+
+}
+       
+    },
 
 
 

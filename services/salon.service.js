@@ -21,36 +21,35 @@ module.exports = {
                 {
                     model: models.sales_person,
                     attributes: ["address"],
-                    include: [{ model: models.users, attributes: userAttributes }],
+
+                    include: [{ model: models.users, attributes: userAttributes },
+                    ],
                 },
             ],
         });
 
         let arr = overview.sales_id.split(",");
-
         let list = [];
         if (arr && arr.length) {
-            let sales_ids = [];
+
             arr.forEach((element) => {
-                sales_ids.push(element);
+                list.push(element);
             });
-            list.push({ [Op.or]: sales_ids });
+
         }
 
-        let arr2 = [];
-        for (let item of list) {
-            let result = await models.sales_person.findAll({
-                where: { id: item },
-                include: [{ model: models.users, attributes: userAttributes }],
-            });
+        let result = await models.sales_person.findAll({
+            where: { id: list },
 
-            result = result.map(function (item) {
-                return item.toJSON();
-            });
+        });
 
-            arr2.push(result);
-        }
-        return arr2;
+
+        result = result.map(function (item) {
+            return item.toJSON();
+        });
+
+        return result;
+
     },
 
     MessageToSales: async (data, trans) => {
@@ -265,6 +264,95 @@ module.exports = {
             throw error;
         }
 
+    },
+    getSalesPersonsBrands: async (brand_id) => {
+        try {
+            let result = await models.brands.findAll({
+                where: { id: brand_id },
+            })
+
+            return result.map(function (item) {
+                return item.toJSON();
+            });
+
+
+        } catch (error) {
+
+        }
+    },
+    getProductsById: async (id, sort) => {
+        try {
+            let result = await models.products.findAll({
+                where: {
+                    [Op.and]: [
+                        { brand_id: id },
+                        { title: { [Op.like]: sort + "%" } }]
+                }
+            }
+            )
+
+            return result.map(function (item) {
+                return item.toJSON();
+            });;
+
+
+
+        } catch (error) {
+
+        }
+
+
+    },
+    productForOrder: async (product, trans) => {
+        let transaction = null;
+
+        try {
+
+            transaction = trans ? trans : await sequelize.transaction();
+            let result = await models.orders.create(product, { transaction });
+            result = await models.orders.findOne({ where: { id: result.id }, transaction })
+
+
+            if (!trans) await transaction.commit();
+            return result;
+        } catch (error) {
+
+            error.code = 400;
+
+            if (transaction) await transaction.rollback();
+            throw error;
+        }
+
+    },
+    updateProductById: async (product, id, trans) => {
+        let transaction = null;
+
+        try {
+            transaction = trans ? trans : await sequelize.transaction();
+            await models.products.update(product, { where: { id: id }, transaction })
+            let result = models.products.findOne({
+                where: { id: id }
+            }, { transaction })
+            if (!trans) await transaction.commit();
+            return result;
+
+        } catch (error) {
+            if (transaction) await transaction.rollback();
+            error.code = 400;
+            throw error;
+        }
+
+
+    },
+    getProducts: async (id) => {
+        try {
+            let result = await models.products.findOne({ where: { id: id } })
+            return result.toJSON();
+
+        } catch (error) {
+            err.code = 400;
+            throw err;
+        }
     }
 
 };

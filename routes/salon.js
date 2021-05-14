@@ -21,5 +21,8 @@ router
 .get('/salon_materials',salonController.getMaterials)
 .get('/material_cat',salonController.getMaterialsCatById)
 //#endregion
-
+.get('/sales_person_brands',salonController.getBrandsSalesPerson)
+.get('/product',salonController.getProducts)
+//#region ProductOrder
+.post('/makeorder',salonController.productForOrder)
 module.exports= router;

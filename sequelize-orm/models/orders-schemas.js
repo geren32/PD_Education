@@ -11,7 +11,10 @@ module.exports = (sequelize) => {
         },
         date: {
             type: DataTypes.INTEGER(11),
+            defaultValue: function(){
+                return Math.floor(new Date().getTime()/1000)
 
+            }
         },
         user_id: {
             type: DataTypes.INTEGER(11),

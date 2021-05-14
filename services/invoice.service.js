@@ -1,7 +1,7 @@
 const { models } = require('../sequelize-orm');
 const sequelize = require('../sequelize-orm');
 // const {Op} = sequelize("sequelize");
-
+const { Op } = require("sequelize");
 const addressAttributes = [
     'title',
     'adress',
@@ -101,7 +101,7 @@ module.exports = {
         }
     },
     getAllInvoice: async () => {
-        let result = await models.invoice.findAll({
+        let result = await models.invoice.findAll({ where:{salon_id:1},
             include: [{ model: models.salon, attributes: salonAttributes },
             {model: models.orders, attributes:['id','date','products']}]
         });
@@ -111,7 +111,43 @@ module.exports = {
         });
 
 
-    }
+    },
+    makeCallFilter: async(body, whereObj) => {
+        let arr = [];
+        let sort;
+        let cdrArr = [];
+
+      if(body.status){
+          arr.push({status:body.status})
+      }
+    //   if (body.downloaded) {
+    //     let date = {};
+    //    date = body.downloaded;
+    //     arr.push({ downloaded: date });
+    // }
+
+        // if (body.sort) {
+        //     if (body.sort) {
+        //         sort = [
+        //             ['downloaded', body.sort]
+        //         ];
+        //     }
+        // } else {
+        //     sort = [
+        //         ['downloaded', 'ASC']
+        //     ];
+        // }
+        let filter = {
+           
+            where: {
+                [Op.and]: [whereObj, ...arr],
+                cdrFilter: {
+                    [Op.and]: cdrArr
+                }
+            }
+        };
+        return filter;
+    },
 
 
 
