@@ -10,8 +10,8 @@ const router = express.Router();
 // const checkSuperAdminRoleByToken = require('../middlewares/check-super-admin-role-by-token.middleware');
 const clientController = require('../controllers/client.controller');
 
-const checkClientMiddleware = require('../middlewares/check-client-role.middleware');
-const passportMiddleware = require('../middlewares/passport.middlewares');
+// const checkClientMiddleware = require('../middlewares/check-client-role.middleware');
+// const passportMiddleware = require('../middlewares/passport.middlewares');
 
 
 router
@@ -42,7 +42,7 @@ router
 
     // .post('/cabinet/change-data-request', passportMiddleware, checkClientMiddleware, clientController.changeDataRequest)
 
-    .get('/cabinet/read-rejection-message/:id', passportMiddleware, checkClientMiddleware, clientController.readRejectionMessage)
+    // .get('/cabinet/read-rejection-message/:id', passportMiddleware, checkClientMiddleware, clientController.readRejectionMessage)
 
     // .get('/cabinet/history-orders', passportMiddleware, checkClientMiddleware, clientController.getClientHistory)
     // .get('/cabinet/history-detail/:booking_id', passportMiddleware, checkClientMiddleware, clientController.getClientHistoryDetail)

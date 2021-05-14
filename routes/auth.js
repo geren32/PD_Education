@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const controller = require('../controllers/auth.controller');
 
-const passportMiddleware = require('../middlewares/passport.middlewares');
+// const passportMiddleware = require('../middlewares/passport.middlewares');
 
 
 router
@@ -13,7 +13,7 @@ router
 
     .get('/registerConfirm/:token', controller.registerConfirm)
 
-    .get('/login/:error?', controller.loginPage)
+    // .get('/login/:error?', controller.loginPage)
 
     .post('/login', controller.userLogin)
 
@@ -25,7 +25,7 @@ router
 
     //.get('/changePassword', passportMiddleware, controller.changePasswordPage)
     //.post('/changePassword', passportMiddleware, controller.changePassword)
-    .post('/changePasswordUPDATE', passportMiddleware, controller.changePasswordUPDATE)
+    // .post('/changePasswordUPDATE', passportMiddleware, controller.changePasswordUPDATE)
 
     .get('/logout', controller.logout)
 

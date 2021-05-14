@@ -13,7 +13,8 @@ let clientRouter = require('./routes/client');
 
 let usersRouter = require('./routes/users');
 
-let educator = require('./routes/educator');
+let adminBrandsRouter = require('./routes/admin.brands')
+let educatorRouter = require('./routes/educator');
 let authRouter = require('./routes/auth');
 let adminAuthRouter = require('./routes/admin.auth');
 
@@ -30,8 +31,8 @@ const moment = require('moment');
 
 
 
-const passportMiddleware = require('./middlewares/passport.middlewares');
-const getClientInfoMiddleware = require('./middlewares/get-client-info.middlewares');
+// const passportMiddleware = require('./middlewares/passport.middlewares');
+// const getClientInfoMiddleware = require('./middlewares/get-client-info.middlewares');
 
 
 
@@ -41,12 +42,12 @@ const app = express();
 
 // enabling cors for session storage working on angular frontend, and cookie serving
 //exposing headers needed for token sending and receiving
-app.use(cors({
-  //origin: ["http://localhost:4200", "http://localhost", "http://185.233.36.150"],
-  origin: '*',
-  /*credentials: true,*/
-  exposedHeaders: ['Authorization','Impersionate',]
-}));
+// app.use(cors({
+//   //origin: ["http://localhost:4200", "http://localhost", "http://185.233.36.150"],
+//   origin: '*',
+//   /*credentials: true,*/
+//   exposedHeaders: ['Authorization','Impersionate',]
+// }));
 // off cors
 // app.use(function(req, res, next) {
 //   res.header("Access-Control-Allow-Origin", "*");
@@ -86,13 +87,13 @@ app.set('view engine', '.hbs');
 
 
 
-
-app.use('/educator',educator);
+app.use('/admin_brands',adminBrandsRouter);
+app.use('/educator',educatorRouter);
 app.use('/auth', authRouter);
-app.use('/client', getClientInfoMiddleware, clientRouter);
+// app.use('/client', getClientInfoMiddleware, clientRouter);
 // app.use('/product', productRouter);
 // app.use('/import', importProduct);
-app.use('/api/admin/user', adminUserRouter);
+// app.use('/api/admin/user', adminUserRouter);
 app.use('/api/auth/admin', adminAuthRouter);
 // app.use('/api/admin/booking', adminBookingRouter);
 // app.use('/api/admin/product', adminProductRouter);
@@ -105,7 +106,7 @@ app.use('/api/auth/admin', adminAuthRouter);
 
 
 
-app.use('/', getClientInfoMiddleware, clientRouter);
+// app.use('/', getClientInfoMiddleware, clientRouter);
 
 
 
