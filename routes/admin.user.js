@@ -63,7 +63,7 @@ router
 
     .post('/checkIsDataExist', adminUserController.checkIsDataExist)
 
-    .post('/deleteUsers', adminUserController.deleteUsers)
+    // .post('/deleteUsers', adminUserController.deleteUsers)
 
     .get('/passwordRecovery/:id', adminUserController.passwordRecovery)
 

@@ -11,8 +11,8 @@ function associations(sequelize) {
     salon_address.hasMany(education,{foreignKey: 'address_id', sourceKey: 'id'})
     education.belongsTo(salon_address,{foreignKey: 'address_id', sourceKey: 'id'})
 
-    educator.hasMany(brands,{foreignKey: 'brand_id', sourceKey: 'id'})
-    brands.belongsTo(educator,{foreignKey: 'brand_id', sourceKey: 'id'})
+    educator.hasMany(users,{foreignKey:'user_id', sourceKey:'id'})
+    users.belongsTo(educator,{foreignKey:'user_id', sourceKey:'id'})
 
     products.hasMany(brands,{foreignKey: 'brand_id', sourceKey: 'id'})
     brands.belongsTo(products,{foreignKey: 'brand_id', sourceKey: 'id'})
@@ -20,11 +20,43 @@ function associations(sequelize) {
     orders.hasMany(users,{foreignKey: 'user_id', sourceKey: 'id'})
     users.belongsTo(orders,{foreignKey: 'user_id', sourceKey: 'id'})
 
+    orders.hasMany(salon_address,{foreignKey: 'address_id', sourceKey: 'id'})
+    salon_address.belongsTo(orders,{foreignKey: 'address_id', sourceKey: 'id'})
+
+    orders.hasMany(brands,{foreignKey: 'brand_id', sourceKey: 'id'})
+    brands.belongsTo(orders,{foreignKey: 'brand_id', sourceKey: 'id'})
+
+    orders.hasMany(salon,{foreignKey: 'salon_id', sourceKey: 'id'})
+    salon.belongsTo(orders,{foreignKey: 'salon_id', sourceKey: 'id'})
+
+    bag_items.hasMany(users,{foreignKey: 'user_id', sourceKey: 'id'})
+    users.belongsTo(bag_items,{foreignKey: 'user_id', sourceKey: 'id'})
+
+    bag_items_requests.hasMany(bag_items,{foreignKey: 'bag_id', sourceKey: 'id'})
+    bag_items.belongsTo(bag_items_requests,{foreignKey: 'bag_id', sourceKey: 'id'})
+
+    education_kilometers.hasMany(education_report,{foreignKey: 'report_id', sourceKey: 'id'})
+    education_report.belongsTo(education_kilometers,{foreignKey: 'report_id', sourceKey: 'id'})
+
+    education_kilometers.hasMany(education,{foreignKey: 'education_id', sourceKey: 'id'})
+    education.belongsTo(education_kilometers,{foreignKey: 'education_id', sourceKey: 'id'})
+
+    education_report.hasMany(education,{foreignKey: 'education_id', sourceKey: 'id'})
+    education.belongsTo(education_report,{foreignKey: 'education_id', sourceKey: 'id'})
+
+    education_report.hasMany(users,{foreignKey: 'user_id', sourceKey: 'id'})
+    users.belongsTo(education_report,{foreignKey: 'user_id', sourceKey: 'id'})
+
+    education_kilometers.hasMany(users,{foreignKey: 'user_id', sourceKey: 'id'})
+    users.belongsTo(education_kilometers,{foreignKey: 'user_id', sourceKey: 'id'})
 
 
 
-    salon_address.hasMany(education,{foreignKey: 'address_id', sourceKey: 'id'})
-    education.belongsTo(salon_address,{foreignKey: 'address_id', sourceKey: 'id'})
+
+
+
+
+
 
 
 

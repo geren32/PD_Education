@@ -2,29 +2,34 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
 
-    sequelize.define('sales_message', {
+    sequelize.define('salon_lessons', {
         id: {
             autoIncrement: true,
             type: DataTypes.INTEGER(11),
             allowNull: false,
             primaryKey: true
         },
+        brand_id: {
+            type: DataTypes.INTEGER(11),
+        },
+        training_id: {
+            type: DataTypes.INTEGER(11),
+        },
+        lesson_id: {
+            type: DataTypes.INTEGER(11),
+        },
         salon_id: {
-
             type: DataTypes.INTEGER(11),
         },
-        sales_id: {
+        finished_date: {
             type: DataTypes.INTEGER(11),
         },
-        date: {
+        points_received: {
             type: DataTypes.INTEGER(11),
-        },
-        message: {
-            type: DataTypes.TEXT,
-        },
+        }
     }, {
 
-        tableName: 'sales_message',
+        tableName: 'salon_lessons',
         timestamps: false,
 
     });

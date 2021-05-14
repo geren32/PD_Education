@@ -31,7 +31,7 @@ module.exports = {
        }
 
     },
-    alreadyTraining: async (id) => {
+    lessonConfirmation: async (id) => {
         const read = await models.education.update({education_status:config.GLOBAL_STATUSES.ACTIVE ,
             contacted_date:Math.floor(new Date().getTime() / 1000),}, {where: { id: id }});
         return read;
@@ -97,26 +97,71 @@ module.exports = {
 
         }
     },
-    productForOrder:async (products,brand_id,user_id,address_id) => {
+    productForOrder:async (OrdersObj) => {
         try {
-            console.log(products,brand_id,user_id,address_id)
-            JSON.stringify(products);
+            console.log(OrdersObj)
 
-            let result = await models.orders.create({
-                products:products,
-                brand_id:brand_id,
-                user_id:user_id,
-                address_id:address_id,
-                date:Math.floor(new Date().getTime() / 1000)
-
-            })
-            console.log('asdadasdasd')
-            return result;
+            let result = await models.orders.create(
+                OrdersObj
+            )
+            return result.toJSON();
 
         } catch (error) {
             error.code = 400
+
+
+        }
+    },
+    getEquipmentEducator: async (user_id) => {
+        try {
+            let filter = user_id;
+            if (typeof user_id !== 'object') {
+                filter = { user_id: user_id }
+            }
+            let result = await models.bag_items.findAll({
+                where:filter
+                }
+
+            )
+            return result.map(function(item) {
+                return item.toJSON();
+            })
+
+
+
+        }catch (error) {
+            error.code = 400
+        }
+    },
+    changeRequestEquipmentEducator: async (BagObj) => {
+        try{
+
+            let result = await models.bag_items_requests.create(BagObj)
+            return result.toJSON();
+        }catch (error) {
+            error.code = 400
+        }
+    },
+    createReportForEducation: async (ReportObj) => {
+        try{
+
+            let result = await models.education_report.create(ReportObj)
+            return result.toJSON();
+
+        }catch (error) {
+            error.code = 400
+        }
+    },
+    createEducationKilometers: async (KilometersObj) => {
+        try {console.log(KilometersObj)
+            let result = await models.education_kilometers.create(KilometersObj)
+            return result.toJSON();
+
+        }catch (error){
+            error.code = 400
         }
     }
+
 
 
 

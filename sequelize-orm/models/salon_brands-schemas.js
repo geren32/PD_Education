@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
 
-    sequelize.define('sales_message', {
+    sequelize.define('salon_brands', {
         id: {
             autoIncrement: true,
             type: DataTypes.INTEGER(11),
@@ -10,21 +10,17 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         salon_id: {
-
             type: DataTypes.INTEGER(11),
         },
-        sales_id: {
+        brand_id: {
             type: DataTypes.INTEGER(11),
         },
         date: {
             type: DataTypes.INTEGER(11),
         },
-        message: {
-            type: DataTypes.TEXT,
-        },
     }, {
 
-        tableName: 'sales_message',
+        tableName: 'salon_brands',
         timestamps: false,
 
     });
