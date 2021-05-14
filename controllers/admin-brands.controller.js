@@ -11,11 +11,23 @@ module.exports = {
             if (!title || !logo ) {
                 res.status(403).json({ message: "Some field provided" });
             }
-            let brandsObj = {
-                title:title,
-                logo:logo
-            }
-            console.log(brandsObj)
+            title = JSON.stringify(title);
+            // let brandsObj = {
+            //     title:title,
+            //     logo:logo
+            // }
+            const result = await adminBrandsService.checkForAvailability(title)
+            console.log(result)
+
+
+                if (result){
+                    res.status(403).json({massage: "such a brand already exists"})
+                }
+            // else if (!result) {
+            //
+            //         let result = await adminBrandsService.createBrands(brandsObj);
+            //     }
+            // return res.json(result);
 
 
 

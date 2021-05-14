@@ -120,7 +120,6 @@ console.log('select a date')
             }
             let products = [id,quantity]
 
-            products = JSON.stringify(products);
 
             const OrdersObj = {
                 salon_id:salon_id,
