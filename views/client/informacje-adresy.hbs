@@ -143,13 +143,13 @@
                                 <div class="row bg-brown"> 
                                    
                                     <div class="col-md-5">
-                                        <div class="sub-title">Mój Fryzjer {{result.user.first_name}} {{result.user.last_name}}</div>
+                                        <div class="sub-title">{{result.title}} {{result.billing_first_name}} {{result.billing_last_name}}</div>
                                         <div class="text">
                                             <ul>
                                                 <li>
-                                                 {{result.address}}
+                                                 {{result.billing_address}}
                                                     <br>
-                                                   {{result.billing_zip}} {{result.billing_city}}
+                                                {{result.billing_zip}}   {{result.billing_city}}
                                                 </li>
                                                 <li>
                                                   Nip:     {{result.billing_nip}}
@@ -161,7 +161,7 @@
                                    
                                     <div class="col-md-4">
                                         <div class="sub-title">Osoba kontaktowa
-                                        {{result.user.first_name}} {{result.user.last_name}}
+                                     {{result.billing_first_name}} {{result.billing_last_name}}
                                         </div>
                                         <div class="text">
                                             <ul>
@@ -269,38 +269,49 @@
             <div class="popup-container">
                 <div class="popup-align">
                     <div class="popup-info">
-                        <form action="" class="form">
-                            <div class="text">
-                                <div class="h5">Mój Fryzjer Marcel Migdał</div>
-                            </div>
+                        <form action="/salonperson" class="form" method="POST">
+                               <div class="form-group">
+                                   <label class="label">Title:</label>
+                                <input type="text" name="billing_title" value={{result.billing_title}}>
+                            </div> 
                             <div class="form-group">
-                                <input type="text" value="Kartuska 356 A">
+                                <label class="label">First_name:</label>
+                                <input type="text" name="billing_first_name" value={{result.billing_first_name}}>
                             </div>
-                            <div class="form-group">
-                                <input type="text" value="80-125 Gdańsk">
-                            </div>
-                            <div class="form-group">
-                                <label class="label">NIP:</label>
-                                <input type="text" value="9271388185">
-                            </div>
-
-                            <button type="submit" class="btn">Save</button>
-                        </form>
-
-                        <form action="" class="form">
-                            <div class="text">
-                                <div class="h5">Osoba kontaktowa Marcel Migdał</div>
+                             <div class="form-group">
+                                <label class="label">Last_name:</label>
+                                <input type="text"  name="billing_last_name" value={{result.billing_last_name}}>
                             </div>
                             <div class="form-group">
                                 <label class="label">Tel:</label>
-                                <input type="text" value="+48 791 742 068">
+                                <input type="text" name="billing_phone" value={{result.billing_phone}}>
                             </div>
                             <div class="form-group">
-                                <input type="text" value="marcel@marcelmigdal.pl">
+                                <input type="text" name="billing_email" value={{result.billing_email}}>
+                            </div>
+                          
+                          
+                            <div class="form-group">
+                                <label class="label">Address:</label>
+                                <input type="text" name="billing_address" value={{result.billing_address}}>
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Zip:</label>
+                                <input type="text" name="billing_zip" value={{result.billing_zip}}>
+                            </div>
+                            <div class="form-group">
+                                <label class="label">City:</label>
+                                <input type="text" name="billing_city" value={{result.billing_city}}>
+                            </div>
+                            <div class="form-group">
+                                <label class="label">NIP:</label>
+                                <input type="text" name="billing_nip" value={{result.billing_nip}}>
                             </div>
 
                             <button type="submit" class="btn">Save</button>
                         </form>
+
+                   
                     </div>
                 </div>
                 <div class="btn-close"><span></span></div>

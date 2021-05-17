@@ -71,27 +71,21 @@ console.log(result);
 
     },
     updateSalonById: async (req, res) => {
-        let { billing_title, billing_address, billing_city, billing_zip, billing_nip, billing_first_name, billing_last_name, billing_phone, billing_email } = req.body;
-        let id = req.headers.id;
+        let { billing_title, billing_zip, billing_address, billing_city,billing_nip, billing_first_name, billing_last_name, billing_phone, billing_email } = req.body;
+    
 
-        if (!billing_title || !billing_address || !billing_city || !billing_zip || !billing_nip || !billing_first_name || !billing_last_name || !billing_phone || !billing_email) {
+        if (!billing_title || !billing_zip || !billing_address || !billing_city || !billing_nip || !billing_first_name || !billing_last_name || !billing_phone || !billing_email) {
             res.status(403).json({ message: "Some field provided" });
         }
 
-        let result = await salonService.updateSalonById({
-            billing_title: billing_title,
-            billing_address: billing_address,
-            billing_city: billing_city,
-            billing_zip: billing_zip,
-            billing_nip: billing_nip,
-            billing_first_name: billing_first_name,
-            billing_last_name: billing_last_name,
-            billing_phone: billing_phone,
-            billing_email: billing_email
-        }, { id: id })
+        let result = await salonService.updateSalonById(
+         req.body
+        , { id: 1 })
 
 
-        res.status(200).json(result);
+        // res.status(200).json(result);
+        res.redirect('/salon_address');
+
     },
 
     getSalonAddressById: async (req, res) => {
@@ -114,11 +108,11 @@ console.log(result);
     },
 
     editSalonAddressById: async (req, res) => {
-        let id = req.params.id;
+        // let id = req.params.id;
         let { title, address, city, zip, first_name, last_name, phone, phone_contact, email, email_contact } = req.body;
 
 
-        let result = await salonService.editSalonAddressById({ title, address, city, zip, first_name, last_name, phone, phone_contact, email, email_contact }, { id: id });
+        let result = await salonService.editSalonAddressById({ title, address, city, zip, first_name, last_name, phone, phone_contact, email, email_contact }, { id: 1 });
 
         return res.status(200).json(result);
 
