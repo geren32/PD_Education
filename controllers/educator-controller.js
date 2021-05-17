@@ -74,7 +74,7 @@ console.log('select a date')
             return res.json(result);
         } catch (err) {
             return res.status(400).json({
-                massage: err.massage,
+                message: err.message,
                 errCode: 400
             })
         }
@@ -98,7 +98,7 @@ console.log('select a date')
             return res.json(result);
         } catch (err) {
             return res.status(400).json({
-                massage: err.massage,
+                message: err.message,
                 errCode: 400
             })
         }
@@ -111,7 +111,7 @@ console.log('select a date')
 
         } catch (err) {
             return res.status(400).json({
-                massage: err.massage,
+                message: err.message,
                 errCode: 400
             })
         }
@@ -146,7 +146,7 @@ console.log('select a date')
 
         } catch (err) {
             return res.status(400).json({
-                massage: err.massage,
+                message: err.message,
                 errCode: 400
             })
         }
@@ -189,7 +189,7 @@ console.log('select a date')
 
         }catch (err) {
             return res.status(400).json({
-                massage: err.massage,
+                message: err.message,
                 errCode: 400
             })
         }
@@ -217,7 +217,7 @@ console.log('select a date')
 
         }catch (err) {
             return res.status(400).json({
-                massage: err.massage,
+                message: err.message,
                 errCode: 400
             })
         }
@@ -244,7 +244,7 @@ console.log('select a date')
 
         }catch (err){
             return res.status(400).json({
-                massage:err.massage,
+                message:err.message,
                 errCode:400
             })
         }
