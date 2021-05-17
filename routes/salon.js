@@ -4,7 +4,7 @@ const router = express.Router();
 const salonController = require('../controllers/salon.controller');
 
 router
-.get('/salesperson/:id', salonController.getSalesPerson)
+.get('/salesperson', salonController.getSalesPerson)
 .post('/createmessage', salonController.createMessage)
 .get('/salonperson/:id', salonController.getSalonById)
 .post('/salonperson', salonController.updateSalonById)

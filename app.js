@@ -97,15 +97,15 @@ app.use('/api/auth/admin', adminAuthRouter);
 // app.use('/api/admin/booking', adminBookingRouter);
 // app.use('/api/admin/product', adminProductRouter);
 app.use('/invoce', invoceRouter);
-app.use('/salon',salonRouter)
+app.use('/',salonRouter)
+// app.use('/salon',salonRouter)
 
 
 
 
 
 
-
-app.use('/', getClientInfoMiddleware, clientRouter);
+// app.use('/', getClientInfoMiddleware, clientRouter);
 
 
 

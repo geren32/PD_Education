@@ -40,6 +40,7 @@ module.exports = {
 
         let result = await models.sales_person.findAll({
             where: { id: list },
+            include:[{model: models.users, attributes:userAttributes}]
 
         });
 
@@ -68,18 +69,18 @@ module.exports = {
             throw error;
         }
     },
-    getSalonById: async (id, trans) => {
+    getSalonById: async (id) => {
 
 
         try {
-            transaction = trans ? trans : await sequelize.transaction();
+       
             let result = await models.salon.findOne({
                 where: { id: id },
                 include: [{ model: models.users, attributes: userAttributes }],
-                transaction,
+                
             });
 
-
+        
             return result.toJSON();
         } catch (error) {
             err.code = 400;
@@ -267,14 +268,11 @@ module.exports = {
     },
     getSalesPersonsBrands: async (brand_id) => {
         try {
-            let result = await models.brands.findAll({
-                where: { id: brand_id },
+            let result = await models.brands.findOne({
+                where: {id: {[Op.and]:[ brand_id]}},
             })
 
-            return result.map(function (item) {
-                return item.toJSON();
-            });
-
+            return result.toJSON()
 
         } catch (error) {
 

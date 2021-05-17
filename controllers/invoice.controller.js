@@ -41,10 +41,16 @@ module.exports = {
      getAllInvoice: async (req,res)=>{
      // let {status}= req.body;
      let result= await invoceService.getAllInvoice();
-//  console.log(result);
+
 // let filter = await invoceService.makeCallFilter(req.body,result);
 // console.log(filter);
-     return res.status(200).json(result);
+console.log(result)
+     // return res.status(200).json(result);
+     return  res.render('client/konto-klienta',{
+          //  layout: 'client/layout-client',
+         result: result
+        
+          })
 
      },
     

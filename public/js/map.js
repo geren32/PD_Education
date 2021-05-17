@@ -1,180 +1,90 @@
-let GeoLocation = {};
+jQuery(function ($) {
 
-jQuery(function($)  {
+		var maps = [],
+				mapStyles = [ { "featureType": "water", "elementType": "geometry", "stylers": [ { "color": "#e9e9e9" }, { "lightness": 17 } ] }, { "featureType": "landscape", "elementType": "geometry", "stylers": [ { "color": "#f5f5f5" }, { "lightness": 20 } ] }, { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [ { "color": "#ffffff" }, { "lightness": 17 } ] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [ { "color": "#ffffff" }, { "lightness": 29 }, { "weight": 0.2 } ] }, { "featureType": "road.arterial", "elementType": "geometry", "stylers": [ { "color": "#ffffff" }, { "lightness": 18 } ] }, { "featureType": "road.local", "elementType": "geometry", "stylers": [ { "color": "#ffffff" }, { "lightness": 16 } ] }, { "featureType": "poi", "elementType": "geometry", "stylers": [ { "color": "#f5f5f5" }, { "lightness": 21 } ] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [ { "color": "#dedede" }, { "lightness": 21 } ] }, { "elementType": "labels.text.stroke", "stylers": [ { "visibility": "on" }, { "color": "#ffffff" }, { "lightness": 16 } ] }, { "elementType": "labels.text.fill", "stylers": [ { "saturation": 36 }, { "color": "#333333" }, { "lightness": 40 } ] }, { "elementType": "labels.icon", "stylers": [ { "visibility": "off" } ] }, { "featureType": "transit", "elementType": "geometry", "stylers": [ { "color": "#f2f2f2" }, { "lightness": 19 } ] }, { "featureType": "administrative", "elementType": "geometry.fill", "stylers": [ { "color": "#fefefe" }, { "lightness": 20 } ] }, { "featureType": "administrative", "elementType": "geometry.stroke", "stylers": [ { "color": "#fefefe" }, { "lightness": 17 }, { "weight": 1.2 } ] }],
+				ibOptions = {
+						alignBottom: true,
+						content: 'text',
+						pixelOffset: new google.maps.Size(-150, -40),
+						boxStyle: {
+								width: "300px"
+						},
+						closeBoxMargin: "5px 5px 5px 5px",
+						closeBoxURL: 'img/icon-close.png'
+				},
+				ib = new InfoBox(ibOptions);
 
-    "use strict";
+		function Map(id, mapOptions) {
+				this.map = new google.maps.Map(document.getElementById(id), mapOptions);
+				this.markers = [];
+				this.infowindows = [];
+				this.clusters = null;
+		}
 
-    let markers = [], staticMarkers = [], map, myLatlng, marker, image;
+		function addMarker(mapId, location, index, string, image) {
+				maps[mapId].markers[index] = new google.maps.Marker({
+						position: location,
+						map: maps[mapId].map,
+						icon: {
+								url: image
+						}
+				});
 
-    let ibOptions = {
-            alignBottom: true,
-            content: 'text',
-            pixelOffset: $(window).width() < 1199 ? new google.maps.Size(-160, 305) : new google.maps.Size(100, 255),
-            boxStyle: $(window).width() < 1199 ? {width: "320px"} : {width: "393px"},
-            closeBoxMargin: "-22px -22px",
-            closeBoxURL: '/img/icon-close.png'
-        },
-        ib = new InfoBox(ibOptions);
+				var content = '<div class="info-box">' + string + '</div>';
 
-    // Create markers
-    function addMarker(location){
-        image = {
-            url: $('#map').attr('data-map-marker'),
-            // scaledSize : new google.maps.Size(43, 57),
-        };
-        marker = new google.maps.Marker({
-            position: location,
-            icon: image,
-        });
+				google.maps.event.addListener(maps[mapId].markers[index], 'click', function () {
+						ib.setContent(content);
+						ib.setPosition(location);
+						ib.open(maps[mapId].map);
+				});
 
-        markers.push(marker);
-        marker.setMap(map);
-        map.panTo(location);
-    }
+		}
 
-    function addStaticMarker(location, map, string, image, activeImage ) {
-        const staticMarker = new google.maps.Marker({
-            position: location,
-            map: map,
-            icon: image,
-            mainImage: image,
-            activeIcon: activeImage,
-            active: false
-        });
-        const content = '<div class="info-box">' + string + '</div>';
-        google.maps.event.addListener(staticMarker, 'click', function () {
-            ib.setContent(content);
-            ib.setPosition(location);
-            ib.open(map);
+		function initialize(mapInst) {
 
-            staticMarkers.forEach(function(marker) {
-                marker.active = false;
-                marker.setIcon(marker.mainImage);
-            });
+			var lat = mapInst.attr("data-lat"),
+					lng = mapInst.attr("data-lng"),
+					myLatlng = new google.maps.LatLng(lat, lng),
+					setZoom = parseInt(mapInst.attr("data-zoom")),
+					mapId = mapInst.attr('id');
 
-            map.setCenter(location);
-            this.setIcon(this.activeIcon);
-            this.active = true;
-        });
+			var mapOptions = {
+					zoom: setZoom,
+					disableDefaultUI: true,
+					scrollwheel: false,
+					zoomControl: true,
+					zoomControlOptions: {
+						style: google.maps.ZoomControlStyle.LARGE,
+						position: google.maps.ControlPosition.RIGHT_BOTTOM
+					},
+					streetViewControl: false,
+					streetViewControlOptions: {
+						position: google.maps.ControlPosition.LEFT_BOTTOM
+					},
+					fullscreenControl: false,
+					center: myLatlng,
+					styles: mapStyles
+			};
 
-        staticMarkers.push(staticMarker)
-    }
+			maps[mapId] = new Map(mapId, mapOptions);
 
-    // initialize map
-    function initialize() {
-        const $mapEL = $('#map');
-        let lat = $mapEL.attr("data-lat"),
-            lng = $mapEL.attr("data-lng");
+			$('.marker[data-rel="' + mapId + '"]').each(function (i, el) {
+					addMarker(
+							mapId,
+							new google.maps.LatLng(
+									$(this).attr('data-lat'),
+									$(this).attr('data-lng')
+							),
+							i,
+							$(this).attr('data-string'),
+							$(this).attr('data-image')
+					);
+			});
 
-        myLatlng = new google.maps.LatLng(lat,lng);
+		}
 
-        let setZoom = parseInt($mapEL.attr("data-zoom"));
-
-        let styles = [];
-        let styledMap = new google.maps.StyledMapType(styles,{name: "Styled Map"});
-
-        let mapOptions = {
-            zoom: setZoom,
-            zoomControl: true,
-            center: myLatlng,
-            mapTypeControlOptions: {
-                mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
-            },
-            fullscreenControl: false,
-            mapTypeControl: false,
-            streetViewControl: false
-        };
-
-        // google Autocomplete options
-        let southWestLatLng = new google.maps.LatLng({lat: 49.7656834, lng: 23.8685913}),
-            northEastLatLng = new google.maps.LatLng({lat: 49.906071, lng: 24.166724}),
-            lvivAutocompleteBounds = new google.maps.LatLngBounds(southWestLatLng, northEastLatLng);
-
-        let options = {
-            types: ['address'],
-            componentRestrictions: {country: "ua"},
-            bounds: lvivAutocompleteBounds,
-            strictBounds: true
-        };
-
-        if ( $('#deliveryStreet').length ) {  // delivery page autocomlete
-            let deliveryStreet = new google.maps.places.Autocomplete( // delivery page autocomlete
-                (document.getElementById('deliveryStreet')),
-                options
-            );
-
-            google.maps.event.addListener(deliveryStreet, 'place_changed', function() {
-                let place = deliveryStreet.getPlace(),
-                    newLocation;
-
-                if ( !place.geometry.location ) return false;
-
-                if ( markers.length ) {
-                    for( let i=0; i < markers.length; i++ ){
-                        markers[i].setMap(null);
-                    }
-                    map.panTo(myLatlng);
-                }
-
-                newLocation = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
-                smoothZoomMap(map, 15);
-                addMarker(newLocation);
-
-            });
-        }
-
-        //Create map
-        map = new google.maps.Map(document.getElementById("map"), mapOptions);
-        map.mapTypes.set('map_style', styledMap);
-        map.setMapTypeId('map_style');
-
-        $('.marker').each(function (i, el) {
-            addStaticMarker(
-                new google.maps.LatLng(
-                    $(this).attr('data-lat'),
-                    $(this).attr('data-lng')
-                ),
-                map,
-                $(this).attr('data-string'),
-                $(this).attr('data-image'),
-                $(this).attr('data-image-active'),
-                $(this).attr('data-delivery')
-            )
-        });
-
-        map.addListener('click', function() {
-            ib.close();
-            staticMarkers.forEach(function(marker) {
-                marker.active = false;
-                marker.setIcon(marker.mainImage);
-            });
-        });
-
-        ib.addListener('closeclick', function() {
-            staticMarkers.forEach(function(marker) {
-                marker.active = false;
-                marker.setIcon(marker.mainImage);
-            });
-        });
-
-    }
-
-    // Smooth map zoom
-    function smoothZoomMap(map, targetZoom){
-        let currentZoom = arguments[2] || map.getZoom();
-        if (currentZoom != targetZoom){
-            google.maps.event.addListenerOnce(map, 'zoom_changed', function (event) {
-                smoothZoomMap(map, targetZoom, currentZoom + (targetZoom > currentZoom ? 1 : -1));
-            });
-            setTimeout(function(){ map.setZoom(currentZoom) }, 100);
-        }
-    }
-
-    // Load map
-    if ($('#map').length) {
-        setTimeout(function(){
-            initialize();
-        }, 500);
-    }
+		$('.map').each(function () {
+				initialize($(this));
+		});
 
 });

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   {{> top}}
+    <title>Szkolenia Edukatora - Premium Distribution - Education</title>
+</head>
+<body class="edu-handlowcy-page">
+    
+ 
+ 
+    <div id="content-block"> 
+        {{> header}}
+ <div class="tools-bar">
+        <div class="tools-bar__header">
+            <div class="tools-bar__logo">
+                <img src="/img/white-logo.png" alt="">
+            </div>
+        </div>
+        <div class="tools-bar__main">
+            <ul class="tools-bar__list">
+                <li class="tools-bar__item active">
+                    <div class="tools-bar__link active">
+                        <span>Kokpit</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content">
+                        <div class="tools-bar__content__group">
+                            <a href="" class="active">Handlowcy</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="/salon_brands">Marki</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="tools-bar__item">
+                    <div class="tools-bar__link">
+                        <span>Informacje</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content" style="display: none">
+                        <div class="tools-bar__content__group">
+                            <a href="/invoce">Konto Klienta</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="/salon_address">Adresy</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Zamówienia</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Promocje</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="tools-bar__item">
+                    <div class="tools-bar__link">
+                        <span>Edukacja</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content" style="display: none">
+                        <div class="tools-bar__content__group">
+                            <a href="">Kevin Murphy</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Olaplex</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Alterna</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Showpony</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Eleven Australia</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="tools-bar__item">
+                    <div class="tools-bar__link">
+                        <span>Materiały</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content" style="display: none">
+                        <div class="tools-bar__content__group">
+                            <a href="">Materiały Edukacyjne</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Materiały na Social Media</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Cenniki, Oferty produktowe</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="tools-bar__item">
+                    <div class="tools-bar__link">
+                        <span>Wizualizacje</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content" style="display: none">
+                        <div class="tools-bar__content__group">
+                            <a href="">Materiały marketingowe i branding dla twojego salonu</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-content">
+        <div class="simple-content">
+            <div class="simple-content__main">
+                <div class="text">
+                    <h5 class="h5"><span>Handlowcy</span></h5>
+                    <p>
+                        Tutaj znajdziesz informacje o swoich Handlowcach i będziesz mógł/mogła się z nimi
+                        skontaktować.
+                    </p>
+                </div>
+                  {{!-- {{#each mark}}
+                            <div class="h6 simple-content__handlowcy__item__sub-title">
+                          {{this}}
+                            </div>
+                            {{/each}} --}}
+                <div class="simple-content__handlowcy">
+                    <div class="simple-content__handlowcy__list"> 
+                        {{!-- {{#each result}} --}}
+                        {{#each result}}
+                        <div class="simple-content__handlowcy__item">
+                            <img src="img/gu.jpg" alt="">
+                            
+                            <h6 class="h6 simple-content__handlowcy__item__title">{{this.user.first_name}}  
+                                {{this.user.last_name}}</h6> 
+                               
+                         
+                            <div class="h6 simple-content__handlowcy__item__sub-title">
+                         {{this.brand_id}}
+                            </div>
+                           
+                             
+                            <div class="simple-content__handlowcy__item__contact">
+                                <a href="tel: {{this.user.phone}}" class="tell">
+                                  {{this.user.phone}}
+                                </a>
+                                <a href="" class="email">
+                                    {{this.user.email}}
+                                </a>
+                            </div>
+                        </div>
+                       {{/each}}
+                       {{!-- {{/each}} --}}
+                    </div>
+                   
+                    <div class="simple-content__handlowcy__form">
+                        <div class="text">
+                            <h5 class="h5"><span>Napisz do kupca</span></h5>
+                            <p>
+                                Wybierz handlowca i opisz swoją potrzebę. Handlowiec odpisze Ci tak szybko
+                                jak będzie to możliwe.
+                            </p>
+                        </div>
+                        <form action="/createmessage" method="POST">
+                              
+                            <select class="example" name="example">
+
+                                <option value="Wybierz handlowca">-- Wybierz handlowca --</option>
+                             
+                            {{#each result}}
+                                <option value={{this.id}} >{{this.user.first_name}}    {{this.user.last_name}} </option>
+                          {{/each}}
+                            </select>
+                            
+                            <textarea placeholder="Treść wiadomości" name="message"></textarea>
+                           <button type="submit" class="btn">
+                                Wyślij
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+          <div class="footer">
+       {{> footer}}
+        </div>
+</div>
+
+  {{> bottom}}
+</body>
+</html>
