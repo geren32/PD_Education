@@ -14,7 +14,7 @@ module.exports = {
             let {user_id} = req.body;
             const result = await educatorService.GetAssignedTraining(user_id)
 
-            res.redirect('educator/GetAssignedTraining',{Education:result});
+
 
             const reload = await educatorService.returnIn7Days(user_id);
 
@@ -34,8 +34,9 @@ module.exports = {
             })
 
 
-            return res.json(result);
-
+            return res.render('client/educator',{
+                result:result
+            })
 
         } catch (err) {
             return res.status(400).json({
