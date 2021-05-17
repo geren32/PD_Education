@@ -27,20 +27,29 @@ module.exports = {
         }
     },
 
-    getUser: async (params, attributes) => {
-        let filter = params;
-        if (typeof params !== 'object') {
-            filter = { id: params }
+    getUser: async (email) => {
+        try {
+            // let filter = params;
+            // if (typeof params !== 'object') {
+            //     filter = { id: params }
+            // }
+            const result = await models.users.findOne({
+                where: {
+                    email: email
+                }
+            });
+
+            return result;
+
+        }catch (error) {
+            error.code=400
         }
-        const result = await models.users.findOne({
-            where: filter,
-            attributes: attributes
-        });
-        return result;
+
     },
  getAllUsersByRegions : async(filter)=>{
 
     try {
+
          let result = await models.users.findAll({where: filter,
             include: [
             { model: models.dealer, attributes: ['id', 'company_name', 'manager_sr_id'], include:[ {model: models.manager_sr} ]}]})

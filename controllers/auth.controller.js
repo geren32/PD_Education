@@ -192,18 +192,21 @@ module.exports = {
 
     userLogin: async (req, res) => {
         try {
-            let { email, password } = req.body;
-            const user = await userService.getUser({ email });
+            res.render('client/educator')
+            // let { email, password } = req.body;
+            //
+            // const user = await userService.getUser( email );
 
-            if (!user) {
-                res.render('client/index', {
-                    metaData: req.body.metaData,
-                    layout: 'client/layout-client',
-                    login: true,
-                    error: 'Incorrect password or email'
-                });
 
-            }
+            // if (!user) {
+            //     res.render('client/index', {
+            //         metaData: req.body.metaData,
+            //         layout: 'client/layout-client',
+            //         login: true,
+            //         error: 'Incorrect password or email'
+            //     });
+            //
+            // }
 
             // if (!user.email_verified) {
             //     res.render('client/index', {
@@ -214,36 +217,36 @@ module.exports = {
             //     });
             //
             // }
-            if (user.status != config.GLOBAL_STATUSES.ACTIVE) {
-                if (user.status == config.GLOBAL_STATUSES.BLOCKED) {
-                    res.render('client/index', {
-                        metaData: req.body.metaData,
-                        layout: 'client/layout-client',
-                        login: true,
-                        error: "Your account is locked. Please contact the administrator"
-                    });
-
-                }else if (user.status == config.GLOBAL_STATUSES.WAITING){
-                    res.render('client/index', {
-                        metaData: req.body.metaData,
-                        layout: 'client/layout-client',
-                        login: true,
-                        error: 'Awaiting confirmation of registration by the administrator'
-                    });
-
-                }else if (user.status == config.GLOBAL_STATUSES.DELETED){
-                    res.render('client/index', {
-                        metaData: req.body.metaData,
-                        layout: 'client/layout-client',
-                        login: true,
-                        error: "Your account has been deleted. Please contact the administrator"
-                    });
-
-                }
-            }
-            const isComparePassword = await bcryptUtil.comparePassword(password, user.password);{
-                res.render('client/cabinet/education')
-            }
+            // if (user.status != config.GLOBAL_STATUSES.ACTIVE) {
+            //     if (user.status == config.GLOBAL_STATUSES.BLOCKED) {
+            //         res.render('client/index', {
+            //             metaData: req.body.metaData,
+            //             layout: 'client/layout-client',
+            //             login: true,
+            //             error: "Your account is locked. Please contact the administrator"
+            //         });
+            //
+            //     }else if (user.status == config.GLOBAL_STATUSES.WAITING){
+            //         res.render('client/index', {
+            //             metaData: req.body.metaData,
+            //             layout: 'client/layout-client',
+            //             login: true,
+            //             error: 'Awaiting confirmation of registration by the administrator'
+            //         });
+            //
+            //     }else if (user.status == config.GLOBAL_STATUSES.DELETED){
+            //         res.render('client/index', {
+            //             metaData: req.body.metaData,
+            //             layout: 'client/layout-client',
+            //             login: true,
+            //             error: "Your account has been deleted. Please contact the administrator"
+            //         });
+            //
+            //     }
+            // }
+            // const isComparePassword = await bcryptUtil.comparePassword(password, user.password);{
+            //     res.render('client/cabinet/education')
+            // }
             // if (!isComparePassword){
             //     res.render('client/index', {
             //         metaData: req.body.metaData,
@@ -254,15 +257,18 @@ module.exports = {
             //
             // }
 
-            const token = tokenUtil({ first_name: user.first_name, last_name: user.last_name, userid: user.id });
-            await user.update({ access_token: token.access_token, refresh_token: token.refresh_token, updatedAt:Math.floor(new Date().getTime() / 1000) });
-            res.cookie('jwt', token.access_token, { maxAge: 2592000000 });
-
-            if (user.type === config.CLIENT_ROLE) {
-                let url = req.headers.referer.split(req.headers.host).pop();
-                return  res.redirect(url ? url !== '/auth/login' ? url : '/' : '/');
-
-            }
+            // const token = tokenUtil({ first_name: user.first_name, last_name: user.last_name, userid: user.id });
+            // await user.update({ access_token: token.access_token, refresh_token: token.refresh_token, updatedAt:Math.floor(new Date().getTime() / 1000) });
+            // res.cookie('jwt', token.access_token, { maxAge: 2592000000 });
+            //
+            // if (user.type === config.CLIENT_ROLE) {
+            //     let url = req.headers.referer.split(req.headers.host).pop();
+            //     return  res.redirect(url ? url !== '/auth/login' ? url : '/' : '/');
+            // }
+            // if (user.user_type === config.EDUCATOR_ROLE){
+            //     res.render('client/educator')
+            //
+            // }
 
                 //     else if (user.type === config.SR_MANAGER_ROLE) {
                 //    return res.redirect('/sr-manager/sr-manager-orders');
@@ -270,12 +276,11 @@ module.exports = {
                 //     else if (user.type === config.BLUM_MANAGER_ROLE) {
             //    return  res.redirect('/blum-manager/blum-manager-orders'); }
 
-            else if (user.type === config.SUPER_ADMIN_ROLE) {
-                return  res.redirect('/api/auth/admin/login');
-
-            }
-
-            return;
+            // else if (user.type === config.SUPER_ADMIN_ROLE) {
+            //     return  res.redirect('/api/auth/admin/login');
+            //
+            // }
+            // return;
         } catch (err) {
             return  res.status(400).json({
                 message: err.message,

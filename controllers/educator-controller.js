@@ -7,14 +7,20 @@ module.exports = {
 
     GetAssignedTraining: async (req, res) => {
 
+
+
         try {
+
             let {user_id} = req.body;
             const result = await educatorService.GetAssignedTraining(user_id)
-            console.log(JSON.parse(JSON.stringify(result)))
+
+            res.redirect('educator/GetAssignedTraining',{Education:result});
 
             const reload = await educatorService.returnIn7Days(user_id);
 
+
             reload.forEach((element) => { if (!element.contacted_date) {
+
 
 
                 const thisDate = Math.floor(new Date().getTime() / 1000);
@@ -26,6 +32,8 @@ module.exports = {
                 }
             }
             })
+
+
             return res.json(result);
 
 

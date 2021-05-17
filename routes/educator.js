@@ -3,7 +3,7 @@ const router = express.Router();
 const educator = require('../controllers/educator-controller')
 
 
-router.get('/GetAssignedTraining', educator.GetAssignedTraining)
+router.post('/GetAssignedTraining', educator.GetAssignedTraining)
 router.post('/getEducatorData',educator.getEducatorData)
 router.post('/createEducatorDate',educator.createEducatorDate)
 router.post('/getProductsForTraining',educator.getProductsForTraining)
