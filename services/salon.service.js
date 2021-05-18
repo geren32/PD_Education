@@ -114,12 +114,42 @@ module.exports = {
             throw error;
         }
     },
+createSalonAddress: async (data)=>{
 
+   try {
+    let result = await models.salon_address.create(data);
+    
+    return result;   
+
+   } catch (error) {
+       error.code=400;
+       throw error;
+   }
+
+
+
+
+
+},
+getSalonAdressById: async (id) => {
+    try {
+        let result = await models.salon_address.findAll({
+            where:  id ,
+          
+        });
+
+       
+        return result.toJSON();
+    } catch (err) {
+        err.code = 400;
+        throw err;
+    }
+},
     getSalonAdressBySalonId: async (id) => {
         try {
             let result = await models.salon_address.findAll({
-                where: { salon_id: id },
-                include: [{ model: models.salon, attributes: salonAttributes }],
+                where:  id ,
+              
             });
 
             result = result.map(function (item) {
@@ -161,7 +191,7 @@ module.exports = {
         try {
             transaction = trans ? trans : await sequelize.transaction();
             let result = await models.salon_address.destroy({
-                where: { id: id },
+                where: { id:id },
                 transaction,
             });
             if (!trans) await transaction.commit();

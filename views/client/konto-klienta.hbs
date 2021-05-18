@@ -51,7 +51,7 @@
                             <a href="">Zamówienia</a>
                         </div>
                         <div class="tools-bar__content__group">
-                            <a href="">Promocje</a>
+                            <a href="/brand_promotions">Promocje</a>
                         </div>
                     </div>
                 </li>
@@ -291,31 +291,30 @@
                             <div class="tab-content__container tab">
                                 <div class="row bg-brown">
                                     <div class="col-md-5">
-                                        <div class="sub-title">Mój Fryzjer Marcel Migdał</div>
+                                        <div class="sub-title">{{salon.billing_title}} {{salon.billing_first_name}} {{salon.billing_last_name}}</div>
                                         <div class="text">
                                             <ul>
                                                 <li>
-                                                    Kartuska 356 A
+                                                     {{salon.billing_address}}
                                                     <br>
-                                                    80-125 Gdańsk
+                                                   {{salon.billing_zip}}   {{salon.billing_city}}
                                                 </li>
                                                 <li>
-                                                    NIP: 9271388185
+                                                    NIP:{{salon.billing_nip}}
                                                 </li>
                                             </ul>
 
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="sub-title">Osoba kontaktowa
-                                            Marcel Migdał</div>
+                                        <div class="sub-title">{{salon.billing_title}} {{salon.billing_first_name}} {{salon.billing_last_name}}</div>
                                         <div class="text">
                                             <ul>
                                                 <li>
-                                                    Tel: +48 791 742 068
+                                                    Tel: {{salon.billing_phone}}
                                                 </li>
                                                 <li>
-                                                    marcel@marcelmigdal.pl
+                                                   {{salon.billing_email}}
                                                 </li>
                                             </ul>
 
@@ -353,34 +352,43 @@
             <div class="popup-container">
                 <div class="popup-align">
                     <div class="popup-info">
-                        <form action="" class="form">
-                            <div class="text">
-                                <div class="h5">Mój Fryzjer Marcel Migdał</div>
-                            </div>
+                        <form action="/salonperson" class="form" id="my_form" method="POST">
+                               <div class="form-group">
+                                   <label class="label">Title:</label>
+                                <input type="text" name="billing_title" value={{salon.billing_title}}>
+                            </div> 
                             <div class="form-group">
-                                <input type="text" value="Kartuska 356 A">
+                                <label class="label">First_name:</label>
+                                <input type="text" name="billing_first_name" value={{salon.billing_first_name}}>
                             </div>
-                            <div class="form-group">
-                                <input type="text" value="80-125 Gdańsk">
-                            </div>
-                            <div class="form-group">
-                                <label class="label">NIP:</label>
-                                <input type="text" value="9271388185">
-                            </div>
-
-                            <button type="submit" class="btn">Save</button>
-                        </form>
-
-                        <form action="" class="form">
-                            <div class="text">
-                                <div class="h5">Osoba kontaktowa Marcel Migdał</div>
+                             <div class="form-group">
+                                <label class="label">Last_name:</label>
+                                <input type="text"  name="billing_last_name" value={{salon.billing_last_name}}>
                             </div>
                             <div class="form-group">
                                 <label class="label">Tel:</label>
-                                <input type="text" value="+48 791 742 068">
+                                <input type="text" name="billing_phone" value={{salon.billing_phone}}>
                             </div>
                             <div class="form-group">
-                                <input type="text" value="marcel@marcelmigdal.pl">
+                                <input type="text" name="billing_email" value={{salon.billing_email}}>
+                            </div>
+                          
+                          
+                            <div class="form-group">
+                                <label class="label">Address:</label>
+                                <input type="text" name="billing_address" value={{salon.billing_address}}>
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Zip:</label>
+                                <input type="text" name="billing_zip" value={{salon.billing_zip}}>
+                            </div>
+                            <div class="form-group">
+                                <label class="label">City:</label>
+                                <input type="text" name="billing_city" value={{salon.billing_city}}>
+                            </div>
+                            <div class="form-group">
+                                <label class="label">NIP:</label>
+                                <input type="text" name="billing_nip" value={{salon.billing_nip}}>
                             </div>
 
                             <button type="submit" class="btn">Save</button>

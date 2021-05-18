@@ -84,9 +84,29 @@ console.log(result);
 
 
         // res.status(200).json(result);
-        res.redirect('/salon_address');
+        res.status(200).json({message:"Sucess"});
 
     },
+createSalonAddress:async(req,res)=>{
+let{title,first_name,last_name,phone,email,address,zip,city,phone_contact,email_contact}=req.body;
+let salon_id=1;
+let result= await salonService.createSalonAddress({
+    salon_id:salon_id,
+    title:title,
+    first_name:first_name,
+    last_name:last_name,
+    phone:phone,
+    email:email,
+    address:address,
+    zip:zip,
+    city:city,
+    phone_contact:phone_contact,
+    email_contact:email_contact})
+    console.log(result)
+return res.status(200).json({message:"Sucess"});
+
+},
+
 
     getSalonAddressById: async (req, res) => {
         // let id = req.headers.id;
@@ -94,9 +114,10 @@ console.log(result);
         // if (!result.length) {
         //     return res.status(403).json({ message: "User id not provided" });
         // }
-        
+        let shiping_address= await salonService.getSalonAdressBySalonId({salon_id:1});
+   
         return  res.render('client/informacje-adresy',{
-           
+           salon_address:shiping_address,
            result: result
          
             })
@@ -118,14 +139,24 @@ console.log(result);
 
     },
     deleteSalonAddressById: async (req, res) => {
-        let id = req.params.id
+        let ids=req.params.id
 
-        let result = await salonService.deleteSalonAddressId(id);
-        if (!result.length) {
-            return res.status(403).json({ message: " id not provided" });
+// console.log(id.length)
+try {
+    
+    let arr = ids.split(",");
 
-        }
-        return res.status(200).json(result);
+        let result = await salonService.deleteSalonAddressId(arr);
+   
+   return res.status(200).json(result);    
+} catch (error) {
+    res.status(400).json({
+        message: error.message,
+        errCode: ''
+    });
+    
+}
+
 
     },
 
@@ -144,11 +175,11 @@ console.log(result);
         // return res.status(200).json(result);
     },
     checkPromotionsofBrands: async (req, res) => {
-        let id = req.headers.id;
+        // let id = req.headers.id;
 
         // let result = await salonService.getBrandPromotions(id);
 
-        let result = await salonService.getSalonBrands(id);
+        let result = await salonService.getSalonBrands(1);
         if (!result.length) {
             return res.status(403).json({ message: "Brand id not provided" });
         }
@@ -158,7 +189,12 @@ console.log(result);
         }
         let promotions = await salonService.getBrandPromotions(list);
 
-        return res.status(200).json(promotions);
+        // return res.status(200).json(promotions);
+        return  res.render('client/informacje-promocje',{
+            //  layout: 'client/layout-client',
+            promotions: promotions
+          
+            })
     },
 
     getMaterials: async (req, res) => {

@@ -9,7 +9,9 @@ router
 .get('/salonperson/:id', salonController.getSalonById)
 .post('/salonperson', salonController.updateSalonById)
 //#Region salon_address
+
 .get('/salon_address',salonController.getSalonAddressById)
+.post('/create_address',salonController.createSalonAddress)
 .post('/salon_address/:id',salonController.editSalonAddressById)
 .post('/deletesalon_address/:id',salonController.deleteSalonAddressById)
 //#endregion

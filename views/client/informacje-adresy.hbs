@@ -28,10 +28,10 @@
                     </div>
                     <div class="tools-bar__content" style="display: none">
                         <div class="tools-bar__content__group">
-                            <a href="">Handlowcy</a>
+                            <a href="/salesperson">Handlowcy</a>
                         </div>
                         <div class="tools-bar__content__group">
-                            <a href="">Marki</a>
+                            <a href="/salon_brands">Marki</a>
                         </div>
                     </div>
                 </li>
@@ -42,16 +42,16 @@
                     </div>
                     <div class="tools-bar__content">
                         <div class="tools-bar__content__group">
-                            <a href="">Konto Klienta</a>
+                            <a href="/invoce">Konto Klienta</a>
                         </div>
                         <div class="tools-bar__content__group">
-                            <a href="" class="active">Adresy</a>
+                            <a href="/salon_address" class="active">Adresy</a>
                         </div>
                         <div class="tools-bar__content__group">
                             <a href="">Zamówienia</a>
                         </div>
                         <div class="tools-bar__content__group">
-                            <a href="">Promocje</a>
+                            <a href="/brand_promotions">Promocje</a>
                         </div>
                     </div>
                 </li>
@@ -143,7 +143,7 @@
                                 <div class="row bg-brown"> 
                                    
                                     <div class="col-md-5">
-                                        <div class="sub-title">{{result.title}} {{result.billing_first_name}} {{result.billing_last_name}}</div>
+                                        <div class="sub-title">{{result.billing_title}} {{result.billing_first_name}} {{result.billing_last_name}}</div>
                                         <div class="text">
                                             <ul>
                                                 <li>
@@ -166,10 +166,10 @@
                                         <div class="text">
                                             <ul>
                                                 <li>
-                                                    Tel:   {{result.user.phone}}
+                                                    Tel:   {{result.billing_phone}}
                                                 </li>
                                                 <li>
-                                                    {{result.user.email}}
+                                                    {{result.billing_email}}
                                                 </li>
                                             </ul>
 
@@ -192,57 +192,51 @@
                                     <div class="table">
                                         <table>
                                             <thead>
+                                           
                                             <tr>
                                                 <td>
                                                     <input name="checkbox1" type="checkbox" value="checked">
                                                 </td>
                                                 <td>LOKALIZACJA I ADRES</td>
                                                 <td>OSOBA KONTAKTOWA</td>
+                                                <td>Zmień</td>
                                             </tr>
                                             </thead>
                                             <tbody>
+                                            {{#each salon_address}}
                                             <tr>
                                                 <td>
-                                                    <input name="checkbox1" type="checkbox" value="checked">
+                                                    <input name="mycheckbox" name="mycheckbox" type="checkbox" value={{this.id}}>
                                                 </td>
-                                                <td><strong>LeDesir – Śródmieście</strong>
+                                                <td><strong>{{this.title}}</strong>
                                                     <br>
                                                     <span style="font-weight: 400;">
-                                                                    ul. Jasna 15,&nbsp;00-500 Warszawa<br></span>T: +48
-                                                    797 222 345<br>
-                                                    E: kontakt@ledesir.pl
+                                                                    {{this.address}}&nbsp;{{this.zip}} {{this.city}}<br></span>T:{{this.phone}}<br>
+                                                    E:     {{this.email}}
                                                 </td>
-                                                <td><strong>Cameron Diaz<br>
+                                                <td><strong>    {{this.first_name}}     {{this.last_name}}<br>
                                                         <span style="font-weight: 400;">
-                                                                        T: +48 556 231 274<br>E: cameron@ledesir.pl</span><br>
+                                                                        T:    {{this.phone_contact}}<br>E:{{this.email_contact}}</span><br>
                                                     </strong>
                                                 </td>
+                                                <td> <div class="change-link open-popup" data-rel="Adresy">
+                                                        <span>
+                                                            <i class="fas fa-pencil-alt"></i>
+                                                        </span>
+                                            Zmień
+                                        </div>      </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <input name="checkbox2" type="checkbox" value="checked">
-                                                </td>
-                                                <td><strong>LeDesir – Mokotów</strong><br>
-                                                    <span style="font-weight: 400;">
-                                                                    ul. Jasna 15,&nbsp;00-500 Warszawa<br></span>T: +48
-                                                    797 222 345<br>
-                                                    E: kontakt@ledesir.pl
-                                                </td>
-                                                <td><strong>Milly Bobby Brown<br>
-                                                        <span style="font-weight: 400;">
-                                                                        T: +48 556 231 274<br>E: milly@ledesir.pl</span><br>
-                                                    </strong>
-                                                </td>
-                                            </tr>
+                                        {{/each}}
                                             </tbody>
                                         </table>
                                     </div>
                                     <div class="simple-content__edukatorz__links">
+                                       <div class="change-link open-popup" data-rel="ShipingAdress">
                                         <a href="" class="btn">
                                             <i>+</i>
                                             Dodaj Lokalizację
-                                        </a>
-                                        <a href="" class="btn dark">
+                                        </a></div>
+                                        <a href="" id="delete_btn" class="btn dark">
                                             <i>-</i>
                                             Usuń Zaznaczone
                                         </a>
@@ -262,7 +256,7 @@
         </div>
     </div>
 
-    <div class="popup-wrapper">
+    <div class="popup-wrapper" id="Popaper">
         <div class="bg-layer"></div>
         <div class="popup-content" data-rel="Adresy">
             <div class="layer-close"></div>
@@ -317,11 +311,141 @@
                 <div class="btn-close"><span></span></div>
             </div>
         </div>
+         <div class="popup-content"  id="my_form1"  data-rel="ShipingAdress">
+            <div class="layer-close"></div>
+            <div class="popup-container">
+                <div class="popup-align">
+                    <div class="popup-info">
+                      
+                        <form  id="my_form"  name="my_form" class="form">
+                               <div class="form-group">
+                                   <label class="label">Title:</label>
+                                <input type="text" name="title" value="">
+                            </div> 
+                            <div class="form-group">
+                                <label class="label">First_name:</label>
+                                <input type="text" name="first_name" value="">
+                            </div>
+                             <div class="form-group">
+                                <label class="label">Last_name:</label>
+                                <input type="text"  name="last_name" value="">
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Tel:</label>
+                                <input type="text" name="phone" value="">
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Email:</label>
+                                <input type="text" name="email" value="">
+                            </div>
+                          
+                          
+                            <div class="form-group">
+                                <label class="label">Address:</label>
+                                <input type="text" name="address" value="">
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Zip:</label>
+                                <input type="text" name="zip" value="">
+                            </div>
+                            <div class="form-group">
+                                <label class="label">City:</label>
+                                <input type="text" name="city" value="">
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Phone_contact:</label>
+                                <input type="text" name="phone_contact" value="">
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Email_contact:</label>
+                                <input type="text" name="email_contact" value="">
+                            </div>
+
+                            <button type="submit" class="btn">Save</button>
+                        </form>
+
+                   
+                    </div>
+                </div>
+                <div class="btn-close"><span></span></div>
+            </div>
     </div>
+  
+
 
 </div>
 
 {{> bottom}}
 
 </body>
+
 </html>
+<script>
+      $(document).on("submit","#my_form", function(e){
+  e.preventDefault(); // prevent actual form submit
+    var form = $(this);
+    console.log("sssssssssssssssssssss");
+    //get submit url [replace url here if desired]
+    $.ajax({
+         type: "POST",
+         url: 'http://localhost:3000/create_address',
+         data: form.serialize(), 
+         processData: false,// serializes form input
+         success: function(data){
+             console.log("-------------------");
+             console.log(data)
+          if(data.message=="Sucess"){
+         //closeSelf(data.message)
+        location.reload();
+         
+          }
+         }
+
+
+
+
+    })
+})
+function closeSelf(message){
+    // do something
+
+    if(message){
+    
+       document.forms['my_form'].submit();
+       window.close();
+    }else{
+       alert("conditions not satisfied, returning to form");    
+    }
+}
+
+$(document).on("click","#delete_btn",function(e){
+e.preventDefault();
+var selectedLanguage= []
+$('input[name="mycheckbox"]:checked').each(function() {
+selectedLanguage.push(this.value);
+});
+console.log(selectedLanguage)
+
+
+  $.ajax({
+         type: "POST",
+         url: 'http://localhost:3000/deletesalon_address/'+selectedLanguage,
+     
+         success: function(){
+             console.log("-------------------");
+          console.log("loshara")
+         // if(data.message=="Sucess"){
+         //closeSelf(data.message)
+        location.reload();
+         
+         // }
+         }
+
+
+
+
+    })
+
+})
+
+</script>
