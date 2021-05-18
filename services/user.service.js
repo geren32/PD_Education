@@ -13,11 +13,11 @@ const userAttributes = [
 
 
 module.exports = {
-    createUser: async (users, trans) => {
+    createUser: async (user, trans) => {
         let transaction = null;
         try {
             transaction = trans ? trans : await sequelize.transaction();
-            const result = await models.users.create(users, transaction);
+            const result = await models.users.create(user, transaction);
             if (!trans) await transaction.commit();
             return result;
         } catch (err) {
@@ -27,29 +27,20 @@ module.exports = {
         }
     },
 
-    getUser: async (email) => {
-        try {
-            // let filter = params;
-            // if (typeof params !== 'object') {
-            //     filter = { id: params }
-            // }
-            const result = await models.users.findOne({
-                where: {
-                    email: email
-                }
-            });
-
-            return result;
-
-        }catch (error) {
-            error.code=400
+    getUser: async (params, attributes) => {
+        let filter = params;
+        if (typeof params !== 'object') {
+            filter = { id: params }
         }
-
+        const result = await models.users.findOne({
+            where: filter,
+            attributes: attributes
+        });
+        return result;
     },
  getAllUsersByRegions : async(filter)=>{
 
     try {
-
          let result = await models.users.findAll({where: filter,
             include: [
             { model: models.dealer, attributes: ['id', 'company_name', 'manager_sr_id'], include:[ {model: models.manager_sr} ]}]})
@@ -86,19 +77,19 @@ module.exports = {
                     model: models.client,
                     include: [
                         { model: models.position_activity },
-                        { model: models.activity },
+                      
                         { model: models.dealer }
                     ]
                 },
                 { model: models.dealer, include: [
                         { model: models.position_activity },
-                        { model: models.activity },
+                     
                         { model: models.client },
                         { model: models.phone_numbers},
                         { model: models.manager_sr}
                     ] },
                 { model: models.manager_sr, include:[
-                        {model: models.activity},
+                        
                         {model: models.position_activity},
                         {model: models.region_activity, through:{attributes:[]} },
                         {model: models.dealer}
@@ -140,10 +131,10 @@ module.exports = {
         } : { users: [], count: 0 };
     },
 
-    getUserById: async (users_id) => {
+    getUserById: async (user_id) => {
         try {
 
-            let result = await models.users.findByPk(users_id, {
+            let result = await models.users.findByPk(user_id, {
                 attributes: ['id', 'last_name', 'first_name', 'email', 'phone', 'type', 'created_at', 'bonuses'],
 
             });

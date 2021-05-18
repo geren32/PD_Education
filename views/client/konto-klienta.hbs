@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        {{> top}}
+    <title>Szkolenia Edukatora - Premium Distribution - Education</title>
+</head>
+<body class="edu-handlowcy-page">
+
+<!-- LOADER -->
+<div id="loader-wrapper"></div>
+
+<div id="content-block">
+
+    <!-- HEADER -->
+     {{> header}}
+    <div class="tools-bar">
+        <div class="tools-bar__header">
+            <div class="tools-bar__logo">
+                <img src="img/white-logo.png" alt="">
+            </div>
+        </div>
+        <div class="tools-bar__main">
+            <ul class="tools-bar__list">
+                <li class="tools-bar__item">
+                    <div class="tools-bar__link">
+                        <span>Kokpit</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content" style="display: none">
+                        <div class="tools-bar__content__group">
+                            <a href="/salesperson">Handlowcy</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="/marki">Marki</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="tools-bar__item active">
+                    <div class="tools-bar__link active">
+                        <span>Informacje</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content">
+                        <div class="tools-bar__content__group">
+                            <a href="/invoce" class="active">Konto Klienta</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="/salon_address">Adresy</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Zamówienia</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Promocje</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="tools-bar__item">
+                    <div class="tools-bar__link">
+                        <span>Edukacja</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content" style="display: none">
+                        <div class="tools-bar__content__group">
+                            <a href="">Kevin Murphy</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Olaplex</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Alterna</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Showpony</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Eleven Australia</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="tools-bar__item">
+                    <div class="tools-bar__link">
+                        <span>Materiały</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content" style="display: none">
+                        <div class="tools-bar__content__group">
+                            <a href="">Materiały Edukacyjne</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Materiały na Social Media</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Cenniki, Oferty produktowe</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="tools-bar__item">
+                    <div class="tools-bar__link">
+                        <span>Wizualizacje</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content" style="display: none">
+                        <div class="tools-bar__content__group">
+                            <a href="">Materiały marketingowe i branding dla twojego salonu</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-content">
+        <div class="simple-content">
+            <div class="simple-content__top">
+
+            </div>
+            <div class="simple-content__main">
+                <div class="simple-content__konto-klienta">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="text">
+                                <h5 class="h5"><span>Konto Klienta</span></h5>
+                                <p>
+                                    Tutaj możesz zarządzać fakturami i danymi konta.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="simple-content__konto-klienta__saldo">
+                                <div class="simple-content__konto-klienta__saldo__top">
+                                    Saldo: 5 395,00zł
+                                </div>
+                                <div class="simple-content__konto-klienta__saldo__status">
+                                    <span class="status2"></span>
+                                    W trakcie aktualizacji
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tabs">
+                        <div class="tab-nav">
+                            <div class="tab-toggle">
+                                <div class="tab-nav__item active">
+                                    Faktury
+                                </div>
+                                <div class="tab-nav__item">
+                                    Korekty
+                                </div>
+                                <div class="tab-nav__item">
+                                    Dane do faktury
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-content__container tab active">
+                                <form class="tab-content__header">
+                                    <div class="tab-content__header__item">
+                                        <input type="date" placeholder="">
+                                    </div>
+                                    <div class="tab-content__header__item">
+                                        <select name="select1">
+                                            <option value="Wszystkie">Wszystkie</option>
+                                            <option value="Od najmniej">Zapłacone</option>
+                                            <option value="Od najwięcej">Niezapłacone</option>
+                                        </select>
+                                    </div>
+                                </form>
+                               
+                                <div class="table">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <td>
+                                                <input name="checkbox1" type="checkbox" value="checked">
+                                            </td>
+                                            <td>NUMER FAKTURY</td>
+                                            <td>DATA WYSTAWIENIA</td>
+                                            <td>KWOTA</td>
+                                            <td>STATUS/TERMIN ZAPŁATY</td>
+                                        </tr>
+                                        </thead>
+                                        <tbody> 
+                                            {{#each result}}
+                                        <tr>
+                                            <td></td>
+                                            <td><span>{{this.number}}</span></td>
+                                            <td><span>{{this.downloaded}}</span></td>
+                                            <td>{{this.price}}.zł</td>
+                                            <td><strong>{{this.status}}</strong></td>
+                                        </tr>
+                                       {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                               
+                                <a href="" class="btn">Zapłać</a>
+                            </div>
+                            <div class="tab-content__container tab">
+                                <form class="tab-content__header">
+                                    <div class="tab-content__header__item">
+                                        <input type="date" placeholder="">
+                                    </div>
+                                    <div class="tab-content__header__item">
+                                        <select name="select1">
+                                            <option value="Wszystkie">Wszystkie</option>
+                                            <option value="Od najmniej">Zapłacone</option>
+                                            <option value="Od najwięcej">Niezapłacone</option>
+                                        </select>
+                                    </div>
+                                </form>
+                                <div class="table">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <td>
+                                                <input name="checkbox1" type="checkbox" value="checked">
+                                            </td>
+                                            <td>NUMER KOREKTY</td>
+                                            <td>DATA WYSTAWIENIA</td>
+                                            <td>KWOTA</td>
+                                            <td>PODGLĄD</td>
+                                            <td>STATUS</td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><input name="checkbox2" type="checkbox" value="checked"></td>
+                                            <td><span>004/01/2020</span></td>
+                                            <td><span>10.01.2020</span></td>
+                                            <td>1 179,00 zł.</td>
+                                            <td><strong>Zobacz</strong></td>
+                                            <td><strong>Pobrana</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name="checkbox2" type="checkbox" value="checked"></td>
+                                            <td><span>159/03/2020</span></td>
+                                            <td><span>13.03.2020</span></td>
+                                            <td>2 650,00 zł.</td>
+                                            <td><strong>Zobacz</strong></td>
+                                            <td><strong>Pobrana</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name="checkbox2" type="checkbox" value="checked"></td>
+                                            <td><span>024/04/2020</span></td>
+                                            <td><span >03.04.2020</span></td>
+                                            <td>2 109,00 zł.</td>
+                                            <td><strong>Zobacz</strong></td>
+                                            <td><strong>Pobrana</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name="checkbox2" type="checkbox" value="checked"></td>
+                                            <td><span>422/06/2020</span></td>
+                                            <td><span>27.06.2020</span></td>
+                                            <td>3 623,00 zł.</td>
+                                            <td><strong>Zobacz</strong></td>
+                                            <td><strong>Pobrana</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name="checkbox2" type="checkbox" value="checked"></td>
+                                            <td><span>354/08/2020</span></td>
+                                            <td><span>21.08.2020</span></td>
+                                            <td>2 109,00 zł.</td>
+                                            <td><strong>Zobacz</strong></td>
+                                            <td><strong>Pobrana</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name="checkbox2" type="checkbox" value="checked"></td>
+                                            <td><span>035/09/2020</span></td>
+                                            <td><span>05.09.2020</span></td>
+                                            <td>3 758,00 zł.</td>
+                                            <td><strong>Zobacz</strong></td>
+                                            <td><strong>Niepobrana</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name="checkbox2" type="checkbox" value="checked"></td>
+                                            <td><span>173/10/2020</span></td>
+                                            <td><span>15.10.2020</span></td>
+                                            <td>4 477,00 zł.</td>
+                                            <td><strong>Zobacz</strong></td>
+                                            <td><strong>Niepobrana</strong></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <a href="" class="btn open-popup" data-rel="1">
+                                    <i class="fas fa-download"></i>
+                                    Zapłać</a>
+                            </div>
+                            <div class="tab-content__container tab">
+                                <div class="row bg-brown">
+                                    <div class="col-md-5">
+                                        <div class="sub-title">Mój Fryzjer Marcel Migdał</div>
+                                        <div class="text">
+                                            <ul>
+                                                <li>
+                                                    Kartuska 356 A
+                                                    <br>
+                                                    80-125 Gdańsk
+                                                </li>
+                                                <li>
+                                                    NIP: 9271388185
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="sub-title">Osoba kontaktowa
+                                            Marcel Migdał</div>
+                                        <div class="text">
+                                            <ul>
+                                                <li>
+                                                    Tel: +48 791 742 068
+                                                </li>
+                                                <li>
+                                                    marcel@marcelmigdal.pl
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="change-link open-popup" data-rel="KontoKlienta">
+                                                        <span>
+                                                            <i class="fas fa-pencil-alt"></i>
+                                                        </span>
+                                            Zmień
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- FOOTER -->
+        <div class="footer">
+           {{> footer}}
+        </div>
+    </div>
+
+    <!-- POPUP -->
+
+    <div class="popup-wrapper">
+        <div class="bg-layer"></div>
+        <div class="popup-content" data-rel="KontoKlienta">
+            <div class="layer-close"></div>
+            <div class="popup-container">
+                <div class="popup-align">
+                    <div class="popup-info">
+                        <form action="" class="form">
+                            <div class="text">
+                                <div class="h5">Mój Fryzjer Marcel Migdał</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" value="Kartuska 356 A">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" value="80-125 Gdańsk">
+                            </div>
+                            <div class="form-group">
+                                <label class="label">NIP:</label>
+                                <input type="text" value="9271388185">
+                            </div>
+
+                            <button type="submit" class="btn">Save</button>
+                        </form>
+
+                        <form action="" class="form">
+                            <div class="text">
+                                <div class="h5">Osoba kontaktowa Marcel Migdał</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Tel:</label>
+                                <input type="text" value="+48 791 742 068">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" value="marcel@marcelmigdal.pl">
+                            </div>
+
+                            <button type="submit" class="btn">Save</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="btn-close"><span></span></div>
+            </div>
+        </div>
+        <div class="popup-content" data-rel="1">
+            <div class="layer-close"></div>
+            <div class="popup-container">
+                <div class="popup-align">
+                    <div class="popup-info">
+                        <div class="text text-center">
+                            <div class="h5">Pobranie niniejszego dokumentu jest równoznaczne z potwierdzeniem jego otrzymania.
+                                Przypominamy o terminowym jego rozliczeniu.
+                            </div>
+                        </div>
+                        <a href="" class="btn">
+                            <i class="fas fa-download"></i>
+                            Pobierz</a>
+                    </div>
+                </div>
+                <div class="btn-close"><span></span></div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{{> bottom}}
+
+</body>
+</html>

@@ -1,5 +1,5 @@
-const { models } = require('../sequelize-orm');
-const sequelize = require('../sequelize-orm');
+// const { models } = require('../sequelize-orm');
+// const sequelize = require('../sequelize-orm');
 const clientService = require('../services/client.service');
 // const dealerService = require('../services/dealer.service');
 const userService = require('../services/user.service');
@@ -93,7 +93,6 @@ module.exports = {
         if (!id) throw new Error('No id');
 
         const result = await clientService.readRejectionMessage(id);
-
 
         res.json(true);
     },

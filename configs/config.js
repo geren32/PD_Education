@@ -15,9 +15,9 @@ module.exports = {
       
 
   
+  SIX_MOUNTH_DATE: 15778800,
   
-  
-   
+    
     JWT_SECRET_ADMIN: options['access-token-secret'] || 'uf7e^WaiUGFSA7fd8&^dadhADMIN',
     ACCESS_TOKEN_LIFETIME: options['access-token-lifetime'] || '30m',
 
@@ -84,11 +84,6 @@ module.exports = {
         BLOCKED: 2,
         WAITING: 3,
         DUPLICATE_POST:4
-    },
-    REQUEST_STATUS:{
-        ENTERED:0,
-        CONSIDERED:1,
-        REJECTED:2,
     },
 
     CHANGE_DATA_REQUEST_STATUSES:{

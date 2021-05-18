@@ -11,9 +11,20 @@ module.exports = {
 
         try {
 
-            let {user_id} = req.body;
+            let {user_id} = req.params;
+            console.log(user_id)
             const result = await educatorService.GetAssignedTraining(user_id)
 
+            result.forEach((element) => {
+                if (element.finished_date) {
+                    const thisDate = Math.floor(new Date().getTime() / 1000);
+                    if (thisDate - 1 > element.finished_date) {
+                        Object.assign(element,{'report':true})
+                        console.log("86400")
+                    }
+                }
+            })
+            console.log(result)
 
 
             const reload = await educatorService.returnIn7Days(user_id);
@@ -50,7 +61,8 @@ module.exports = {
     },
     lessonConfirmation : async (req, res) => {
         try {
-            let {id} = req.body
+            let {id}= req.body.id
+            console.log(id)
 
             const ready = await educatorService.lessonConfirmation(id);
             res.json(true);
@@ -81,19 +93,15 @@ console.log('select a date')
     },
     createEducatorDate: async (req, res) => {
         try {
-            let {user_id,date} = req.body;
+            let {user_id,availability} = req.body;
 
-            if (!date || !user_id) {
+            if (!availability || !user_id) {
                 res.status(403).json({
                     message: "виберіть дату"
                 })
             }
-                let createDate = [date]
 
-                if (createDate.length === 0) {
-                    console.log('пуста дата')
-                }
-                const result = await educatorService.recordingTheDate(user_id,createDate)
+                const result = await educatorService.recordingTheDate(user_id,availability)
 
             return res.json(result);
         } catch (err) {

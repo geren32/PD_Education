@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{> top}}
+    <title>Szkolenia Edukatora - Premium Distribution - Education</title>
+</head>
+<body class="edu-handlowcy-page">
+
+<!-- LOADER -->
+<div id="loader-wrapper"></div>
+
+<div id="content-block">
+
+    <!-- HEADER -->
+      {{> header}}
+    <div class="tools-bar">
+        <div class="tools-bar__header">
+            <div class="tools-bar__logo">
+                <img src="img/white-logo.png" alt="">
+            </div>
+        </div>
+        <div class="tools-bar__main">
+            <ul class="tools-bar__list">
+                <li class="tools-bar__item">
+                    <div class="tools-bar__link active">
+                        <span>Kokpit</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content">
+                        <div class="tools-bar__content__group">
+                            <a href="/salesperson">Handlowcy</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="/marki" class="active">Marki</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="tools-bar__item">
+                    <div class="tools-bar__link">
+                        <span>Informacje</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content" style="display: none">
+                        <div class="tools-bar__content__group">
+                            <a href="/invoce">Konto Klienta</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="/salon_address">Adresy</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Zamówienia</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Promocje</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="tools-bar__item">
+                    <div class="tools-bar__link">
+                        <span>Edukacja</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content" style="display: none">
+                        <div class="tools-bar__content__group">
+                            <a href="">Kevin Murphy</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Olaplex</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Alterna</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Showpony</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Eleven Australia</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="tools-bar__item">
+                    <div class="tools-bar__link">
+                        <span>Materiały</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content" style="display: none">
+                        <div class="tools-bar__content__group">
+                            <a href="">Materiały Edukacyjne</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Materiały na Social Media</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Cenniki, Oferty produktowe</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="tools-bar__item">
+                    <div class="tools-bar__link">
+                        <span>Wizualizacje</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content" style="display: none">
+                        <div class="tools-bar__content__group">
+                            <a href="">Materiały marketingowe i branding dla twojego salonu</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-content">
+        <div class="simple-content">
+            <div class="simple-content__top">
+
+            </div>
+            <div class="simple-content__main">
+                <div class="text">
+                    <h5 class="h5"><span>Marki</span></h5>
+                    <p>
+                        Tutaj znajdziesz informacje o Markach które zakupiłeś w ostatnich 3 miesiącach.
+                        Klikając na logotyp, zostaniesz przeniesiony na stronę dostępnych materiałów dla
+                        danej Marki.
+                    </p>
+                </div>
+               
+                <div class="simple-content__brands">
+                     {{#each result}}
+                     <div class="simple-content__brands__item">
+                        <a href="">
+                            <img src={{this.logo}} alt="">
+                        </a>
+                    </div>
+                   {{/each}}
+                </div>
+                
+            </div>
+            <div class="spacer spacer-xxl"></div>
+        </div>
+        <!-- FOOTER -->
+        <div class="footer">
+          {{> footer}}
+        </div>
+    </div>
+</div>
+
+
+
+
+ {{> bottom}}
+
+</body>
+</html>

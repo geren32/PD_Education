@@ -15,7 +15,7 @@ module.exports = {
        try {
            const result = await models.education.findAll({
                where: filter,
-               attributes: ['id','date', 'hours', 'client_number', 'education_status', 'contact_phone', 'contacted_date', 'education_type','address_id'],
+               attributes: ['id','date', 'hours', 'client_number', 'education_status', 'contact_phone', 'contacted_date', 'education_type','address_id','finished_date'],
 
 
                     include: [
@@ -39,7 +39,7 @@ module.exports = {
 
     checkForAvailability : async (user_id) =>{
         try {
-            const auditDate = await models.educator.findAll({
+            const auditDate = await models.educator.findOne({
                 where:
                     {user_id: user_id}
             })
@@ -51,10 +51,10 @@ module.exports = {
         }
     },
 
-    recordingTheDate : async (user_id,createDate) =>{
+    recordingTheDate : async (user_id,availability) =>{
         try {
                 const result = await models.educator.update(
-                    {date:createDate},
+                    {availability:availability},
                     {where: {user_id:user_id}
                     })
 

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{>top}}
+    <title>Szkolenia Edukatora - Premium Distribution - Education</title>
+</head>
+<body class="edu-handlowcy-page">
+
+<!-- LOADER -->
+<div id="loader-wrapper"></div>
+
+<div id="content-block">
+
+    <!-- HEADER -->
+    {{>header}}
+    <div class="tools-bar">
+        <div class="tools-bar__header">
+            <div class="tools-bar__logo">
+                <img src="img/white-logo.png" alt="">
+            </div>
+        </div>
+        <div class="tools-bar__main">
+            <ul class="tools-bar__list">
+                <li class="tools-bar__item">
+                    <div class="tools-bar__link">
+                        <span>Kokpit</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content" style="display: none">
+                        <div class="tools-bar__content__group">
+                            <a href="">Handlowcy</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Marki</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="tools-bar__item active">
+                    <div class="tools-bar__link active">
+                        <span>Informacje</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content">
+                        <div class="tools-bar__content__group">
+                            <a href="">Konto Klienta</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="" class="active">Adresy</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Zamówienia</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Promocje</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="tools-bar__item">
+                    <div class="tools-bar__link">
+                        <span>Edukacja</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content" style="display: none">
+                        <div class="tools-bar__content__group">
+                            <a href="">Kevin Murphy</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Olaplex</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Alterna</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Showpony</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Eleven Australia</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="tools-bar__item">
+                    <div class="tools-bar__link">
+                        <span>Materiały</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content" style="display: none">
+                        <div class="tools-bar__content__group">
+                            <a href="">Materiały Edukacyjne</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Materiały na Social Media</a>
+                        </div>
+                        <div class="tools-bar__content__group">
+                            <a href="">Cenniki, Oferty produktowe</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="tools-bar__item">
+                    <div class="tools-bar__link">
+                        <span>Wizualizacje</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="tools-bar__content" style="display: none">
+                        <div class="tools-bar__content__group">
+                            <a href="">Materiały marketingowe i branding dla twojego salonu</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-content">
+        <div class="simple-content">
+            <div class="simple-content__top">
+            </div>
+            <div class="simple-content__main">
+                <div class="text">
+                    <h5 class="h5"><span>Adresy</span></h5>
+                    <p>
+                        Tutaj możesz zarządzać adresami swojej firmy i lokalizacji salonów.
+                    </p>
+                </div>
+                <div class="simple-content__adresy">
+                    <div class="tabs">
+                        <div class="tab-nav">
+                            <div class="tab-toggle">
+                                <div class="tab-nav__item active">
+                                    Adres Billingowy / Siedziba
+                                </div>
+                                <div class="tab-nav__item">
+                                    Adresy Wysyłkowe / Lokalizacje
+                                </div>
+                            </div>
+                        </div>
+                    
+             
+                                         
+                        <div class="tab-content">
+                          
+                            <div class="tab-content__container tab active">
+                                <div class="row bg-brown"> 
+                                   
+                                    <div class="col-md-5">
+                                        <div class="sub-title">{{result.title}} {{result.billing_first_name}} {{result.billing_last_name}}</div>
+                                        <div class="text">
+                                            <ul>
+                                                <li>
+                                                 {{result.billing_address}}
+                                                    <br>
+                                                {{result.billing_zip}}   {{result.billing_city}}
+                                                </li>
+                                                <li>
+                                                  Nip:     {{result.billing_nip}}
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-md-4">
+                                        <div class="sub-title">Osoba kontaktowa
+                                     {{result.billing_first_name}} {{result.billing_last_name}}
+                                        </div>
+                                        <div class="text">
+                                            <ul>
+                                                <li>
+                                                    Tel:   {{result.user.phone}}
+                                                </li>
+                                                <li>
+                                                    {{result.user.email}}
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="change-link open-popup" data-rel="Adresy">
+                                                        <span>
+                                                            <i class="fas fa-pencil-alt"></i>
+                                                        </span>
+                                            Zmień
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+
+                            <div class="tab-content__container tab">
+                                <div class="bg-brown">
+                                    <div class="table">
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <td>
+                                                    <input name="checkbox1" type="checkbox" value="checked">
+                                                </td>
+                                                <td>LOKALIZACJA I ADRES</td>
+                                                <td>OSOBA KONTAKTOWA</td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input name="checkbox1" type="checkbox" value="checked">
+                                                </td>
+                                                <td><strong>LeDesir – Śródmieście</strong>
+                                                    <br>
+                                                    <span style="font-weight: 400;">
+                                                                    ul. Jasna 15,&nbsp;00-500 Warszawa<br></span>T: +48
+                                                    797 222 345<br>
+                                                    E: kontakt@ledesir.pl
+                                                </td>
+                                                <td><strong>Cameron Diaz<br>
+                                                        <span style="font-weight: 400;">
+                                                                        T: +48 556 231 274<br>E: cameron@ledesir.pl</span><br>
+                                                    </strong>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input name="checkbox2" type="checkbox" value="checked">
+                                                </td>
+                                                <td><strong>LeDesir – Mokotów</strong><br>
+                                                    <span style="font-weight: 400;">
+                                                                    ul. Jasna 15,&nbsp;00-500 Warszawa<br></span>T: +48
+                                                    797 222 345<br>
+                                                    E: kontakt@ledesir.pl
+                                                </td>
+                                                <td><strong>Milly Bobby Brown<br>
+                                                        <span style="font-weight: 400;">
+                                                                        T: +48 556 231 274<br>E: milly@ledesir.pl</span><br>
+                                                    </strong>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="simple-content__edukatorz__links">
+                                        <a href="" class="btn">
+                                            <i>+</i>
+                                            Dodaj Lokalizację
+                                        </a>
+                                        <a href="" class="btn dark">
+                                            <i>-</i>
+                                            Usuń Zaznaczone
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="spacer spacer-xxl"></div>
+
+        </div>
+        <!-- FOOTER -->
+        <div class="footer">
+        {{> footer}}
+        </div>
+    </div>
+
+    <div class="popup-wrapper">
+        <div class="bg-layer"></div>
+        <div class="popup-content" data-rel="Adresy">
+            <div class="layer-close"></div>
+            <div class="popup-container">
+                <div class="popup-align">
+                    <div class="popup-info">
+                        <form action="/salonperson" class="form" method="POST">
+                               <div class="form-group">
+                                   <label class="label">Title:</label>
+                                <input type="text" name="billing_title" value={{result.billing_title}}>
+                            </div> 
+                            <div class="form-group">
+                                <label class="label">First_name:</label>
+                                <input type="text" name="billing_first_name" value={{result.billing_first_name}}>
+                            </div>
+                             <div class="form-group">
+                                <label class="label">Last_name:</label>
+                                <input type="text"  name="billing_last_name" value={{result.billing_last_name}}>
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Tel:</label>
+                                <input type="text" name="billing_phone" value={{result.billing_phone}}>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="billing_email" value={{result.billing_email}}>
+                            </div>
+                          
+                          
+                            <div class="form-group">
+                                <label class="label">Address:</label>
+                                <input type="text" name="billing_address" value={{result.billing_address}}>
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Zip:</label>
+                                <input type="text" name="billing_zip" value={{result.billing_zip}}>
+                            </div>
+                            <div class="form-group">
+                                <label class="label">City:</label>
+                                <input type="text" name="billing_city" value={{result.billing_city}}>
+                            </div>
+                            <div class="form-group">
+                                <label class="label">NIP:</label>
+                                <input type="text" name="billing_nip" value={{result.billing_nip}}>
+                            </div>
+
+                            <button type="submit" class="btn">Save</button>
+                        </form>
+
+                   
+                    </div>
+                </div>
+                <div class="btn-close"><span></span></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{{> bottom}}
+
+</body>
+</html>

@@ -89,7 +89,7 @@ app.set('view engine', '.hbs');
 
 app.use('/admin_educator',adminEducatorRouter)
 app.use('/admin_brands',adminBrandsRouter);
-app.use('/educator',educatorRouter);
+app.use('/',educatorRouter);
 app.use('/auth', authRouter);
 // app.use('/client', getClientInfoMiddleware, clientRouter);
 // app.use('/product', productRouter);

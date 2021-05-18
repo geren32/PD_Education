@@ -15,8 +15,8 @@ module.exports = (sequelize) => {
         brand_id: {
             type: DataTypes.STRING,
         },
-        date: {
-            type:DataTypes.INTEGER(11),
+        availability: {
+            type:DataTypes.TEXT,
         }
     }, {
 
