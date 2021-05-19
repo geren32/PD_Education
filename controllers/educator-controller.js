@@ -24,8 +24,6 @@ module.exports = {
                     }
                 }
             })
-            console.log(result)
-
 
             const reload = await educatorService.returnIn7Days(user_id);
 
@@ -35,10 +33,10 @@ module.exports = {
 
 
                 const thisDate = Math.floor(new Date().getTime() / 1000);
-                if (thisDate - 44040192 > element.created_date) {
+                if (thisDate - 1 > element.created_date) {
                     console.log('7 днів +- 44040192 ')
                     console.log(JSON.parse(JSON.stringify(element)))
-                    return reload;
+                    Object.assign(element,{'expired':true})
 
                 }
             }
@@ -46,7 +44,8 @@ module.exports = {
 
 
             return res.render('client/educator',{
-                result:result
+                result:result,
+                reload:reload
             })
 
         } catch (err) {
@@ -61,11 +60,14 @@ module.exports = {
     },
     lessonConfirmation : async (req, res) => {
         try {
-            let {id}= req.body.id
+
+            let id= req.body.id
+            if (!id){
+                console.log('нема айді')
+            }
             console.log(id)
 
             const ready = await educatorService.lessonConfirmation(id);
-            res.json(true);
             return ready;
 
         } catch (err) {
@@ -115,7 +117,9 @@ console.log('select a date')
     getProductsForTraining: async (req, res) => {
         try {
             const result = await educatorService.getProductsForTraining()
-            return res.json(result);
+            return res.render('client/kuferek',{
+                result:result
+            })
 
         } catch (err) {
             return res.status(400).json({

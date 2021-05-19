@@ -49,11 +49,13 @@
                         <span>Kuferek</span>
                         <i class="fas fa-chevron-up"></i>
                     </div>
+                    <form action="" method="get">
                     <div class="tools-bar__content" style="display: none">
                         <div class="tools-bar__content__group">
-                            <a href="">Mój kuferek</a>
+                            <a href="kuferek.hbs">Mój kuferek</a>
                         </div>
                     </div>
+                    </form>
                 </li>
                 <li class="tools-bar__item">
                     <div class="tools-bar__link">
@@ -142,23 +144,29 @@
                                     <td>
                                         <a class="btn-tooltip" href="#" data-toggle="tooltip" data-placement="top"
                                            data-original-title="*Ważne jeżeli na 7 dni przed szkoleniem edukator nie odznaczy że dzwonił do klienta pojawia się pushup od razu po zalogowaniu do platformy z informacją że edukator ma szkolenie które musi potwierdzić telefonie"
-                                           title="">
+                                           title="тутка">
 
                                             {{this.date}}</a>
                                     </td>
                                     <td style="font-weight: 400;">{{this.hours}}</td>
-                                    <td><span style="font-weight: 400;">{{this.client_number}}</span></td>
-                                    <td class="test" data-id = "{{this.id}}">{{this.salon_address.address}}<br>
+                                    <td class="test" data-id = {{this.id}}><span style="font-weight: 400;">{{this.client_number}}</span></td>
+                                    <td>{{this.salon_address.address}}<br>
 
-                                    </td>
-                                    <td>{{this.education_type}}</td>
+                                    </td >
+                                    <td class="test2" data-contacted ={{this.contacted_date}}>{{this.education_type}}</td>
                                     <td>{{this.contact_phone}}
                                     </td>
-                                    <form>
+                                    <form>{{#if contacted_date}}
                                         <td align="center">
-                                            <input name="checkbox2" type="checkbox" value="checked" id="checkbox_check">
+                                            <input name="checkbox" type="checkbox" id="checkbox" value={{this.id}} checked>
                                         </td>
                                     </form>
+                                <form>{{else}}
+                                    <td align="center">
+                                        <input name="checkbox" type="checkbox" id="checkbox" value={{this.id}} >
+                                    </td>{{/if}}
+                                </form>
+
                                 </tr>
                                 {{#if report }}
 
@@ -192,23 +200,29 @@
 
 
 {{>bottom}}
+<script >
+    if ($('input[name="checkbox"]:checked').each(function() {
+        $(this).attr('disabled', true);
+    })
+    );
+
+    $('input').on('click', function () {
+        if ((document.getElementById('checkbox').checked = true) && (document.getElementById('checkbox').disabled = true)) {
+                const selectedLanguage = []
+                selectedLanguage.push(this.value)
+                console.log(selectedLanguage)
+               if ( $(this).prop('checked') === true ) {
+                   $(this).attr('disabled', true);
+                   $.ajax({
+                       type: "post",
+                       url: `/lessonConfirmation`,
+                       data:"id=" + selectedLanguage,
+                   })
+               }
+        }
+    })
+</script>
+
 
 </body>
 </html>
-<script >
-    // console.log($('.test').dataset.id)
-
-    $('#checkbox_check').on('click', function () {
-        let a = document.querySelector('.test').dataset.id
-        console.log(a)
-
-        if ( $(this).prop('checked') === true ) {
-            $.ajax({
-                type: "get",
-                url: `/lessonConfirmation`,
-                id:a
-            })
-        }
-
-    })
-</script>
