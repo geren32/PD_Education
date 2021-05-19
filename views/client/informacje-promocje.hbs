@@ -122,11 +122,15 @@
                         Tutaj znajdziesz informacje o aktualnych promocjach. Wybierz markę aby zobaczyć
                         promocje, po czym kliknij na interesująca Cię promocję aby pobrać prezentację. </p>
                 </div>
+                {{#each obj}}
+                <p>{{this.0.title}}</p>
+                {{/each}}
                 <div class="simple-content__promocje">
                     <ul class="simple-content__acordeon">
+                     {{#each salon_brands}}
                         <li class="tools-bar__item simple-content__acordeon__item">
                             <div class="tools-bar__link simple-content__acordeon__link">
-                                <span>KEVIN.MURPHY</span>
+                                <span>{{this.title}}</span>
                                 <i class="fas fa-chevron-up"></i>
                             </div>
                             <div class="tools-bar__content simple-content__acordeon__content"
@@ -141,241 +145,27 @@
                                     <div class="swiper-container"
                                          data-options='{"slidesPerView":1, "spaceBetween":20, "loop": false, "breakpoints": {"992": {"slidesPerView": 1},"576": {"slidesPerView": 1, "spaceBetween":20 }}}'>
                                         <div class="swiper-wrapper">
+                                             <p>lososososoososososo</p>  
+                                       
                                             <a target="_blank"
-                                               href="https://pd-edu.webcraft4u.com/wp-content/uploads/2020/10/AKTUALNE-ZESTAWY-PROMOCYJNE-KM_19.10.2020.pdf"
+                                               href=""
                                                class="swiper-slide">
                                                 <div class="swiper-slide__img">
-                                                    <img src="img/slider1.jpg" alt="">
+                                                   
+                                                    <img src="" alt="">
                                                 </div>
                                             </a>
-                                            <a target="_blank"
-                                               href="https://pd-edu.webcraft4u.com/wp-content/uploads/2020/10/AKTUALNE-ZESTAWY-PROMOCYJNE-KM_19.10.2020.pdf"
-                                               class="swiper-slide">
-                                                <div class="swiper-slide__img">
-                                                    <img src="img/slider2.jpg" alt="">
-                                                </div>
-                                            </a>
+                                          
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        <li class="tools-bar__item simple-content__acordeon__item">
-                            <div class="tools-bar__link simple-content__acordeon__link">
-                                <span>OLAPLEX</span>
-                                <i class="fas fa-chevron-up"></i>
-                            </div>
-                            <div class="tools-bar__content simple-content__acordeon__content"
-                                 style="display: none">
-                                <div class="swiper-entry">
-                                    <div class="swiper-button-prev">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </div>
-                                    <div class="swiper-button-next">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </div>
-                                    <div class="swiper-container"
-                                         data-options='{"slidesPerView":1, "spaceBetween":20, "loop": false, "breakpoints": {"992": {"slidesPerView": 1},"576": {"slidesPerView": 1, "spaceBetween":20 }}}'>
-                                        <div class="swiper-wrapper">
-                                            <a target="_blank"
-                                               href="https://pd-edu.webcraft4u.com/wp-content/uploads/2020/10/AKTUALNE-ZESTAWY-PROMOCYJNE-KM_19.10.2020.pdf"
-                                               class="swiper-slide">
-                                                <div class="swiper-slide__img">
-                                                    <img src="img/slider1.jpg" alt="">
-                                                </div>
-                                            </a>
-                                            <a target="_blank"
-                                               href="https://pd-edu.webcraft4u.com/wp-content/uploads/2020/10/AKTUALNE-ZESTAWY-PROMOCYJNE-KM_19.10.2020.pdf"
-                                               class="swiper-slide">
-                                                <div class="swiper-slide__img">
-                                                    <img src="img/slider2.jpg" alt="">
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="tools-bar__item simple-content__acordeon__item">
-                            <div class="tools-bar__link simple-content__acordeon__link">
-                                <span>Eleven Australia</span>
-                                <i class="fas fa-chevron-up"></i>
-                            </div>
-                            <div class="tools-bar__content simple-content__acordeon__content"
-                                 style="display: none">
-                                <div class="swiper-entry">
-                                    <div class="swiper-button-prev">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </div>
-                                    <div class="swiper-button-next">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </div>
-                                    <div class="swiper-container"
-                                         data-options='{"slidesPerView":1, "spaceBetween":20, "loop": false, "breakpoints": {"992": {"slidesPerView": 1},"576": {"slidesPerView": 1, "spaceBetween":20 }}}'>
-                                        <div class="swiper-wrapper">
-                                            <a target="_blank"
-                                               href="https://pd-edu.webcraft4u.com/wp-content/uploads/2020/10/AKTUALNE-ZESTAWY-PROMOCYJNE-KM_19.10.2020.pdf"
-                                               class="swiper-slide">
-                                                <div class="swiper-slide__img">
-                                                    <img src="img/slider1.jpg" alt="">
-                                                </div>
-                                            </a>
-                                            <a target="_blank"
-                                               href="https://pd-edu.webcraft4u.com/wp-content/uploads/2020/10/AKTUALNE-ZESTAWY-PROMOCYJNE-KM_19.10.2020.pdf"
-                                               class="swiper-slide">
-                                                <div class="swiper-slide__img">
-                                                    <img src="img/slider2.jpg" alt="">
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="tools-bar__item simple-content__acordeon__item">
-                            <div class="tools-bar__link simple-content__acordeon__link">
-                                <span>Showpony</span>
-                                <i class="fas fa-chevron-up"></i>
-                            </div>
-                            <div class="tools-bar__content simple-content__acordeon__content"
-                                 style="display: none">
-                                <div class="swiper-entry">
-                                    <div class="swiper-button-prev">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </div>
-                                    <div class="swiper-button-next">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </div>
-                                    <div class="swiper-container"
-                                         data-options='{"slidesPerView":1, "spaceBetween":20, "loop": false, "breakpoints": {"992": {"slidesPerView": 1},"576": {"slidesPerView": 1, "spaceBetween":20 }}}'>
-                                        <div class="swiper-wrapper">
-                                            <a target="_blank"
-                                               href="https://pd-edu.webcraft4u.com/wp-content/uploads/2020/10/AKTUALNE-ZESTAWY-PROMOCYJNE-KM_19.10.2020.pdf"
-                                               class="swiper-slide">
-                                                <div class="swiper-slide__img">
-                                                    <img src="img/slider1.jpg" alt="">
-                                                </div>
-                                            </a>
-                                            <a target="_blank"
-                                               href="https://pd-edu.webcraft4u.com/wp-content/uploads/2020/10/AKTUALNE-ZESTAWY-PROMOCYJNE-KM_19.10.2020.pdf"
-                                               class="swiper-slide">
-                                                <div class="swiper-slide__img">
-                                                    <img src="img/slider2.jpg" alt="">
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="tools-bar__item simple-content__acordeon__item">
-                            <div class="tools-bar__link simple-content__acordeon__link">
-                                <span>Framar</span>
-                                <i class="fas fa-chevron-up"></i>
-                            </div>
-                            <div class="tools-bar__content simple-content__acordeon__content"
-                                 style="display: none">
-                                <div class="swiper-entry">
-                                    <div class="swiper-button-prev">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </div>
-                                    <div class="swiper-button-next">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </div>
-                                    <div class="swiper-container"
-                                         data-options='{"slidesPerView":1, "spaceBetween":20, "loop": false, "breakpoints": {"992": {"slidesPerView": 1},"576": {"slidesPerView": 1, "spaceBetween":20 }}}'>
-                                        <div class="swiper-wrapper">
-                                            <a target="_blank"
-                                               href="https://pd-edu.webcraft4u.com/wp-content/uploads/2020/10/AKTUALNE-ZESTAWY-PROMOCYJNE-KM_19.10.2020.pdf"
-                                               class="swiper-slide">
-                                                <div class="swiper-slide__img">
-                                                    <img src="img/slider1.jpg" alt="">
-                                                </div>
-                                            </a>
-                                            <a target="_blank"
-                                               href="https://pd-edu.webcraft4u.com/wp-content/uploads/2020/10/AKTUALNE-ZESTAWY-PROMOCYJNE-KM_19.10.2020.pdf"
-                                               class="swiper-slide">
-                                                <div class="swiper-slide__img">
-                                                    <img src="img/slider2.jpg" alt="">
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="tools-bar__item simple-content__acordeon__item">
-                            <div class="tools-bar__link simple-content__acordeon__link">
-                                <span>Oribe</span>
-                                <i class="fas fa-chevron-up"></i>
-                            </div>
-                            <div class="tools-bar__content simple-content__acordeon__content"
-                                 style="display: none">
-                                <div class="swiper-entry">
-                                    <div class="swiper-button-prev">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </div>
-                                    <div class="swiper-button-next">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </div>
-                                    <div class="swiper-container"
-                                         data-options='{"slidesPerView":1, "spaceBetween":20, "loop": false, "breakpoints": {"992": {"slidesPerView": 1},"576": {"slidesPerView": 1, "spaceBetween":20 }}}'>
-                                        <div class="swiper-wrapper">
-                                            <a target="_blank"
-                                               href="https://pd-edu.webcraft4u.com/wp-content/uploads/2020/10/AKTUALNE-ZESTAWY-PROMOCYJNE-KM_19.10.2020.pdf"
-                                               class="swiper-slide">
-                                                <div class="swiper-slide__img">
-                                                    <img src="img/slider1.jpg" alt="">
-                                                </div>
-                                            </a>
-                                            <a target="_blank"
-                                               href="https://pd-edu.webcraft4u.com/wp-content/uploads/2020/10/AKTUALNE-ZESTAWY-PROMOCYJNE-KM_19.10.2020.pdf"
-                                               class="swiper-slide">
-                                                <div class="swiper-slide__img">
-                                                    <img src="img/slider2.jpg" alt="">
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="tools-bar__item simple-content__acordeon__item">
-                            <div class="tools-bar__link simple-content__acordeon__link">
-                                <span>Alterna</span>
-                                <i class="fas fa-chevron-up"></i>
-                            </div>
-                            <div class="tools-bar__content simple-content__acordeon__content"
-                                 style="display: none">
-                                <div class="swiper-entry">
-                                    <div class="swiper-button-prev">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </div>
-                                    <div class="swiper-button-next">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </div>
-                                    <div class="swiper-container"
-                                         data-options='{"slidesPerView":1, "spaceBetween":20, "loop": false, "breakpoints": {"992": {"slidesPerView": 1},"576": {"slidesPerView": 1, "spaceBetween":20 }}}'>
-                                        <div class="swiper-wrapper">
-                                            <a target="_blank"
-                                               href="https://pd-edu.webcraft4u.com/wp-content/uploads/2020/10/AKTUALNE-ZESTAWY-PROMOCYJNE-KM_19.10.2020.pdf"
-                                               class="swiper-slide">
-                                                <div class="swiper-slide__img">
-                                                    <img src="img/slider1.jpg" alt="">
-                                                </div>
-                                            </a>
-                                            <a target="_blank"
-                                               href="https://pd-edu.webcraft4u.com/wp-content/uploads/2020/10/AKTUALNE-ZESTAWY-PROMOCYJNE-KM_19.10.2020.pdf"
-                                               class="swiper-slide">
-                                                <div class="swiper-slide__img">
-                                                    <img src="img/slider2.jpg" alt="">
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                   
+                      {{/each}}
+                     
+                      
+                  
                     </ul>
                 </div>
             </div>

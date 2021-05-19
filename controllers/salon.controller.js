@@ -33,8 +33,9 @@ module.exports = {
   }
  
   var obj = Object.assign(result,{brands: list});
-  console.log(obj.brands);
-
+  console.log(obj);
+const newObj ={...obj};
+console.log(newObj);
         return  res.render('client/handlowcy',{
         //  layout: 'client/layout-client',
        result: obj,
@@ -54,8 +55,8 @@ if(!sales_id|| !message){
             message: message
         })
 console.log(result);
-        return res.status(200).json(result);
-
+        // return res.status(200).json(result);
+        res.status(200).json({message:"Sucess"});
     },
 
     getSalonById: async (req, res) => {
@@ -183,18 +184,49 @@ try {
         if (!result.length) {
             return res.status(403).json({ message: "Brand id not provided" });
         }
+     
         let list = [];
+        let salon_brands=[];
+        let salons= []
         for (let item of result) {
             list.push(item.brand_id);
+          let brands= await salonService.getSalesPersonsBrands(list);  
+        salon_brands.push(brands);
+        
         }
-        let promotions = await salonService.getBrandPromotions(list);
+    
+           for(let key of salon_brands){
+
+// let mysalon= await salonService.getBrandPromotions(key.id);
+// console.log(mysalon);
+      salons.push(await salonService.getBrandPromotions(key.id));
+ 
+} 
+for(let key of salons){
+    console.log(key[0].id);
+}
+// let obj = Object.assign( salons)
+//   console.log(obj)
+// console.log(salons);
+
+
+// let obj = {...salon_brands,...salons}
+// console.log(obj)
+// const newObj= {...obj};
+// console.log(newObj)
+ return  res.render('client/informacje-promocje',{
+          
+            salon_brands:salon_brands,
+            // obj: obj
+            })
+
+
+
+     
+             
 
         // return res.status(200).json(promotions);
-        return  res.render('client/informacje-promocje',{
-            //  layout: 'client/layout-client',
-            promotions: promotions
-          
-            })
+        
     },
 
     getMaterials: async (req, res) => {

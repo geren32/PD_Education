@@ -160,7 +160,7 @@
                                     </div>
                                    
                                     <div class="col-md-4">
-                                        <div class="sub-title">Osoba kontaktowa
+                                        <div class="sub-title">{{result.billing_title}}
                                      {{result.billing_first_name}} {{result.billing_last_name}}
                                         </div>
                                         <div class="text">
@@ -263,7 +263,7 @@
             <div class="popup-container">
                 <div class="popup-align">
                     <div class="popup-info">
-                        <form action="/salonperson" class="form" method="POST">
+                        <form id="billing_address"class="form" method="POST">
                                <div class="form-group">
                                    <label class="label">Title:</label>
                                 <input type="text" name="billing_title" value={{result.billing_title}}>
@@ -311,7 +311,7 @@
                 <div class="btn-close"><span></span></div>
             </div>
         </div>
-         <div class="popup-content"  id="my_form1"  data-rel="ShipingAdress">
+         <div class="popup-content"   data-rel="ShipingAdress">
             <div class="layer-close"></div>
             <div class="popup-container">
                 <div class="popup-align">
@@ -380,72 +380,4 @@
 </body>
 
 </html>
-<script>
-      $(document).on("submit","#my_form", function(e){
-  e.preventDefault(); // prevent actual form submit
-    var form = $(this);
-    console.log("sssssssssssssssssssss");
-    //get submit url [replace url here if desired]
-    $.ajax({
-         type: "POST",
-         url: 'http://localhost:3000/create_address',
-         data: form.serialize(), 
-         processData: false,// serializes form input
-         success: function(data){
-             console.log("-------------------");
-             console.log(data)
-          if(data.message=="Sucess"){
-         //closeSelf(data.message)
-        location.reload();
-         
-          }
-         }
 
-
-
-
-    })
-})
-function closeSelf(message){
-    // do something
-
-    if(message){
-    
-       document.forms['my_form'].submit();
-       window.close();
-    }else{
-       alert("conditions not satisfied, returning to form");    
-    }
-}
-
-$(document).on("click","#delete_btn",function(e){
-e.preventDefault();
-var selectedLanguage= []
-$('input[name="mycheckbox"]:checked').each(function() {
-selectedLanguage.push(this.value);
-});
-console.log(selectedLanguage)
-
-
-  $.ajax({
-         type: "POST",
-         url: 'http://localhost:3000/deletesalon_address/'+selectedLanguage,
-     
-         success: function(){
-             console.log("-------------------");
-          console.log("loshara")
-         // if(data.message=="Sucess"){
-         //closeSelf(data.message)
-        location.reload();
-         
-         // }
-         }
-
-
-
-
-    })
-
-})
-
-</script>

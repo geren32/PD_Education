@@ -251,7 +251,7 @@ getSalonAdressById: async (id) => {
                         { end_date: { [Op.gt]: period_date } },
                     ],
                 },
-                include: [{ model: models.brands, attributes: ["title", "logo"] }],
+             
             });
 
             return result.map(function (item) {
