@@ -28,7 +28,9 @@ module.exports = {
             ],
         });
 
-        let arr = overview.sales_id.split(",");
+    overview.sales_id= overview.sales_id.slice(1,-1);
+    overview.sales_id= overview.sales_id.split("][")
+    let arr = overview.sales_id
         let list = [];
         if (arr && arr.length) {
 
@@ -298,11 +300,15 @@ getSalonAdressById: async (id) => {
     },
     getSalesPersonsBrands: async (brand_id) => {
         try {
-            let result = await models.brands.findOne({
-                where: {id: {[Op.and]:[ brand_id]}},
+            console.log(brand_id)
+            let result = await models.brands.findAll({
+                where: {
+                    id: {   [Op.like]: `%${brand_id}%`}},
             })
-
-            return result.toJSON()
+console.log(result.map(function (item) {
+    return item.toJSON();
+}))
+            return result
 
         } catch (error) {
 

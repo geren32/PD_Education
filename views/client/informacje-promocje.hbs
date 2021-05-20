@@ -122,15 +122,22 @@
                         Tutaj znajdziesz informacje o aktualnych promocjach. Wybierz markę aby zobaczyć
                         promocje, po czym kliknij na interesująca Cię promocję aby pobrać prezentację. </p>
                 </div>
-                {{#each obj}}
-                <p>{{this.0.title}}</p>
-                {{/each}}
+                {{!-- {{#each promo}}
+              
+                <p>{{this.brand}}</p>
+
+ {{#each this.promo}}
+                                            {{ this.title }}
+
+                                            {{/each}}                
+               
+                {{/each}} --}}
                 <div class="simple-content__promocje">
                     <ul class="simple-content__acordeon">
-                     {{#each salon_brands}}
+                     {{#each promo}}
                         <li class="tools-bar__item simple-content__acordeon__item">
                             <div class="tools-bar__link simple-content__acordeon__link">
-                                <span>{{this.title}}</span>
+                                <span>{{this.brand}}</span>
                                 <i class="fas fa-chevron-up"></i>
                             </div>
                             <div class="tools-bar__content simple-content__acordeon__content"
@@ -145,17 +152,16 @@
                                     <div class="swiper-container"
                                          data-options='{"slidesPerView":1, "spaceBetween":20, "loop": false, "breakpoints": {"992": {"slidesPerView": 1},"576": {"slidesPerView": 1, "spaceBetween":20 }}}'>
                                         <div class="swiper-wrapper">
-                                             <p>lososososoososososo</p>  
-                                       
+                                            {{#each this.promo}}
                                             <a target="_blank"
                                                href=""
                                                class="swiper-slide">
                                                 <div class="swiper-slide__img">
                                                    
-                                                    <img src="" alt="">
+                                                    <img src="/{{this.banner}}" alt="">
                                                 </div>
                                             </a>
-                                          
+                                            {{/each}}
                                         </div>
                                     </div>
                                 </div>

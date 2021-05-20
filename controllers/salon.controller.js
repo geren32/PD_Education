@@ -15,31 +15,49 @@ module.exports = {
         //     return res.status(403).json({ message: "User id not provided" });
         // }
         let result = await salonService.getSalesPersons(1);
-        console.log(result)
+      
       let list = [];  
+  
       for (let item of result) {
-          let arr = item.brand_id.split(",");
-      if (arr && arr.length) {
+        //  console.log(item)
+          item.brand_id = item.brand_id.slice(1, -1)
+       
+          item.brand_id= item.brand_id.split("][")
+          
+          let arr = item.brand_id
+          console.log(arr);
+          if (arr && arr.length) {
 
         //   arr.forEach((element) => {
    
           
         //   });
         for(let key of arr){
-          list.push(await salonService.getSalesPersonsBrands(key));
+     let brand=    await salonService.getSalesPersonsBrands(key);
+// console.log(brand);
+ let value ={
+     brand:brand,
+     user:item
+ }
+list.push(value);          
         }
 
       } 
   }
- 
+// console.log(list);
+//   let value = {
+// brand: list,
+// user:result
+//   }
+//  console.log(value)
   var obj = Object.assign(result,{brands: list});
-  console.log(obj);
+//   console.log(obj);
 const newObj ={...obj};
-console.log(newObj);
+//console.log(newObj);
         return  res.render('client/handlowcy',{
         //  layout: 'client/layout-client',
-       result: obj,
-     
+       result: result,
+        res: list
         })
     },
 
@@ -168,6 +186,7 @@ try {
             return res.status(403).json({ message: "User id not provided" });
 
         }
+        console.log(result);
         return  res.render('client/marki',{
             //  layout: 'client/layout-client',
            result: result
@@ -178,46 +197,62 @@ try {
     checkPromotionsofBrands: async (req, res) => {
         // let id = req.headers.id;
 
-        // let result = await salonService.getBrandPromotions(id);
+      
 
         let result = await salonService.getSalonBrands(1);
         if (!result.length) {
             return res.status(403).json({ message: "Brand id not provided" });
         }
      
-        let list = [];
-        let salon_brands=[];
-        let salons= []
-        for (let item of result) {
-            list.push(item.brand_id);
-          let brands= await salonService.getSalesPersonsBrands(list);  
-        salon_brands.push(brands);
-        
-        }
-    
-           for(let key of salon_brands){
+       
+        let promo= []
+        // console.log(result);
 
-// let mysalon= await salonService.getBrandPromotions(key.id);
-// console.log(mysalon);
-      salons.push(await salonService.getBrandPromotions(key.id));
- 
+      
+           for(let key of result){
+
+// let mysalon= await salonService.getBrandPromotions(key.brand_id);
+//  console.log(mysalon);
+     let promoOne = await salonService.getBrandPromotions(key.id);
+     let value = {
+         brand: key.brand.title,
+         promo: promoOne
+     }
+     promo.push(value);
+
 } 
-for(let key of salons){
-    console.log(key[0].id);
-}
-// let obj = Object.assign( salons)
-//   console.log(obj)
+console.log(promo);
+
+
+
+
+
+
+
+
+
+// var output = salons.map(( value ,i)=> {
+   
+//salons
+// //   console.log(i);
+// //   if(i==0){
+// //     return  value ;  
+// //   }
+// //    else
+// //    {return {brands_2: value}} 
+    
+// });
+
+//  console.log(output)
+
 // console.log(salons);
 
 
-// let obj = {...salon_brands,...salons}
-// console.log(obj)
-// const newObj= {...obj};
-// console.log(newObj)
+
  return  res.render('client/informacje-promocje',{
           
-            salon_brands:salon_brands,
-            // obj: obj
+            promo:promo,
+        // salons: output
             })
 
 
@@ -289,7 +324,13 @@ for(let key of salons){
       
         let list = [];  
         for (let item of result) {
-            let arr = item.brand_id.split(",");
+            // let arr = item.brand_id.split(",");
+              
+          item.brand_id = item.brand_id.slice(1, -1)
+       
+          item.brand_id= item.brand_id.split("][")
+          
+          let arr = item.brand_id
         if (arr && arr.length) {
 
             arr.forEach((element) => {
