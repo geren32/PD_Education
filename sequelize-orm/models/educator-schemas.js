@@ -17,6 +17,15 @@ module.exports = (sequelize) => {
         },
         availability: {
             type:DataTypes.TEXT,
+        },
+        required_days: {
+            type: DataTypes.INTEGER(11),
+        },
+        quota: {
+            type: DataTypes.INTEGER(11),
+        },
+        price_per_days: {
+            type: DataTypes.INTEGER(11),
         }
     }, {
 

@@ -50,11 +50,11 @@
                         <i class="fas fa-chevron-up"></i>
                     </div>
                     <form action="" method="get">
-                    <div class="tools-bar__content" style="display: none">
-                        <div class="tools-bar__content__group">
-                            <a href="kuferek.hbs">Mój kuferek</a>
+                        <div class="tools-bar__content" style="display: none">
+                            <div class="tools-bar__content__group">
+                                <a href="kuferek.hbs">Mój kuferek</a>
+                            </div>
                         </div>
-                    </div>
                     </form>
                 </li>
                 <li class="tools-bar__item">
@@ -156,11 +156,11 @@
                                     <td class="test2" data-contacted ={{this.contacted_date}}>{{this.education_type}}</td>
                                     <td>{{this.contact_phone}}
                                     </td>
-                                    <form>{{#if contacted_date}}
-                                        <td align="center">
-                                            <input name="checkbox" type="checkbox" id="checkbox" value={{this.id}} checked>
-                                        </td>
-                                    </form>
+                                <form>{{#if contacted_date}}
+                                    <td align="center">
+                                        <input name="checkbox" type="checkbox" id="checkbox" value={{this.id}} checked>
+                                    </td>
+                                </form>
                                 <form>{{else}}
                                     <td align="center">
                                         <input name="checkbox" type="checkbox" id="checkbox" value={{this.id}} >
@@ -176,7 +176,7 @@
                                                href="#" data-toggle="tooltip"
                                                data-placement="top"
                                                data-original-title="Ten guzik pojawia się tylko wtedy gdy szkolenie się odbyło a kalendarz wskazuje dzień po szkoleniu klikając na ten guzik pojawia się nowe okno (nie koniecznie strona) w której edukator wypełnia krótki test żeby nie robić go teraz zróbmy coś takiego jak 5 pytan Ipsom lorum możliwość zaznaczania od 1 do 5. I na dole notatka a pod nią guzik wyślij. Po tym guzik zmienia się na dziękuje za wysłanie raportu."
-                                               title=""><strong>WYPEŁNIJ RAPORT</strong>
+                                               title=""><strong class="open-popup" data-rel="RAPORT">WYPEŁNIJ RAPORT</strong>
                                             </a>
                                         </td>
                                     </tr>
@@ -208,17 +208,17 @@
 
     $('input').on('click', function () {
         if ((document.getElementById('checkbox').checked = true) && (document.getElementById('checkbox').disabled = true)) {
-                const selectedLanguage = []
-                selectedLanguage.push(this.value)
-                console.log(selectedLanguage)
-               if ( $(this).prop('checked') === true ) {
-                   $(this).attr('disabled', true);
-                   $.ajax({
-                       type: "post",
-                       url: `/lessonConfirmation`,
-                       data:"id=" + selectedLanguage,
-                   })
-               }
+            const selectedLanguage = []
+            selectedLanguage.push(this.value)
+            console.log(selectedLanguage)
+            // if ( $(this).prop('checked') === true ) {
+            //     $(this).attr('disabled', true);
+            //     $.ajax({
+            //         type: "post",
+            //         url: `/lessonConfirmation`,
+            //         data:"id=" + selectedLanguage,
+            //     })
+            // }
         }
     })
 </script>

@@ -85,6 +85,12 @@ module.exports = {
         WAITING: 3,
         DUPLICATE_POST:4
     },
+    TYPE_ITEMS:{
+        0: 'phone',
+        1: 'car',
+        2: 'card',
+        3: 'tablet'
+    },
 
     CHANGE_DATA_REQUEST_STATUSES:{
         0: 'Не розглянуто',

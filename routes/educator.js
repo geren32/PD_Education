@@ -9,7 +9,7 @@ router.post('/createEducatorDate',educator.createEducatorDate)
 router.get('/getProductsForTraining',educator.getProductsForTraining)
 router.post('/lessonConfirmation',educator.lessonConfirmation)
 router.get('/productForOrder', educator.productForOrder)
-router.get('/getEquipmentEducator',educator.getEquipmentEducator)
+router.get('/getEquipmentEducator/:user_id',educator.getEquipmentEducator)
 router.post('/changeRequestEquipmentEducator',educator.changeRequestEquipmentEducator)
 
 router.post('/createReportForEducation',educator.createReportForEducation)

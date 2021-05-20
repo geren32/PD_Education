@@ -166,12 +166,14 @@ console.log('select a date')
 
     getEquipmentEducator: async (req,res) => {
         try {
-            let {user_id} = req.body
+            let {user_id} = req.params
 
             const result = await educatorService.getEquipmentEducator(user_id)
+            console.log(result)
 
-            return res.json(result);
-
+            return res.render('client/moj-sprzet',{
+                result:result
+            })
         }catch (err) {
             return res.status(400).json({
                 massage: err.massage,

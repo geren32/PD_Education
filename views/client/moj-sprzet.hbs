@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{>top}}
+    <title>Szkolenia Edukatora - Premium Distribution - Education</title>
+</head>
+<body class="edu-szkolenia-page">
+
+
+    <!-- LOADER -->
+    <div id="loader-wrapper"></div>
+
+    <div id="content-block">
+
+
+        <!-- HEADER -->
+        {{>header}}
+        <div class="tools-bar">
+            <div class="tools-bar__header">
+                <div class="tools-bar__logo">
+                    <img src="img/white-logo.png" alt="">
+                </div>
+            </div>
+            <div class="tools-bar__main">
+                <ul class="tools-bar__list">
+                    <li class="tools-bar__item">
+                        <div class="tools-bar__link">
+                            <span>Szkolenia</span>
+                            <i class="fas fa-chevron-up"></i>
+                        </div>
+                        <div class="tools-bar__content" style="display: none">
+                            <div class="tools-bar__content__group">
+                                <a href="edu-szkolenia.php"> Moje szkolenia</a>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="tools-bar__item">
+                        <div class="tools-bar__link">
+                            <span>Dostępność</span>
+                            <i class="fas fa-chevron-up"></i>
+                        </div>
+                        <div class="tools-bar__content" style="display: none">
+                            <div class="tools-bar__content__group">
+                                <a href="dostepnosc-edukatora.php">Moja dostępność</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="tools-bar__item">
+                        <div class="tools-bar__link">
+                            <span>Kuferek</span>
+                            <i class="fas fa-chevron-up"></i>
+                        </div>
+                        <div class="tools-bar__content" style="display: none">
+                            <div class="tools-bar__content__group">
+                                <a href="" class="active">Mój kuferek</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="tools-bar__item">
+                        <div class="tools-bar__link">
+                            <span>Materiały</span>
+                            <i class="fas fa-chevron-up"></i>
+                        </div>
+                        <div class="tools-bar__content" style="display: none">
+                            <div class="tools-bar__content__group">
+                                <a href="">Moje materiały</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="tools-bar__item active">
+                        <div class="tools-bar__link active">
+                            <span>Sprzęt</span>
+                            <i class="fas fa-chevron-up"></i>
+                        </div>
+                        <div class="tools-bar__content">
+                            <div class="tools-bar__content__group">
+                                <a href="">Mój sprzęt</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="tools-bar__item">
+                        <div class="tools-bar__link">
+                            <span>Rozliczenie</span>
+                            <i class="fas fa-chevron-up"></i>
+                        </div>
+                        <div class="tools-bar__content" style="display: none">
+                            <div class="tools-bar__content__group">
+                                <a href="">Rozliczenie</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="tools-bar__item">
+                        <div class="tools-bar__link">
+                            <span>Testy</span>
+                            <i class="fas fa-chevron-up"></i>
+                        </div>
+                        <div class="tools-bar__content" style="display: none">
+                            <div class="tools-bar__content__group">
+                                <a href="">Testy</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-content">
+            <div class="simple-content">
+                <div class="simple-content__top">
+                    <div class="simple-content__decor-line">
+                        <a href="">Mój sprzęt</a>
+                    </div>
+                </div>
+                <div class="simple-content__main">
+                    <div class="text">
+                        <h5 class="h5"><span>Mój sprzęt</span></h5>
+                        <p>
+                            Tutaj możesz sprawdzić swój sprzęt i jego dane.
+                        </p>
+                    </div>
+                    <form>
+                    <div class="simple-content__sprzet">
+
+                        {{#each result}}
+                            {{#ifCond this.type "==" "0"}}
+                                <div class="simple-content__sprzet__item">
+                                <div class="simple-content__sprzet__img">
+                                    <img src="/{{this.image}}" alt=""  >
+                                </div>
+
+                                <ul class="simple-content__sprzet__list">
+                                    <li><strong>Numer seryjny: </strong>{{this.title}}</li>
+                                    <li><strong>Kod do odblokowania: </strong>{{this.sku}}</li>
+                                    <li><strong>PIN Karty SIM: </strong>{{this.content}}</li>
+                                </ul>
+                                <div class="simple-content__sprzet__edit open-popup" data-rel="change-sprzęt" id="{{this.id}}"  >
+                                    <span ><i  class="fas fa-pencil-alt"></i></span>
+                                    Zmień kod
+                                </div>
+                            </div>
+                            {{/ifCond}}
+                            {{#ifCond this.type "==" "3" }}
+                                <div class="simple-content__sprzet__item">
+                                <div class="simple-content__sprzet__img">
+                                    <img src="/{{this.image}}" alt="" class="asd" id="{{this.id}}">
+                                </div>
+                                <ul class="simple-content__sprzet__list">
+                                    <li><strong>Numer seryjny: </strong>{{this.title}}</li>
+                                    <li><strong>Kod do odblokowania: </strong>{{this.sku}}</li>
+                                    <li><strong>PIN Karty SIM: </strong>{{this.content}}</li>
+                                </ul>
+                                <div class="simple-content__sprzet__edit open-popup" data-rel="change-sprzęt">
+                                    <span><i class="fas fa-pencil-alt"></i></span>
+                                    Zmień kod
+                                </div>
+                            </div>
+                            {{/ifCond}}
+                            {{#ifCond this.type "==" "1" }}
+                                <div class="simple-content__sprzet__item">
+
+                                 <div class="simple-content__sprzet__img">
+                                    <img src="/{{this.image}}" alt="" id="{{this.id}}">
+                                 </div>
+                                 <ul class="simple-content__sprzet__list">
+                                    <li><strong>Model: </strong>{{this.title}}</li>
+                                    <li><strong>Numer rejestracyjny: </strong>{{this.sku}}</li>
+                                    <li><strong>Data ważności ubezpieczenia: </strong>{{this.content}}</li>
+                                 </ul>
+                              </div>
+                            {{/ifCond}}
+                            {{#ifCond this.type "==" "2" }}
+                            <div class="simple-content__sprzet__item">
+
+                                <div class="simple-content__sprzet__img">
+                                    <img src="/{{this.image}}" alt="" id="{{this.id}}">
+                                </div>
+                                <ul class="simple-content__sprzet__list">
+                                    <li><strong>Karta służbowa: </strong>{{this.title}}</li>
+                                    <li><strong>Limit: </strong>{{this.sku}} zł</li>
+                                    <li><strong>Data ważności: </strong>{{this.content}}</li>
+                                </ul>
+                            </div>
+                            {{/ifCond}}
+                        {{/each}}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- FOOTER -->
+        <div class="footer">
+            {{>footer}}
+        </div>
+        <!-- POPUP -->
+    </div>
+
+    <!-- POPUP -->
+    <div class="popup-wrapper">
+        <div class="bg-layer"></div>
+        <div class="popup-content" data-rel="change-sprzęt">
+            <div class="layer-close"></div>
+            <div class="popup-container">
+                <div class="popup-align">
+                    <div class="popup-info">
+                        <div class="text text-center">
+                            <div class="h5">Moja opinia</div>
+                        </div>
+                            <div class="form-group">
+                                <label class="label">zostawić wiadomość</label>
+                                <input type="text" name="text">
+                            </div>
+
+
+                            <button id="123" type="submit" class="btn">Save</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="btn-close"><span></span></div>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+
+
+{{>bottom}}
+
+<script>
+    $('#123').on('click', function () {
+        console.log('asd')
+        console.log(this.input)
+        // $.ajax({
+        //     type: "post",
+        //     url: `/changeRequestEquipmentEducator`,
+        //     data:"id=" + selectedLanguage,
+        // })
+        return false;
+    })
+</script>
+</body>
+</html>
